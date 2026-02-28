@@ -22,7 +22,7 @@ function Hero() {
                 </div>
 
                 <p className="text-xl sm:text-2xl md:text-3xl text-white/90 font-display font-medium mb-10 drop-shadow-md">
-                    Elaboración e impregnación de maderas
+                    Soluciones en madera para construcción, embalajes y proyectos industriales
                 </p>
 
                 {/* CTA Buttons */}
