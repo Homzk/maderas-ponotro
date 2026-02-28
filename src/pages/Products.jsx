@@ -6,9 +6,9 @@ function Products() {
     return (
         <div className="pt-20">
             {/* Header Section */}
-            <section className="bg-gradient-to-br from-forest-dark to-forest py-16 md:py-24">
+            <section className="bg-gradient-to-br from-forest-dark to-forest py-8 md:py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
                         Productos
                     </h1>
                     <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">

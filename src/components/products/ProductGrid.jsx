@@ -56,14 +56,6 @@ function ProductGrid() {
     return (
         <section className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="section-title">Nuestros Productos</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                        Ofrecemos una amplia gama de productos de madera elaborada e impregnada
-                        para satisfacer todas sus necesidades.
-                    </p>
-                </div>
 
                 {/* Products Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

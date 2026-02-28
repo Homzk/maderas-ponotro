@@ -21,7 +21,7 @@ export const CONTACT_INFO = {
     email: 'contacto@maderasponotro.cl',
     phone: '+56912345678',
     whatsapp: '+56912345678',
-    address: 'Región de Los Ríos, Chile',
+    address: 'Región del Biobío, Chile',
     hours: 'Lunes a Viernes: 08:00 - 18:00 | Sábado: 09:00 - 13:00',
 }
 

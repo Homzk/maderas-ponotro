@@ -7,9 +7,9 @@ function Contact() {
     return (
         <div className="pt-20">
             {/* Header Section */}
-            <section className="bg-gradient-to-br from-forest-dark to-forest py-16 md:py-24">
+            <section className="bg-gradient-to-br from-forest-dark to-forest py-8 md:py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
                         Contáctanos
                     </h1>
                     <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
@@ -69,15 +69,18 @@ function Contact() {
                                 </div>
                             </div>
 
-                            {/* Map Placeholder */}
+                            {/* Map Embedded */}
                             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                                <div className="bg-gray-200 h-64 flex items-center justify-center">
-                                    <div className="text-center text-gray-500">
-                                        <FaMapMarkerAlt className="text-4xl mx-auto mb-2 text-forest" />
-                                        <p className="font-medium">Mapa de Ubicación</p>
-                                        <p className="text-sm">Región de Los Ríos, Chile</p>
-                                    </div>
-                                </div>
+                                <iframe
+                                    src="https://maps.google.com/maps?q=-37.8370857,-73.4258194&hl=es&z=15&output=embed"
+                                    width="100%"
+                                    height="400"
+                                    style={{ border: 0 }}
+                                    allowFullScreen=""
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Ubicación Maderas Ponotro"
+                                ></iframe>
                             </div>
                         </div>
                     </div>
