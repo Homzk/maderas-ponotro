@@ -214,7 +214,7 @@ function Hero() {
     // Auto-play
     useEffect(() => {
         if (!isAutoPlaying) return
-        const timer = setInterval(next, 5000)
+        const timer = setInterval(next, 10000)
         return () => clearInterval(timer)
     }, [isAutoPlaying, next])
 
@@ -237,9 +237,8 @@ function Hero() {
             {backgrounds.map((bg, i) => (
                 <div
                     key={i}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${
-                        i === current ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'
+                        }`}
                 >
                     <img
                         src={bg}
@@ -261,13 +260,12 @@ function Hero() {
                 {slideComponents.map((SlideComponent, i) => (
                     <div
                         key={i}
-                        className={`absolute inset-0 flex items-center transition-all duration-700 pt-20 pb-24 ${
-                            i === current
+                        className={`absolute inset-0 flex items-center transition-all duration-700 pt-20 pb-24 ${i === current
                                 ? 'opacity-100 translate-x-0'
                                 : i < current
-                                  ? 'opacity-0 -translate-x-full'
-                                  : 'opacity-0 translate-x-full'
-                        }`}
+                                    ? 'opacity-0 -translate-x-full'
+                                    : 'opacity-0 translate-x-full'
+                            }`}
                     >
                         <div className="w-full h-full">
                             <SlideComponent />
@@ -298,11 +296,10 @@ function Hero() {
                     <button
                         key={i}
                         onClick={() => handleManualNav(() => setCurrent(i))}
-                        className={`h-2.5 rounded-full transition-all duration-500 ${
-                            i === current
+                        className={`h-2.5 rounded-full transition-all duration-500 ${i === current
                                 ? 'w-10 bg-forest-light'
                                 : 'w-2.5 bg-white/40 hover:bg-white/60'
-                        }`}
+                            }`}
                         aria-label={`Ir a slide ${i + 1}`}
                     />
                 ))}

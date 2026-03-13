@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import QuotationCart from './components/layout/QuotationCart'
@@ -7,8 +8,11 @@ import ProcessGallery from './components/history/ProcessGallery'
 import FounderProfile from './components/history/FounderProfile'
 import CallToAction from './components/home/CallToAction'
 import ContactSection from './components/contact/ContactSection'
+import ProductDetailModal from './components/products/ProductDetailModal'
 
 function App() {
+    const [selectedProduct, setSelectedProduct] = useState(null)
+
     return (
         <div className="min-h-screen">
             <Navbar />
@@ -20,7 +24,7 @@ function App() {
 
                 {/* 2. Productos */}
                 <section id="productos">
-                    <ProductGrid />
+                    <ProductGrid onSelectProduct={setSelectedProduct} />
                 </section>
 
                 {/* 3. Proceso */}
@@ -42,6 +46,13 @@ function App() {
             </main>
 
             <Footer />
+
+            {selectedProduct && (
+                <ProductDetailModal 
+                    product={selectedProduct} 
+                    onClose={() => setSelectedProduct(null)} 
+                />
+            )}
         </div>
     )
 }

@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { FaPlus, FaCheck } from 'react-icons/fa'
 import { useQuotationCart } from '../../context/QuotationCartContext'
 
-function ProductCard({ product }) {
+function ProductCard({ product, onSelect }) {
     const { addItem, items } = useQuotationCart()
     const isInCart = items.some(item => item.id === product.id)
     const [justAdded, setJustAdded] = useState(false)
 
-    const handleAdd = () => {
+    const handleAdd = (e) => {
+        if (e) e.stopPropagation()
         if (isInCart) return
         addItem({
             id: product.id,
@@ -15,13 +16,17 @@ function ProductCard({ product }) {
             description: product.description,
             category: product.category,
             icon: product.icon,
+            image: product.image
         })
         setJustAdded(true)
         setTimeout(() => setJustAdded(false), 1500)
     }
 
     return (
-        <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col h-full border border-gray-100 hover:border-accent-gold/30">
+        <div 
+            className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col h-full border border-gray-100 hover:border-accent-gold/30 cursor-pointer"
+            onClick={onSelect}
+        >
             {/* Image / Icon */}
             <div className="relative h-52 bg-gradient-to-br from-forest-dark/80 to-forest/60 overflow-hidden">
                 {product.image ? (

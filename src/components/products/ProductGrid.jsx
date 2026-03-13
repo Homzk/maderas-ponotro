@@ -7,6 +7,15 @@ const INITIAL_VISIBLE = 6
 
 const products = [
     {
+        id: 'marco-rebajado',
+        name: 'Marco rebajado para ventana impregnado 1.5" x 6" x 3.20m',
+        description: 'Fabricación disponible en distintos largos: 2.50m, 3.20m, 4.00m, 5.00m, 6.00m, y 7.00m.',
+        category: 'Impregnación',
+        icon: FaWindowMaximize,
+        image: '/marco-rebajado.png',
+        features: ['Rebajado para vidrio', 'Impregnado CCA', 'Largos de 2.5 a 7m'],
+    },
+    {
         id: 1,
         name: 'Madera Impregnada Estructural',
         description: 'Pino tratado con CCA para máxima durabilidad en construcciones y estructuras expuestas. Ideal para proyectos que requieren resistencia extrema a la intemperie.',
@@ -54,17 +63,9 @@ const products = [
         icon: FaCog,
         features: ['Para cercos y parrones', 'Uso agrícola', 'Resistencia extrema'],
     },
-    {
-        id: 7,
-        name: 'Marco rebajado para ventana impregnado 1.5" x 6"',
-        description: 'Fabricación disponible en distintos largos: 2.50m, 3.20m, 4.00m, 5.00m, 6.00m, y 7.00m.',
-        category: 'Impregnación',
-        icon: FaWindowMaximize,
-        features: ['Rebajado para vidrio', 'Impregnado CCA', 'Largos de 2.5 a 7m'],
-    },
 ]
 
-function ProductGrid() {
+function ProductGrid({ onSelectProduct }) {
     const [showAll, setShowAll] = useState(false)
     const visibleProducts = showAll ? products : products.slice(0, INITIAL_VISIBLE)
     const hasMore = products.length > INITIAL_VISIBLE
@@ -106,7 +107,10 @@ function ProductGrid() {
                             key={product.id}
                             className={`reveal reveal-up ${gridStagger.isVisible(index) ? 'visible' : ''}`}
                         >
-                            <ProductCard product={product} />
+                            <ProductCard 
+                                product={product} 
+                                onSelect={() => onSelectProduct && onSelectProduct(product)} 
+                            />
                         </div>
                     ))}
                 </div>
