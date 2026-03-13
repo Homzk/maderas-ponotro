@@ -1,0 +1,125 @@
+import { FaTimes, FaTrash, FaArrowRight } from 'react-icons/fa'
+import { useQuotationCart } from '../../context/QuotationCartContext'
+
+function QuotationCart() {
+    const { items, isOpen, closeCart, removeItem, clearCart, scrollToContactWithMessage } = useQuotationCart()
+
+    return (
+        <>
+            {/* Backdrop */}
+            <div
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] transition-opacity duration-300 ${
+                    isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
+                onClick={closeCart}
+            />
+
+            {/* Slide-over panel */}
+            <div
+                className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl transition-transform duration-500 ease-out flex flex-col ${
+                    isOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
+            >
+                {/* Header */}
+                <div className="bg-gradient-to-r from-forest-dark to-forest p-6 flex items-center justify-between flex-shrink-0">
+                    <div>
+                        <h2 className="font-display font-bold text-white text-xl">
+                            Cotización
+                        </h2>
+                        <p className="text-white/70 text-sm mt-1">
+                            {items.length === 0
+                                ? 'Sin productos'
+                                : `${items.length} producto${items.length > 1 ? 's' : ''} seleccionado${items.length > 1 ? 's' : ''}`
+                            }
+                        </p>
+                    </div>
+                    <button
+                        onClick={closeCart}
+                        className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                        aria-label="Cerrar carrito"
+                    >
+                        <FaTimes />
+                    </button>
+                </div>
+
+                {/* Items List */}
+                <div className="flex-1 overflow-y-auto p-6">
+                    {items.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center h-full text-center">
+                            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <svg className="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8l-1.4-7M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+                                </svg>
+                            </div>
+                            <p className="text-gray-500 font-display font-medium">
+                                Tu cotización está vacía
+                            </p>
+                            <p className="text-gray-400 text-sm mt-1">
+                                Agrega productos desde nuestro catálogo
+                            </p>
+                        </div>
+                    ) : (
+                        <ul className="space-y-4">
+                            {items.map((item, index) => (
+                                <li
+                                    key={item.id}
+                                    className="bg-gray-50 rounded-xl p-4 flex gap-4 items-start group hover:bg-gray-100 transition-colors"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                >
+                                    {/* Icon */}
+                                    <div className="w-12 h-12 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        {item.icon ? (
+                                            <item.icon className="text-forest text-xl" />
+                                        ) : (
+                                            <span className="text-forest font-bold text-sm">{index + 1}</span>
+                                        )}
+                                    </div>
+                                    {/* Info */}
+                                    <div className="flex-1 min-w-0">
+                                        <h4 className="font-display font-semibold text-sm text-charcoal leading-tight">
+                                            {item.name}
+                                        </h4>
+                                        {item.category && (
+                                            <span className="inline-block text-xs text-forest bg-forest/10 px-2 py-0.5 rounded-full mt-1">
+                                                {item.category}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {/* Remove */}
+                                    <button
+                                        onClick={() => removeItem(item.id)}
+                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                        aria-label={`Eliminar ${item.name}`}
+                                    >
+                                        <FaTrash size={12} />
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+                {/* Footer Actions */}
+                {items.length > 0 && (
+                    <div className="border-t border-gray-200 p-6 flex-shrink-0 space-y-3">
+                        <button
+                            onClick={scrollToContactWithMessage}
+                            className="w-full btn-primary flex items-center justify-center gap-3 text-lg py-4"
+                        >
+                            Cotizar ahora
+                            <FaArrowRight />
+                        </button>
+                        <button
+                            onClick={clearCart}
+                            className="w-full text-sm text-gray-500 hover:text-red-500 font-medium py-2 transition-colors"
+                        >
+                            Vaciar cotización
+                        </button>
+                    </div>
+                )}
+            </div>
+        </>
+    )
+}
+
+export default QuotationCart

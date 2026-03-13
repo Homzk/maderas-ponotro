@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { validateForm } from '../../utils/validation'
 import { sendEmail } from '../../utils/emailService'
 import { FaPaperPlane, FaCheck, FaExclamationCircle } from 'react-icons/fa'
+import { useQuotationCart } from '../../context/QuotationCartContext'
 
 function ContactForm() {
+    const { items, getCartMessage, clearCart } = useQuotationCart()
+
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -13,12 +16,27 @@ function ContactForm() {
     })
     const [errors, setErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | null
+    const [submitStatus, setSubmitStatus] = useState(null)
+
+    // Listen for cart message injection via DOM events
+    useEffect(() => {
+        const textarea = document.getElementById('message')
+        if (!textarea) return
+
+        const handleInput = (e) => {
+            // Only handle programmatic input events (from cart)
+            if (!e.isTrusted) {
+                setFormData((prev) => ({ ...prev, message: textarea.value }))
+            }
+        }
+
+        textarea.addEventListener('input', handleInput)
+        return () => textarea.removeEventListener('input', handleInput)
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormData((prev) => ({ ...prev, [name]: value }))
-        // Clear error when user starts typing
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: null }))
         }
@@ -28,7 +46,6 @@ function ContactForm() {
         e.preventDefault()
         setSubmitStatus(null)
 
-        // Validate form
         const validation = validateForm(formData)
         if (!validation.isValid) {
             setErrors(validation.errors)
@@ -42,7 +59,6 @@ function ContactForm() {
 
             if (result.success) {
                 setSubmitStatus('success')
-                // Clear form
                 setFormData({
                     name: '',
                     phone: '',
@@ -50,6 +66,10 @@ function ContactForm() {
                     city: '',
                     message: '',
                 })
+                // Clear cart after successful submission
+                if (items.length > 0) {
+                    clearCart()
+                }
             } else {
                 setSubmitStatus('error')
             }
@@ -81,6 +101,20 @@ function ContactForm() {
                     <FaExclamationCircle className="flex-shrink-0" />
                     <p>Hubo un error al enviar el mensaje. Por favor intente nuevamente.</p>
                 </div>
+            )}
+
+            {/* Cart indicator */}
+            {items.length > 0 && !formData.message.includes('COTIZACIÓN') && (
+                <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, message: getCartMessage() }))}
+                    className="w-full flex items-center gap-3 p-3 bg-accent-gold/10 border border-accent-gold/30 rounded-lg text-accent-gold-dark text-sm hover:bg-accent-gold/15 transition-colors"
+                >
+                    <span className="w-6 h-6 bg-accent-gold text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        {items.length}
+                    </span>
+                    Incluir {items.length} producto{items.length > 1 ? 's' : ''} de la cotización en el mensaje
+                </button>
             )}
 
             {/* Name Field */}
@@ -171,7 +205,7 @@ function ContactForm() {
                 <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={6}
                     value={formData.message}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-400 bg-red-50' : 'border-gray-300'

@@ -1,16 +1,24 @@
-import { Link } from 'react-router-dom'
 import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import { FaTiktok } from 'react-icons/fa6'
 
 const quickLinks = [
-    { name: 'Inicio', path: '/' },
-    { name: 'Productos', path: '/productos' },
-    { name: 'Nuestra Historia', path: '/historia' },
-    { name: 'Contacto', path: '/contacto' },
+    { name: 'Inicio', href: '#inicio' },
+    { name: 'Productos', href: '#productos' },
+    { name: 'Proceso', href: '#proceso' },
+    { name: 'Historia', href: '#historia' },
+    { name: 'Contacto', href: '#contacto' },
 ]
 
 function Footer() {
     const currentYear = new Date().getFullYear()
+
+    const handleScroll = (e, href) => {
+        e.preventDefault()
+        const target = document.querySelector(href)
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
 
     return (
         <footer className="bg-forest-dark text-white">
@@ -54,13 +62,14 @@ function Footer() {
                         <h3 className="font-display font-bold text-lg mb-4">Enlaces Rápidos</h3>
                         <ul className="space-y-2">
                             {quickLinks.map((link) => (
-                                <li key={link.path}>
-                                    <Link
-                                        to={link.path}
+                                <li key={link.href}>
+                                    <a
+                                        href={link.href}
+                                        onClick={(e) => handleScroll(e, link.href)}
                                         className="text-white/80 hover:text-forest-light transition-colors text-sm"
                                     >
                                         {link.name}
-                                    </Link>
+                                    </a>
                                 </li>
                             ))}
                         </ul>

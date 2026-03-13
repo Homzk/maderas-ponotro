@@ -6,10 +6,10 @@ Sitio Web Corporativo
 
 | Proyecto: | Sitio Web Corporativo Maderas Ponotro |
 | :---- | :---- |
-| **Versión:** | 1.0 |
-| **Fecha:** | 03/02/2026 |
+| **Versión:** | 3.0 |
+| **Fecha:** | 12/03/2026 |
 | **Tipo:** | Especificación de Requerimientos Funcionales |
-| **Estado:** | Borrador |
+| **Estado:** | Implementado |
 
 # **Tabla de Contenidos**
 
@@ -43,59 +43,68 @@ Sitio Web Corporativo
 
 *    5.1 Paleta de Colores  
 *    5.2 Tipografía  
-*    5.3 Tecnologías Recomendadas
+*    5.3 Tecnologías Implementadas
 
 6. **6\. Anexos**
 
-*    6.1 Wireframes y Mockups  
-*    6.2 Referencias Visuales
+*    6.1 Estructura de Navegación  
+*    6.2 Campos del Formulario de Contacto  
+*    6.3 Checklist de Entrega
 
 # **1\. Introducción**
 
 ## **1.1 Propósito del Documento**
 
-Este documento establece la especificación de requerimientos funcionales para el desarrollo del sitio web corporativo de Maderas Ponotro. Su objetivo es definir de manera clara y precisa las funcionalidades, características y comportamientos esperados del sistema web, sirviendo como guía para el equipo de desarrollo y como referencia para la validación del producto final.
+Este documento establece la especificación de requerimientos funcionales para el sitio web corporativo de Maderas Ponotro. Define las funcionalidades, características y comportamientos implementados en el sistema web, sirviendo como referencia técnica y de validación del producto actual.
 
 ## **1.2 Alcance del Proyecto**
 
-El proyecto contempla el diseño y desarrollo de un sitio web corporativo que permita a Maderas Ponotro tener presencia digital, mostrar sus productos y servicios, y facilitar el contacto con clientes potenciales. El sitio web será desarrollado como una aplicación web responsiva que funcionará en diferentes dispositivos y navegadores.
+El proyecto contempla el diseño y desarrollo de un sitio web corporativo tipo SPA (Single Page Application) que permite a Maderas Ponotro tener presencia digital, mostrar sus productos y servicios, y facilitar el contacto con clientes potenciales. El sitio está desplegado en Netlify como una aplicación React responsiva.
 
 ## **1.3 Objetivos del Sitio Web**
 
 * Establecer presencia digital profesional para Maderas Ponotro  
-* Proporcionar información clara sobre productos y servicios de elaboración e impregnación de maderas  
-* Facilitar múltiples canales de contacto con clientes potenciales  
-* Contar la historia y trayectoria de la empresa  
-* Generar confianza mediante contenido visual del proceso productivo  
+* Proporcionar información sobre productos y servicios de fabricación, dimensionado e impregnación de maderas  
+* Facilitar múltiples canales de contacto: formulario web, Gmail, WhatsApp, teléfono  
+* Contar la historia y trayectoria de la empresa mediante un carrusel interactivo  
+* Generar confianza mediante estadísticas reales (21 años de experiencia, certificación UBB)  
+* Mostrar el proceso productivo de forma visual y didáctica  
 * Aumentar la visibilidad de la marca en el mercado
 
 # **2\. Descripción General**
 
 ## **2.1 Perspectiva del Producto**
 
-El sitio web de Maderas Ponotro será un sistema independiente que funcionará como la principal plataforma digital de la empresa. No requiere integración con sistemas existentes en esta primera fase, pero debe estar preparado para futuras expansiones como catálogo de productos dinámico, sistema de cotizaciones en línea, o integración con redes sociales.
+El sitio web de Maderas Ponotro es un sistema independiente desplegado en Netlify que funciona como la principal plataforma digital de la empresa. Utiliza EmailJS para el envío de formularios de contacto y Google Maps embebido para la ubicación. Las redes sociales integradas incluyen WhatsApp y TikTok.
 
 ## **2.2 Funcionalidad del Producto**
 
-El sitio web proporcionará las siguientes funcionalidades principales:
+El sitio web proporciona las siguientes funcionalidades:
 
-* Presentación visual atractiva de la empresa mediante un hero destacado  
-* Sistema de navegación intuitivo entre secciones  
-* Formulario de contacto con validación de datos  
-* Múltiples opciones de contacto directo (email, WhatsApp, teléfono)  
-* Galería visual del proceso productivo  
-* Información corporativa y trayectoria de la empresa  
-* Diseño responsivo adaptable a todos los dispositivos
+* Presentación visual mediante un hero a pantalla completa con fondo de bosque y logotipo  
+* Navegación fija (navbar) con menú responsivo hamburguesa en móvil  
+* Sección informativa "¿Por qué elegirnos?" con 3 tarjetas de imagen + contenido  
+* Sección de estadísticas: Trayectoria (21 años), Cumplimiento (100%), Certificación (+10 años UBB)  
+* Formulario de contacto con validación de datos y envío por EmailJS  
+* Botones de contacto directo: Gmail, WhatsApp, Teléfono  
+* Mapa de Google Maps embebido con ubicación exacta  
+* Carrusel auto-rotativo con la historia de la empresa (5 slides)  
+* Galería del proceso productivo (5 etapas visuales con iconos)  
+* Sección de Misión, Visión y Valores  
+* Catálogo de 6 productos con tarjetas detalladas y features  
+* Sección CTA "¿No encuentras lo que buscas?" con enlace a contacto  
+* Footer completo con información de contacto, horarios, enlaces rápidos y redes sociales  
+* Componente ScrollToTop para reinicio de scroll al navegar  
+* Animaciones de scroll reveal con efecto stagger para elementos entrantes  
+* Diseño responsivo completo adaptable a desktop, tablet y móvil
 
 ## **2.3 Usuarios del Sistema**
 
-El sitio web está dirigido a los siguientes perfiles de usuarios:
-
 | Tipo de Usuario | Descripción |
 | :---- | :---- |
-| **Clientes Potenciales** | Personas o empresas interesadas en productos de madera elaborada e impregnada |
-| **Clientes Actuales** | Clientes que buscan información adicional o renovar pedidos |
-| **Público General** | Visitantes que desean conocer más sobre la empresa y sus servicios |
+| **Clientes Potenciales** | Empresas constructoras, embalajistas y personas interesadas en madera elaborada e impregnada |
+| **Clientes Actuales** | Clientes que buscan información adicional, nuevos productos o renovar pedidos |
+| **Público General** | Visitantes que desean conocer la empresa, sus servicios y trayectoria |
 
 # **3\. Requerimientos Funcionales**
 
@@ -105,35 +114,46 @@ El sitio web está dirigido a los siguientes perfiles de usuarios:
 
 **Prioridad:** Alta
 
-**Descripción:** La página de inicio servirá como punto de entrada principal al sitio web, presentando la identidad de Maderas Ponotro y facilitando la navegación hacia las demás secciones.
+**Estado:** ✅ Implementado
+
+**Descripción:** La página de inicio es el punto de entrada principal, compuesta por 3 componentes: Hero, InfoSection y CallToAction.
 
 ### **Requerimientos Específicos:**
 
 #### ***RF-001.1 Hero Principal***
 
-* Debe incluir la imagen de fondo proporcionada (fondo.png) que muestra el bosque con textura de madera  
-* Debe contener el logotipo de Maderas Ponotro centrado y destacado  
-* Debe incluir el eslogan "Elaboración e impregnación de maderas"  
-* Debe presentar dos botones de acción primarios: "Contacto" y "Ver Productos"  
-* El botón "Contacto" debe redirigir a la página de contacto  
-* El botón "Ver Productos" debe redirigir a la página de productos  
-* Debe ser responsivo y adaptarse a diferentes tamaños de pantalla  
-* La altura del hero debe ocupar al menos el 80% de la altura de la ventana (viewport)
+* ✅ Imagen de fondo `fondo.png` con efecto parallax y overlay gradiente oscuro  
+* ✅ Logotipo `logo.png` centrado con tamaño responsivo (h-64 a h-[28rem] según breakpoint)  
+* ✅ Eslogan: "Soluciones en madera para construcción, embalajes y proyectos industriales"  
+* ✅ Dos botones CTA: "Contacto" (btn-primary) → `/contacto` y "Ver Productos" (btn-outline) → `/productos`  
+* ✅ Indicador de scroll animado (chevron bounce) en la parte inferior  
+* ✅ Animación de entrada fadeInUp al cargar la página  
+* ✅ Altura mínima: `min-h-[calc(100vh-5rem)]` (viewport menos navbar)  
+* ✅ Completamente responsivo con layout columna en móvil, fila en desktop
 
-#### ***RF-001.2 Sección Informativa***
+#### ***RF-001.2 Sección Informativa "¿Por qué elegirnos?"***
 
-* Debe ubicarse inmediatamente debajo del hero  
-* Debe presentar información clave sobre la empresa  
-* Debe incluir al menos 3 bloques informativos sobre: servicios, calidad, y experiencia  
-* Puede incluir iconos representativos para cada bloque  
-* El fondo debe ser predominantemente blanco para contraste con el hero  
-* Debe mantener coherencia con la paleta de colores verde establecida
+* ✅ 3 tarjetas principales con imagen de fondo, icono y contenido:
+  * Fabricación a Medida (imagen `/1.jpeg`, icono FaCogs)
+  * Protección de la Madera (imagen `/2.jpeg`, icono FaShieldAlt)
+  * Soluciones para Industria y Construcción (imagen `/3.jpeg`, icono FaIndustry)
+* ✅ Cada tarjeta incluye hover con zoom de imagen, borde dorado y sombra elevada  
+* ✅ Grid responsivo de 3 columnas en desktop, 1 columna en móvil  
+* ✅ Sección de estadísticas con 3 tarjetas compuestas (header verde + body blanco):
+  * Trayectoria: 21 años de experiencia
+  * Cumplimiento: 100% operativo
+  * Certificación: +10 años acreditados (UBB)
+* ✅ Animaciones de scroll reveal con efecto stagger entre tarjetas  
+* ✅ Fondo blanco con paleta de colores esmeralda y acentos dorados
 
-#### ***RF-001.3 Llamadas a la Acción***
+#### ***RF-001.3 Llamada a la Acción (CallToAction)***
 
-* Debe incluir al menos una sección adicional de llamada a la acción antes del footer  
-* Puede incluir estadísticas o números relevantes de la empresa  
-* Debe motivar al usuario a explorar más contenido o contactar
+* ✅ Sección con fondo gradiente verde esmeralda y elementos decorativos circulares  
+* ✅ Título: "¿Necesitas madera para tu proyecto?"  
+* ✅ Texto descriptivo invitando a enviar especificaciones y dimensiones  
+* ✅ Promesa: "Respuesta dentro de 24 horas hábiles" (color dorado)  
+* ✅ Dos botones: "Enviar requerimiento" → `/contacto` y "Ver productos" → `/productos`  
+* ✅ Animación reveal-scale-up con easing elastic
 
 ## **3.2 Página de Contacto**
 
@@ -141,43 +161,55 @@ El sitio web está dirigido a los siguientes perfiles de usuarios:
 
 **Prioridad:** Alta
 
-**Descripción:** La página de contacto debe facilitar múltiples formas de comunicación entre los usuarios y Maderas Ponotro, incluyendo un formulario web y opciones de contacto directo.
+**Estado:** ✅ Implementado
+
+**Descripción:** La página de contacto facilita múltiples formas de comunicación. Incluye un header verde con título, formulario web, botones de contacto directo, tarjeta de información y mapa de Google Maps embebido.
 
 ### **Requerimientos Específicos:**
 
 #### ***RF-002.1 Formulario de Contacto***
 
-* Debe incluir los siguientes campos obligatorios: Nombre completo, Teléfono, Email, Ciudad, Mensaje  
-* El campo Email debe validar formato de correo electrónico válido  
-* El campo Teléfono debe aceptar formato numérico con código de área  
-* El campo Mensaje debe permitir texto de hasta 500 caracteres  
-* Debe mostrar mensajes de error claros cuando los campos no cumplan validaciones  
-* Debe incluir un botón "Enviar" claramente visible  
-* Al enviar exitosamente, debe mostrar mensaje de confirmación al usuario  
-* Debe limpiar el formulario después de un envío exitoso
+* ✅ Campos implementados: Nombre completo, Teléfono, Email, Ciudad, Mensaje  
+* ✅ Todos los campos son obligatorios con validación en tiempo real  
+* ✅ Validaciones:
+  * Nombre: mínimo 3 caracteres
+  * Teléfono: formato numérico 8-20 caracteres (acepta +, -, paréntesis, espacios)
+  * Email: formato de correo válido (regex)
+  * Ciudad: mínimo 2 caracteres
+  * Mensaje: mínimo 10, máximo 500 caracteres con contador visible
+* ✅ Mensajes de error se muestran debajo del campo correspondiente (texto rojo)  
+* ✅ Errores se limpian automáticamente al empezar a escribir  
+* ✅ Botón "Enviar Mensaje" con icono FaPaperPlane  
+* ✅ Estado de envío: spinner animado con texto "Enviando..." y botón deshabilitado  
+* ✅ Mensaje de confirmación (verde) tras envío exitoso  
+* ✅ Mensaje de error (rojo) si falla el envío  
+* ✅ Formulario se limpia tras envío exitoso
 
 #### ***RF-002.2 Envío de Correo Electrónico***
 
-* Los mensajes del formulario deben enviarse automáticamente al correo electrónico de la empresa  
-* El correo debe incluir todos los datos del formulario: nombre, teléfono, email, ciudad y mensaje  
-* El asunto del correo debe indicar claramente que proviene del formulario web  
-* Debe incluir la fecha y hora del envío  
-* El sistema debe manejar errores de envío y notificar al usuario si algo falla
+* ✅ Implementado vía EmailJS (librería `emailjs-com`)  
+* ✅ Importación dinámica de EmailJS para optimizar carga inicial  
+* ✅ Parámetros enviados: from_name, from_email, phone, city, message, to_email  
+* ✅ Configuración en `src/utils/emailService.js` con constantes para serviceId, templateId, publicKey  
+* ✅ Manejo de errores con try/catch y logging en consola
 
 #### ***RF-002.3 Botones de Contacto Directo***
 
-* Debe incluir 3 botones para contacto alternativo: Gmail, WhatsApp, Teléfono  
-* El botón de Gmail debe abrir el cliente de correo con la dirección pre-cargada  
-* El botón de WhatsApp debe abrir WhatsApp Web o la app con un mensaje predeterminado  
-* El botón de Teléfono debe iniciar una llamada en dispositivos móviles o mostrar el número en desktop  
-* Los botones deben tener iconos reconocibles de cada plataforma  
-* Deben estar ubicados en posición visible, preferiblemente cerca del formulario
+* ✅ 3 botones implementados con iconos reconocibles:
+  * **Gmail** (FaGoogle, rojo): abre cliente de correo con `mailto:` y asunto pre-cargado
+  * **WhatsApp** (FaWhatsapp, verde): abre wa.me con mensaje predeterminado
+  * **Teléfono** (FaPhone, verde bosque): inicia llamada vía `tel:` en móvil
+* ✅ Cada botón muestra la información de contacto (email o número)  
+* ✅ Hover effects con cambio de color de borde y elevación de sombra  
+* ✅ Ubicados en columna derecha junto al formulario (layout 2 columnas en desktop)
 
 #### ***RF-002.4 Información de Contacto***
 
-* Debe mostrar dirección física de la empresa (si aplica)  
-* Debe mostrar horario de atención  
-* Puede incluir un mapa de ubicación (Google Maps embebido) si es relevante
+* ✅ Tarjeta con dirección física: Región del Bío-Bío, Chile  
+* ✅ Horario de atención: Lunes a Viernes 08:00-18:00, Sábado 09:00-13:00  
+* ✅ Mapa de Google Maps embebido con coordenadas: -37.8370857, -73.4258194  
+* ✅ Mapa configurado con lazy loading y referrerPolicy segura  
+* ✅ Iconos informativos (FaMapMarkerAlt, FaClock) con fondos circulares
 
 ## **3.3 Página Nuestra Historia**
 
@@ -185,33 +217,50 @@ El sitio web está dirigido a los siguientes perfiles de usuarios:
 
 **Prioridad:** Media
 
-**Descripción:** Esta página debe presentar la historia, valores y proceso productivo de Maderas Ponotro, generando confianza y conexión con los visitantes.
+**Estado:** ✅ Implementado
+
+**Descripción:** La página presenta la historia, valores y proceso productivo de Maderas Ponotro. Está compuesta por un header verde, un carrusel interactivo (StorySection), la galería del proceso (ProcessGallery) y la sección de misión/visión/valores (MissionVision).
 
 ### **Requerimientos Específicos:**
 
-#### ***RF-003.1 Narrativa de la Empresa***
+#### ***RF-003.1 Narrativa de la Empresa (Carrusel)***
 
-* Debe incluir una sección con la historia de origen de Maderas Ponotro  
-* Debe destacar los valores principales de la empresa  
-* Debe mencionar años de experiencia y logros relevantes  
-* El texto debe ser conciso y fácil de leer, organizado en párrafos cortos  
-* Puede incluir una línea de tiempo visual si hay hitos importantes que destacar
+* ✅ Implementado como carrusel auto-rotativo a pantalla completa con 5 slides:
+  1. "Nuestros Orígenes" — historia de la pasión por la madera (imagen `/1.jpeg`)
+  2. "Nuestra Ubicación" — Región del Biobío e infraestructura (imagen `/4.jpeg`)
+  3. "Calidad Comprobada" — equipo de expertos y controles de calidad (imagen `/5.jpeg`)
+  4. "Relaciones de Confianza" — transparencia y profesionalismo (imagen `/2.jpeg`)
+  5. "Tecnología e Innovación" — equipos de impregnación (imagen `/3.jpeg`)
+* ✅ Auto-play cada 5 segundos, pausa al interactuar, reanuda tras 10s de inactividad  
+* ✅ Navegación: flechas laterales + indicadores de puntos (dots) con barra de progreso dorada  
+* ✅ Overlay gradiente para legibilidad del texto sobre imagen  
+* ✅ Numeración de slides (01/05 formato) en color dorado  
+* ✅ Transiciones con opacidad y escala (700ms)  
+* ✅ Altura: 70vh (mín 500px, máx 750px)
 
 #### ***RF-003.2 Galería del Proceso Productivo***
 
-* Debe incluir imágenes que muestren el proceso desde la extracción hasta la venta  
-* Las imágenes deben estar organizadas de manera secuencial o por categorías  
-* Cada imagen o grupo debe tener una breve descripción explicativa  
-* Sugerencia de etapas: Selección de madera, Proceso de corte, Tratamiento e impregnación, Control de calidad, Producto terminado  
-* Las imágenes deben cargarse de manera optimizada para no afectar el rendimiento  
-* Debe ser responsivo: galería tipo grid en desktop, lista/carrusel en móvil
+* ✅ 5 etapas del proceso representadas con tarjetas de iconos:
+  1. Selección de Madera (FaTree)
+  2. Proceso de Corte (FaCut)
+  3. Tratamiento e Impregnación (FaFlask)
+  4. Control de Calidad (FaClipboardCheck)
+  5. Producto Terminado (FaBoxOpen)
+* ✅ Grid de 5 columnas en desktop, 2 en tablet, 1 en móvil  
+* ✅ Línea de conexión gradiente horizontal entre etapas (solo desktop)  
+* ✅ Cada tarjeta con: icono circular verde, número de paso, título y descripción  
+* ✅ Hover con elevación de sombra y escala del icono  
+* ✅ Animaciones scroll reveal stagger (100ms entre cada paso)
 
-#### ***RF-003.3 Misión y Visión***
+#### ***RF-003.3 Misión, Visión y Valores***
 
-* Debe incluir declaración de misión de la empresa  
-* Debe incluir declaración de visión de la empresa  
-* Ambas deben estar claramente diferenciadas visualmente  
-* Pueden estar presentadas en bloques o tarjetas destacadas
+* ✅ 3 tarjetas diferenciadas con borde superior verde:
+  * **Misión** (FaBullseye): proveer productos de madera de alta calidad
+  * **Visión** (FaEye): ser la empresa líder en el sur de Chile
+  * **Valores** (FaHeart): calidad, honestidad, medio ambiente, innovación
+* ✅ Grid de 3 columnas en desktop, 1 en móvil  
+* ✅ Fondo gris claro para contraste con las tarjetas blancas  
+* ✅ Animaciones scroll reveal stagger (150ms entre tarjetas)
 
 ## **3.4 Página de Productos**
 
@@ -219,28 +268,43 @@ El sitio web está dirigido a los siguientes perfiles de usuarios:
 
 **Prioridad:** Alta
 
-**Descripción:** Esta página debe presentar los productos y servicios de Maderas Ponotro de manera atractiva y organizada, facilitando que los visitantes conozcan la oferta de la empresa.
+**Estado:** ✅ Implementado
+
+**Descripción:** La página presenta el catálogo de 6 productos con tarjetas detalladas, organizadas en un grid responsivo, con una sección CTA al final.
 
 ### **Requerimientos Específicos:**
 
 #### ***RF-004.1 Catálogo de Productos***
 
-* Debe mostrar los principales productos/servicios: Madera elaborada, Madera impregnada, Cortes especiales, etc.  
-* Cada producto debe incluir: Nombre, Descripción breve, Imagen representativa  
-* Los productos deben organizarse en un grid/cuadrícula responsivo  
-* Debe incluir una breve introducción al catálogo antes de los productos
+* ✅ 6 productos implementados con tarjetas (ProductCard):
+  1. **Madera Elaborada** — Cepillada y dimensionada (categoría: Elaboración, icono FaTree)
+     * Features: Pino/Eucalipto/Roble, Múltiples dimensiones, Cepillado fino
+  2. **Madera Impregnada** — Tratada contra hongos/insectos/humedad (categoría: Impregnación, icono FaShieldAlt)
+     * Features: Tratamiento CCA/CCB, Alta durabilidad, 25+ años vida útil
+  3. **Cortes Especiales** — A medida según especificaciones (categoría: Servicios, icono FaCubes)
+     * Features: Corte a medida, Precisión garantizada, Cualquier dimensión
+  4. **Vigas y Pilares** — Estructurales para construcción (categoría: Estructural, icono FaWarehouse)
+     * Features: Alta resistencia, Tratamiento opcional, Grandes dimensiones
+  5. **Tablas y Tablones** — Revestimientos, pisos, cercas (categoría: Elaboración, icono FaTools)
+     * Features: Varias especies, Secado controlado, Acabado premium
+  6. **Postes Impregnados** — Para cercas, parrones y uso agrícola (categoría: Impregnación, icono FaCog)
+     * Features: Para cercos/parrones, Uso agrícola, Resistencia extrema
+
+* ✅ Grid responsivo: 3 columnas (desktop), 2 columnas (tablet), 1 columna (móvil)  
+* ✅ Cada tarjeta soporta imagen o icono como visual principal  
+* ✅ Badge de categoría en la esquina superior izquierda de cada imagen  
+* ✅ Hover con zoom de imagen y cambio de color en el título
 
 #### ***RF-004.2 Categorización***
 
-* Los productos pueden estar agrupados por categorías si aplica  
-* Puede incluir filtros simples si hay múltiples categorías  
-* La navegación entre categorías debe ser intuitiva
+* ✅ Productos categorizados por tipo: Elaboración, Impregnación, Servicios, Estructural  
+* ⬜ Filtros por categoría no implementados (mejora futura)
 
 #### ***RF-004.3 Llamada a Acción***
 
-* Cada producto debe tener un botón o enlace de "Consultar" o "Solicitar cotización"  
-* Estos enlaces deben redirigir a la página de contacto  
-* Puede incluir un formulario rápido de consulta al final de la página
+* ✅ Cada producto tiene enlace "Solicitar Cotización" → `/contacto` con flecha animada  
+* ✅ Sección CTA al final: "¿No encuentras lo que buscas?" con botón "Solicitar Cotización"  
+* ✅ Box CTA con gradiente verde, icono de teléfono y elementos decorativos circulares
 
 # **4\. Requerimientos No Funcionales**
 
@@ -248,258 +312,336 @@ El sitio web está dirigido a los siguientes perfiles de usuarios:
 
 ### **RNF-001 Paleta de Colores**
 
-* Color principal: Verde (tonos similares al del bosque en las imágenes)  
-* Tonos verdes sugeridos: \#228B22 (Forest Green), \#2E7D32 (Dark Green), \#4CAF50 (Green)  
-* Color secundario: Blanco (\#FFFFFF) como color de fondo predominante  
-* Colores de acento: Tonos tierra y marrón para complementar (\#795548, \#8D6E63)  
-* El blanco debe predominar en fondos de secciones informativas  
-* Los tonos verdes deben usarse en: headers, botones, enlaces, elementos destacados  
-* Debe mantener suficiente contraste para cumplir estándares de accesibilidad (WCAG 2.1 AA)
+* ✅ Paleta principal: Esmeralda premium (no el verde bosque original)
+* ✅ Acentos: Dorado bronce (sustituyendo los tonos marrón tierra originales)
+* ✅ Neutros sofisticados: cream, charcoal para fondos y textos
+* ✅ Uso de fondos blancos y grises claros (`gray-50`) para secciones alternadas
+* ✅ Contraste adecuado para accesibilidad
 
 ### **RNF-002 Tipografía**
 
-* Debe usar fuentes web seguras y legibles  
-* Sugerencias: Roboto, Open Sans, Lato, o Montserrat para títulos  
-* Debe mantener jerarquía tipográfica clara: H1 \> H2 \> H3 \> párrafo  
-* Tamaño mínimo de texto: 16px para párrafos  
-* Interlineado adecuado para facilitar lectura (1.5 \- 1.6)
+* ✅ Fuentes cargadas vía Google Fonts con preconnect para rendimiento  
+* ✅ Montserrat para títulos, encabezados y botones (font-display)  
+* ✅ Open Sans para párrafos y texto general (font-sans)  
+* ✅ Jerarquía clara: H1 > H2 > H3 > párrafo  
+* ✅ Interlineado 1.6 configurado globalmente en `body`  
+* ✅ Color de texto base: charcoal `#1F2937`
 
 ### **RNF-003 Imágenes y Multimedia**
 
-* Todas las imágenes deben estar optimizadas para web  
-* Debe usar formatos modernos: WebP con fallback a JPG/PNG  
-* Debe implementar lazy loading para mejorar rendimiento  
-* Las imágenes deben incluir atributos alt para accesibilidad
+* ✅ Imágenes JPEG optimizadas para las tarjetas informativas y carrusel (1.jpeg-5.jpeg)  
+* ✅ Imagen de fondo (fondo.png) y logotipo (logo.png) en formato PNG  
+* ✅ Lazy loading implementado en iframe de Google Maps  
+* ✅ Atributos `alt` en todas las imágenes para accesibilidad
+
+### **RNF-004 Animaciones y Microinteracciones**
+
+* ✅ Sistema de Scroll Reveal personalizado con Intersection Observer API  
+* ✅ Custom hook `useScrollReveal` para elementos individuales  
+* ✅ Custom hook `useScrollRevealStagger` para listas/grids con efecto escalonado  
+* ✅ Variantes de animación: reveal-up, reveal-down, reveal-left, reveal-right, reveal-scale, reveal-blur, reveal-rotate  
+* ✅ Clases de utilidad: delays (100-800ms), duraciones (fast/normal/slow), easings (smooth/bounce/elastic)  
+* ✅ Hover effects en tarjetas: elevación de sombra, zoom de imagen, cambio de color  
+* ✅ Transiciones CSS suaves (300-700ms) en todos los elementos interactivos  
+* ✅ Animación bounce en indicador de scroll del hero
 
 ## **4.2 Rendimiento**
 
-* El tiempo de carga inicial no debe exceder 3 segundos  
-* El sitio debe tener un puntaje Lighthouse superior a 85 en Performance  
-* Las imágenes deben estar comprimidas sin pérdida notable de calidad  
-* Debe implementar caché del navegador para recursos estáticos  
-* El código CSS y JavaScript debe estar minificado en producción
+* ✅ Importación dinámica de EmailJS para reducir bundle inicial  
+* ✅ Hot Module Replacement (HMR) ultrarrápido con Vite  
+* ✅ Build optimizado con tree-shaking y code splitting  
+* ✅ Google Fonts con preconnect para carga temprana  
+* ✅ Lazy loading en iframe de Google Maps  
+* ⬜ Lazy loading de imágenes con react-intersection-observer (no implementado, mejora futura)  
+* ⬜ Optimización WebP con fallback (no implementado, mejora futura)
 
 ## **4.3 Compatibilidad**
 
-* Debe funcionar correctamente en los navegadores: Chrome, Firefox, Safari, Edge (últimas 2 versiones)  
-* Debe ser completamente responsivo: Desktop (1920px), Tablet (768px), Mobile (375px)  
-* Debe mantener funcionalidad en dispositivos táctiles  
-* Debe degradarse de manera elegante en navegadores antiguos
+* ✅ Responsivo completo: Desktop (1920px), Tablet (768px), Mobile (375px)  
+* ✅ Navbar hamburguesa para dispositivos móviles  
+* ✅ Grid adaptativo en todas las secciones  
+* ✅ Funcionalidad táctil en carrusel (botones de navegación)  
+* ✅ Prefijos CSS automáticos vía Autoprefixer
 
 ## **4.4 Seguridad**
 
-* El formulario de contacto debe implementar protección contra spam (reCAPTCHA o similar)  
-* Debe validar todos los inputs del lado del servidor  
-* El envío de correos debe usar protocolos seguros (TLS/SSL)  
-* No debe almacenar información sensible en el cliente  
-* Debe implementar HTTPS en producción
+* ⬜ Protección anti-spam (reCAPTCHA) no implementada  
+* ✅ Validación de inputs del lado del cliente (módulo `validation.js`)  
+* ✅ Envío de correos vía EmailJS con credenciales seguras  
+* ✅ `referrerPolicy="no-referrer-when-downgrade"` en iframe de Google Maps  
+* ✅ Atributos `rel="noopener noreferrer"` en enlaces externos  
+* ⬜ HTTPS en producción (gestionado por Netlify automáticamente)
 
 # **5\. Especificaciones Técnicas**
 
-## **5.1 Paleta de Colores Detallada**
+## **5.1 Paleta de Colores Implementada**
 
-| Color | Código HEX | Uso Recomendado |
+| Color | Código HEX | Uso |
 | :---- | :---- | :---- |
-| **Verde Bosque Oscuro** | \#1B5E20 | Encabezados principales, footer |
-| **Verde Bosque** | \#2E7D32 | Botones primarios, enlaces activos |
-| **Verde Medio** | \#388E3C | Botones secundarios, highlights |
-| **Verde Claro** | \#4CAF50 | Hover states, elementos interactivos |
+| **Esmeralda Oscuro** | \#064E3B | Navbar, footer, encabezados de página |
+| **Esmeralda** | \#065F46 | Botones primarios, enlaces activos |
+| **Esmeralda Medio** | \#047857 | Botones secundarios, highlights |
+| **Esmeralda Claro** | \#059669 | Hover states, active states navbar |
+| **Dorado Bronce** | \#B8860B | Números de estadísticas, indicadores carrusel |
+| **Dorado Claro** | \#DAA520 | Textos de acento, sublabels |
+| **Dorado Oscuro** | \#996515 | Sublabels de estadísticas |
+| **Crema** | \#FFFBEB | Fondos alternativos (disponible) |
+| **Crema Oscuro** | \#FEF3C7 | Fondos de secciones (disponible) |
+| **Charcoal** | \#1F2937 | Color base de texto body |
+| **Charcoal Claro** | \#374151 | Textos secundarios |
 | **Blanco** | \#FFFFFF | Fondos principales, texto sobre verde |
-| **Gris Claro** | \#F5F5F5 | Fondos alternativos, secciones |
+| **Gris Claro** | gray-50 | Fondos alternativos de secciones |
 
 ## **5.2 Tipografía**
 
 | Elemento | Fuente / Tamaño | Estilo |
 | :---- | :---- | :---- |
-| **H1 (Títulos principales)** | Montserrat / 48-36px | Bold, Color verde \#2E7D32 |
-| **H2 (Subtítulos)** | Montserrat / 36-28px | SemiBold, Color verde \#388E3C |
-| **H3 (Secciones)** | Montserrat / 24-20px | SemiBold, Color \#1B5E20 |
-| **Párrafos** | Open Sans / 16-18px | Regular, Color \#333333 |
+| **H1 (Títulos de página)** | Montserrat / 36-48px (text-4xl md:text-5xl) | Bold, Color blanco (sobre header verde) |
+| **H2 (Títulos de sección)** | Montserrat / 30-36px (text-3xl md:text-4xl) | Bold, Color forest-dark |
+| **H3 (Subtítulos)** | Montserrat / 20-24px (text-xl) | Bold, Color forest-dark |
+| **Párrafos** | Open Sans / 14-18px (text-sm a text-lg) | Regular, Color gray-600 |
 | **Botones** | Montserrat / 16px | Bold, Texto blanco sobre verde |
+| **Stats (números)** | Montserrat / 36-48px (text-4xl md:text-5xl) | Bold, Color accent-gold |
 
-## **5.3 Stack Tecnológico Definido**
+## **5.3 Stack Tecnológico Implementado**
 
-**El proyecto utilizará el siguiente stack tecnológico moderno y eficiente:**
+### **Frontend — Stack Principal**
 
-### **Frontend \- Stack Principal**
+* **React 18.3.1** — Librería de JavaScript para interfaces de usuario  
+* **Vite 6.0.5** — Build tool y dev server con HMR ultrarrápido  
+* **Tailwind CSS 3.4.17** — Framework de utilidades CSS con configuración personalizada  
+* **React Router DOM 7.1.1** — Navegación SPA entre páginas  
+* **JavaScript ES6+ / JSX** — Componentes funcionales con React Hooks
 
-* React 18+ \- Librería de JavaScript para interfaces de usuario  
-* Vite \- Build tool y dev server de última generación  
-* Tailwind CSS \- Framework de utilidades CSS para estilos  
-* React Router DOM \- Para navegación entre páginas (SPA)  
-* JavaScript ES6+ / JSX
+### **Dependencias de Producción**
+
+| Paquete | Versión | Uso |
+| :---- | :---- | :---- |
+| react | ^18.3.1 | Librería principal de UI |
+| react-dom | ^18.3.1 | Renderizado en DOM |
+| react-router-dom | ^7.1.1 | Navegación SPA |
+| react-icons | ^5.4.0 | Iconos (FaWhatsapp, FaGoogle, FaPhone, FaTiktok, etc.) |
+| emailjs-com | ^3.2.0 | Envío de formularios por email |
+
+### **Dependencias de Desarrollo**
+
+| Paquete | Versión | Uso |
+| :---- | :---- | :---- |
+| @vitejs/plugin-react | ^4.3.4 | Plugin de React para Vite |
+| tailwindcss | ^3.4.17 | Framework CSS |
+| postcss | ^8.4.49 | Procesador CSS |
+| autoprefixer | ^10.4.20 | Prefijos CSS automáticos |
+| eslint | ^9.17.0 | Linting de código |
+| eslint-plugin-react | ^7.37.2 | Reglas ESLint para React |
+| eslint-plugin-react-hooks | ^5.0.0 | Reglas para React Hooks |
+| eslint-plugin-react-refresh | ^0.4.16 | Soporte Hot Refresh |
+| globals | ^15.14.0 | Variables globales para ESLint |
+| @types/react | ^18.3.18 | Tipos TypeScript (referencia) |
+| @types/react-dom | ^18.3.5 | Tipos TypeScript (referencia) |
+| @eslint/js | ^9.17.0 | Configuración base ESLint |
 
 ### **Características del Stack**
 
-* Vite proporciona Hot Module Replacement (HMR) ultrarrápido  
+* Vite con HMR ultrarrápido para desarrollo  
 * Build optimizado con tree-shaking y code splitting  
-* Tailwind CSS con archivo de configuración personalizado para paleta de colores  
-* React Hooks para manejo de estado (useState, useEffect, etc.)  
-* Componentes funcionales y reutilizables  
-* Arquitectura de componentes modular y escalable
-
-### **Backend (para formulario de contacto)**
-
-* Opción 1: Servicio serverless (Formspree, EmailJS, Web3Forms)  
-* Opción 2: API REST con Node.js \+ Express  
-* Opción 3: Netlify Functions o Vercel Serverless Functions  
-* Servicio de email: SendGrid, Mailgun, o Nodemailer con SMTP
-
-### **Dependencias de React Recomendadas**
-
-* react-router-dom \- Navegación  
-* react-icons \- Iconos (incluye iconos de WhatsApp, Gmail, Phone)  
-* emailjs-com o formspree \- Para envío de formularios  
-* react-intersection-observer \- Lazy loading de imágenes (opcional)  
-* framer-motion \- Animaciones suaves (opcional)
-
-### **Herramientas de Desarrollo**
-
-* Git para control de versiones  
-* ESLint \+ Prettier para calidad de código  
-* npm o yarn como gestor de paquetes  
-* Figma o Adobe XD para diseños (referencia)  
-* Chrome DevTools para debugging
+* Tailwind CSS con archivo de configuración personalizado (paleta esmeralda/dorado)  
+* React Hooks: useState, useEffect, useRef, useCallback, useLocation  
+* Componentes funcionales, reutilizables y modulares  
+* Custom hooks: useScrollReveal para animaciones de scroll  
+* Intersection Observer API nativo para detección de viewport  
+* Importación dinámica de EmailJS
 
 ### **Despliegue**
 
-* Netlify (recomendado para React \+ Vite)  
-* Vercel (alternativa excelente)  
-* GitHub Pages (opción gratuita)  
-* Dominio personalizado con DNS configurado  
-* Certificado SSL automático
+* **Netlify** — Plataforma de despliegue principal  
+* Configuración en `netlify.toml`:
+  * Build: `npm run build`, publish: `dist`
+  * Redirects: `/*` → `/index.html` (SPA routing)
+* ⬜ Certificado SSL automático (provisto por Netlify)  
+* ⬜ Dominio personalizado (pendiente configuración)
 
-## **5.4 Estructura del Proyecto React \+ Vite**
+## **5.4 Estructura del Proyecto Actual**
 
-El proyecto seguirá la siguiente estructura de archivos y carpetas:
-
-maderas-ponotro/  
-├── public/  
-│   ├── fondo.png  
-│   ├── logo.png  
-│   ├── tarjeta.png  
-│   └── images/  
-│       └── proceso/         \# Imágenes del proceso productivo  
-├── src/  
-│   ├── assets/              \# Assets adicionales  
-│   ├── components/  
-│   │   ├── layout/  
-│   │   │   ├── Navbar.jsx  
-│   │   │   ├── Footer.jsx  
-│   │   │   └── Hero.jsx  
-│   │   ├── home/  
-│   │   │   ├── InfoSection.jsx  
-│   │   │   └── CallToAction.jsx  
-│   │   ├── contact/  
-│   │   │   ├── ContactForm.jsx  
-│   │   │   └── ContactButtons.jsx  
-│   │   ├── history/  
-│   │   │   ├── StorySection.jsx  
-│   │   │   ├── ProcessGallery.jsx  
-│   │   │   └── MissionVision.jsx  
-│   │   └── products/  
-│   │       ├── ProductCard.jsx  
-│   │       └── ProductGrid.jsx  
-│   ├── pages/  
-│   │   ├── Home.jsx  
-│   │   ├── Contact.jsx  
-│   │   ├── History.jsx  
-│   │   └── Products.jsx  
-│   ├── utils/  
-│   │   ├── emailService.js    \# Configuración de envío de emails  
-│   │   └── validation.js      \# Validaciones de formularios  
-│   ├── App.jsx  
-│   ├── main.jsx  
-│   └── index.css             \# Estilos globales \+ Tailwind  
-├── tailwind.config.js        \# Configuración de Tailwind  
-├── postcss.config.js  
-├── vite.config.js  
-├── package.json  
-└── README.md
+```
+maderas-ponotroV2.0/
+├── public/
+│   ├── fondo.png              # Imagen de fondo hero (8.8MB)
+│   ├── logo.png               # Logotipo de la empresa (2.2MB)
+│   ├── 1.jpeg                 # Imagen Fabricación / Orígenes
+│   ├── 2.jpeg                 # Imagen Protección / Confianza
+│   ├── 3.jpeg                 # Imagen Industria / Tecnología
+│   ├── 4.jpeg                 # Imagen Ubicación
+│   └── 5.jpeg                 # Imagen Calidad
+├── src/
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Navbar.jsx         # Navegación fija con menú hamburguesa
+│   │   │   ├── Footer.jsx         # Footer con 4 columnas informativas
+│   │   │   ├── Hero.jsx           # Hero a pantalla completa
+│   │   │   └── ScrollToTop.jsx    # Reset de scroll al cambiar de página
+│   │   ├── home/
+│   │   │   ├── InfoSection.jsx    # Tarjetas "¿Por qué elegirnos?" + estadísticas
+│   │   │   └── CallToAction.jsx   # Sección CTA "¿Necesitas madera?"
+│   │   ├── contact/
+│   │   │   ├── ContactForm.jsx    # Formulario con validación y envío
+│   │   │   └── ContactButtons.jsx # Botones Gmail, WhatsApp, Teléfono
+│   │   ├── history/
+│   │   │   ├── StorySection.jsx   # Carrusel auto-rotativo (5 slides)
+│   │   │   ├── ProcessGallery.jsx # Proceso productivo (5 pasos)
+│   │   │   └── MissionVision.jsx  # Misión, Visión, Valores
+│   │   └── products/
+│   │       ├── ProductCard.jsx    # Tarjeta de producto individual
+│   │       └── ProductGrid.jsx    # Grid de 6 productos
+│   ├── hooks/
+│   │   └── useScrollReveal.js     # Hooks de animación scroll reveal
+│   ├── pages/
+│   │   ├── Home.jsx               # Página de inicio
+│   │   ├── Contact.jsx            # Página de contacto
+│   │   ├── History.jsx            # Página nuestra historia
+│   │   └── Products.jsx           # Página de productos
+│   ├── utils/
+│   │   ├── emailService.js        # Configuración EmailJS + helpers de contacto
+│   │   └── validation.js          # Validaciones de formulario
+│   ├── App.jsx                    # Componente raíz con rutas
+│   ├── main.jsx                   # Punto de entrada con BrowserRouter
+│   └── index.css                  # Estilos globales + Tailwind + animaciones
+├── index.html                     # HTML base con meta SEO
+├── tailwind.config.js             # Configuración paleta esmeralda/dorado
+├── postcss.config.js              # Config PostCSS con Tailwind y Autoprefixer
+├── vite.config.js                 # Configuración Vite + React plugin
+├── netlify.toml                   # Configuración despliegue Netlify
+├── package.json                   # Dependencias y scripts
+└── .gitignore                     # Archivos ignorados por Git
+```
 
 ## **5.5 Configuración de Tailwind CSS**
 
-El archivo **tailwind.config.js** debe incluir la paleta de colores personalizada de Maderas Ponotro:
+El archivo **tailwind.config.js** implementa la paleta personalizada de Maderas Ponotro:
 
-/\*\* @type {import('tailwindcss').Config} \*/  
-export default {  
-  content: \[  
-    "./index.html",  
-    "./src/\*\*/\*.{js,ts,jsx,tsx}",  
-  \],  
-  theme: {  
-    extend: {  
-      colors: {  
-        'forest-dark': '\#1B5E20',  
-        'forest': '\#2E7D32',  
-        'forest-medium': '\#388E3C',  
-        'forest-light': '\#4CAF50',  
-        'accent-brown': '\#795548',  
-        'accent-brown-light': '\#8D6E63',  
-      },  
-      fontFamily: {  
-        'sans': \['Open Sans', 'sans-serif'\],  
-        'display': \['Montserrat', 'sans-serif'\],  
-      },  
-    },  
-  },  
-  plugins: \[\],  
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    theme: {
+        extend: {
+            colors: {
+                // Esmeralda - Color principal elegante
+                'forest-dark': '#064E3B',
+                'forest': '#065F46',
+                'forest-medium': '#047857',
+                'forest-light': '#059669',
+                // Dorado bronce - Acentos premium
+                'accent-gold': '#B8860B',
+                'accent-gold-light': '#DAA520',
+                'accent-gold-dark': '#996515',
+                // Neutros sofisticados
+                'cream': '#FFFBEB',
+                'cream-dark': '#FEF3C7',
+                'charcoal': '#1F2937',
+                'charcoal-light': '#374151',
+            },
+            fontFamily: {
+                'sans': ['Open Sans', 'sans-serif'],
+                'display': ['Montserrat', 'sans-serif'],
+            },
+        },
+    },
+    plugins: [],
 }
+```
 
-## **5.6 Comandos de Instalación y Ejecución**
+## **5.6 SEO Implementado**
+
+El archivo `index.html` incluye las siguientes optimizaciones SEO:
+
+* `<html lang="es">` — Idioma declarado  
+* `<title>` — "Maderas Ponotro | Elaboración e Impregnación de Maderas"  
+* `<meta name="description">` — Descripción de la empresa  
+* `<meta name="keywords">` — Palabras clave del negocio  
+* `<link rel="icon">` — Favicon con el logotipo  
+* Preconnect a Google Fonts para rendimiento  
+
+## **5.7 Comandos de Desarrollo y Producción**
 
 | Acción | Comando |
 | :---- | :---- |
-| **Crear proyecto con Vite** | npm create vite@latest maderas-ponotro \-- \--template react |
-| **Instalar dependencias** | cd maderas-ponotro && npm install |
-| **Instalar Tailwind CSS** | npm install \-D tailwindcss postcss autoprefixer |
-| **Inicializar Tailwind** | npx tailwindcss init \-p |
-| **Instalar dependencias adicionales** | npm install react-router-dom react-icons emailjs-com |
+| **Instalar dependencias** | npm install |
 | **Modo desarrollo** | npm run dev |
 | **Build para producción** | npm run build |
 | **Preview del build** | npm run preview |
+| **Lint del código** | npm run lint |
 
 # **6\. Anexos**
 
-## **6.1 Estructura de Navegación**
+## **6.1 Estructura de Navegación Implementada**
 
-El sitio web contará con la siguiente estructura de navegación:
-
-├── Inicio (/)  
-├── Productos (/productos)  
-├── Nuestra Historia (/historia)  
-├── Contacto (/contacto)  
-└── Footer  
-    ├── Enlaces rápidos  
-    ├── Redes sociales  
-    └── Información de copyright
+```
+├── Inicio (/)
+├── Productos (/productos)
+├── Nuestra Historia (/historia)
+├── Contacto (/contacto)
+└── Footer
+    ├── Empresa (logo + descripción + redes sociales)
+    │   ├── WhatsApp → wa.me/56987446911
+    │   └── TikTok → tiktok.com/@maderas_ponotro
+    ├── Enlaces Rápidos (Inicio, Productos, Nuestra Historia, Contacto)
+    ├── Contacto
+    │   ├── Ubicación: Región del Bío-Bío, Chile
+    │   ├── Teléfono 1: +56 9 8744 6911 (Orosimbo Cisterna)
+    │   ├── Teléfono 2: +56 9 5531 6212 (Claudia)
+    │   └── Email: Maderas_ponotro@hotmail.com
+    ├── Horario de Atención
+    │   ├── Lunes a Viernes: 8:00 – 17:30
+    │   └── Sábado: 8:00 – 12:30
+    └── Copyright © [año actual]
+```
 
 ## **6.2 Campos del Formulario de Contacto**
 
 | Campo | Tipo | Validación | Obligatorio |
 | :---- | :---- | :---- | :---- |
-| **Nombre** | Texto | Mínimo 3 caracteres | Sí |
-| **Teléfono** | Texto/Number | Formato telefónico válido | Sí |
-| **Email** | Email | Formato email válido | Sí |
-| **Ciudad** | Texto | Mínimo 2 caracteres | Sí |
-| **Mensaje** | Textarea | Mínimo 10 caracteres, máximo 500 | Sí |
+| **Nombre** | text | Mínimo 3 caracteres | Sí |
+| **Teléfono** | tel | Formato: 8-20 caracteres, acepta dígitos, +, -, (), espacios | Sí |
+| **Email** | email | Regex: `^[^\s@]+@[^\s@]+\.[^\s@]+$` | Sí |
+| **Ciudad** | text | Mínimo 2 caracteres | Sí |
+| **Mensaje** | textarea (5 rows) | Mínimo 10, máximo 500 caracteres, con contador visible | Sí |
 
-## **6.3 Checklist de Entrega**
+## **6.3 Información de Contacto Configurada**
 
-* Sitio web completamente responsivo y funcional  
-* Todas las páginas implementadas según especificaciones  
-* Formulario de contacto operativo con envío a email  
-* Botones de contacto directo configurados  
-* Imágenes optimizadas y cargando correctamente  
-* Paleta de colores implementada consistentemente  
-* Navegación funcionando entre todas las páginas  
-* Validación de formularios implementada  
-* Sitio probado en navegadores principales  
-* Sitio probado en dispositivos móviles y tablets  
-* SEO básico implementado (meta tags, títulos, descriptions)  
-* Google Analytics configurado (opcional)  
-* Certificado SSL configurado  
-* Documentación de código entregada  
-* Capacitación básica para actualización de contenido
+| Dato | Valor en `emailService.js` | Valor real en Footer |
+| :---- | :---- | :---- |
+| **Email** | contacto@maderasponotro.cl | Maderas_ponotro@hotmail.com |
+| **Teléfono** | +56912345678 (placeholder) | +56 9 8744 6911 / +56 9 5531 6212 |
+| **WhatsApp** | +56912345678 (placeholder) | wa.me/56987446911 |
+| **Dirección** | Región del Biobío, Chile | Región del Bío-Bío, Chile |
+
+> **⚠️ NOTA:** Los valores en `emailService.js` (CONTACT_INFO) contienen datos placeholder que deben ser actualizados con los valores reales del Footer. Los IDs de EmailJS (serviceId, templateId, publicKey) también requieren configuración con credenciales reales.
+
+## **6.4 Checklist de Estado**
+
+* ✅ Sitio web completamente responsivo y funcional  
+* ✅ Todas las páginas implementadas (Home, Productos, Historia, Contacto)  
+* ✅ Formulario de contacto con validación y envío vía EmailJS  
+* ✅ Botones de contacto directo configurados (Gmail, WhatsApp, Teléfono)  
+* ✅ Imágenes cargando correctamente (fondo.png, logo.png, 1-5.jpeg)  
+* ✅ Paleta de colores esmeralda/dorado implementada consistentemente  
+* ✅ Navegación funcionando entre todas las páginas (SPA routing)  
+* ✅ Validación de formularios implementada (cliente)  
+* ✅ Animaciones de scroll reveal implementadas  
+* ✅ Google Maps embebido en página de contacto  
+* ✅ Footer con información completa de contacto y horarios  
+* ✅ Redes sociales: WhatsApp y TikTok  
+* ✅ SEO básico implementado (meta tags, título, description, keywords)  
+* ✅ Configuración de despliegue Netlify (netlify.toml)  
+* ⬜ Credenciales EmailJS pendientes de configuración  
+* ⬜ Datos de contacto en emailService.js requieren actualización  
+* ⬜ Optimización de imágenes (fondo.png = 8.8MB, logo.png = 2.2MB)  
+* ⬜ Protección anti-spam en formulario (reCAPTCHA)  
+* ⬜ Filtros de categoría en página de productos  
+* ⬜ Google Analytics (no implementado)  
+* ⬜ Imágenes en formato WebP con fallback
 
 *\--- Fin del Documento \---*
