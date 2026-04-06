@@ -75,6 +75,7 @@ function VideoStep({ step }) {
                     loop
                     playsInline
                     preload="metadata"
+                    onCanPlay={(e) => e.currentTarget.playbackRate = 1.25}
                 />
 
                 {/* Gradient overlay */}

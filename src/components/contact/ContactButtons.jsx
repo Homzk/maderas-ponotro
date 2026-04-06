@@ -13,7 +13,7 @@ function ContactButtons() {
                 href={getMailtoLink()}
                 className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-100 hover:border-red-200"
             >
-                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                <div className="w-12 h-12 flex-shrink-0 bg-red-100 rounded-full flex items-center justify-center group-hover:bg-red-200 transition-colors">
                     <FaGoogle className="text-red-600 text-xl" />
                 </div>
                 <div>
@@ -29,7 +29,7 @@ function ContactButtons() {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-100 hover:border-green-200"
             >
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                <div className="w-12 h-12 flex-shrink-0 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-colors">
                     <FaWhatsapp className="text-green-600 text-xl" />
                 </div>
                 <div>
@@ -43,7 +43,7 @@ function ContactButtons() {
                 href={getTelLink()}
                 className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-100 hover:border-forest-light"
             >
-                <div className="w-12 h-12 bg-forest-light/20 rounded-full flex items-center justify-center group-hover:bg-forest-light/30 transition-colors">
+                <div className="w-12 h-12 flex-shrink-0 bg-forest-light/20 rounded-full flex items-center justify-center group-hover:bg-forest-light/30 transition-colors">
                     <FaPhone className="text-forest text-xl" />
                 </div>
                 <div>

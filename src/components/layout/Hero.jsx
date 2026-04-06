@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
-import { FaChevronLeft, FaChevronRight, FaCogs, FaShieldAlt, FaIndustry, FaBullseye, FaEye, FaHeart, FaTrophy, FaCheckCircle, FaCertificate } from 'react-icons/fa'
+import { FaChevronLeft, FaChevronRight, FaCogs, FaShieldAlt, FaIndustry, FaBullseye, FaEye, FaHeart, FaTrophy, FaCheckCircle, FaCertificate, FaMapMarkerAlt } from 'react-icons/fa'
 
 /* ───────────────────── DATA ───────────────────── */
 
@@ -61,6 +61,13 @@ const missionVisionValues = [
     },
 ]
 
+const shippingLocations = [
+    { title: 'Cañete' },
+    { title: 'Lebu' },
+    { title: 'Concepción' },
+    { title: 'Talcahuano' },
+]
+
 /* ────────────── SLIDE COMPONENTS ────────────── */
 
 function Slide1() {
@@ -73,28 +80,28 @@ function Slide1() {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl w-full flex flex-col items-center">
                 {/* Logo + slogan area */}
-                <div className="text-center mb-8 md:mb-12 animate-fade-in-up mt-8">
+                <div className="text-center mb-6 md:mb-12 animate-fade-in-up mt-4 md:mt-8">
                     <img
                         src="/logo.png"
                         alt="Maderas Ponotro"
-                        className="h-32 sm:h-40 md:h-48 w-auto mx-auto mb-6 drop-shadow-2xl"
+                        className="h-20 sm:h-32 md:h-48 w-auto mx-auto mb-4 md:mb-6 drop-shadow-2xl"
                     />
-                    <p className="text-xl sm:text-2xl md:text-3xl text-white/90 font-display font-medium drop-shadow-lg max-w-3xl mx-auto">
+                    <p className="text-base sm:text-2xl md:text-3xl text-white/90 font-display font-medium drop-shadow-lg max-w-3xl mx-auto px-2">
                         Soluciones en madera para construcción, embalajes y proyectos industriales
                     </p>
                 </div>
 
                 {/* Info Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full mb-8 md:mb-12">
                     {whyUsCards.map((card, i) => (
-                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300">
-                            <div className="w-14 h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mx-auto mb-5 shadow-inner">
-                                <card.icon className="text-forest-light text-2xl" />
+                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-5 shadow-inner">
+                                <card.icon className="text-forest-light text-lg md:text-2xl" />
                             </div>
-                            <h3 className="font-display font-bold text-lg text-white mb-3 drop-shadow-lg">
+                            <h3 className="font-display font-bold text-sm md:text-lg text-white mb-1 md:mb-3 drop-shadow-lg">
                                 {card.title}
                             </h3>
-                            <p className="text-white/85 leading-relaxed text-sm drop-shadow-sm">
+                            <p className="hidden md:block text-white/85 leading-relaxed text-sm drop-shadow-sm">
                                 {card.description}
                             </p>
                         </div>
@@ -125,30 +132,32 @@ function Slide2() {
     return (
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl w-full text-center">
-                <div className="mb-12 mt-8">
-                    <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+                <div className="mb-8 md:mb-12 mt-4 md:mt-8">
+                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
                         Nuestra Trayectoria
                     </h2>
-                    <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
+                    <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto drop-shadow-md">
                         Más de dos décadas transformando madera con excelencia
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full">
                     {stats.map((stat, i) => (
-                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300">
-                            <div className="w-14 h-14 bg-forest-light/30 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                                <stat.icon className="text-forest-light text-2xl" />
+                        <div key={i} className="bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-row items-center md:items-start text-left justify-start gap-4 md:gap-5 w-full">
+                            <div className="w-12 h-12 md:w-14 md:h-14 bg-forest-light/30 rounded-full flex items-center justify-center shadow-inner flex-shrink-0">
+                                <stat.icon className="text-forest-light text-xl md:text-2xl" />
                             </div>
-                            <span className="block font-display text-4xl md:text-5xl font-bold text-forest-light mb-2 drop-shadow-lg">
-                                {stat.number}
-                            </span>
-                            <span className="block text-sm font-semibold text-forest-light uppercase tracking-wider mb-4 drop-shadow-md">
-                                {stat.label}
-                            </span>
-                            <p className="text-white/85 text-sm leading-relaxed drop-shadow-sm">
-                                {stat.description}
-                            </p>
+                            <div className="flex-1">
+                                <span className="block font-display text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
+                                    {stat.number}
+                                </span>
+                                <span className="block text-xs md:text-sm font-semibold text-white uppercase tracking-wider md:mb-2 drop-shadow-md">
+                                    {stat.label}
+                                </span>
+                                <p className="hidden md:block text-white/85 text-sm leading-relaxed drop-shadow-sm mt-2">
+                                    {stat.description}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -161,27 +170,29 @@ function Slide3() {
     return (
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl w-full text-center">
-                <div className="mb-12 mt-8">
-                    <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+                <div className="mb-8 md:mb-12 mt-4 md:mt-8 w-full text-left">
+                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
                         Lo Que Nos Define
                     </h2>
-                    <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
+                    <p className="text-white/90 text-sm md:text-xl max-w-2xl drop-shadow-md">
                         Principios que guían cada decisión
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full">
                     {missionVisionValues.map((card, i) => (
-                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300">
-                            <div className="w-14 h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mx-auto mb-5 shadow-inner">
-                                <card.icon className="text-forest-light text-2xl" />
+                        <div key={i} className="bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col items-start text-left gap-3 md:gap-5 w-full">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center shadow-inner flex-shrink-0">
+                                <card.icon className="text-forest-light text-lg md:text-2xl" />
                             </div>
-                            <h3 className="font-display font-bold text-xl text-white mb-3 drop-shadow-lg">
-                                {card.title}
-                            </h3>
-                            <p className="text-white/85 leading-relaxed text-sm drop-shadow-sm">
-                                {card.content}
-                            </p>
+                            <div className="w-full">
+                                <h3 className="font-display font-bold text-base md:text-xl text-white mb-1 md:mb-3 drop-shadow-lg">
+                                    {card.title}
+                                </h3>
+                                <p className="text-white/85 leading-snug md:leading-relaxed text-xs md:text-sm drop-shadow-sm">
+                                    {card.content}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -190,9 +201,39 @@ function Slide3() {
     )
 }
 
-const slideComponents = [Slide1, Slide2, Slide3]
+function Slide4() {
+    return (
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl w-full text-center">
+                <div className="mb-8 md:mb-12 mt-4 md:mt-8">
+                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
+                        Nuestros Envíos
+                    </h2>
+                    <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto drop-shadow-md">
+                        Cobertura garantizada y despacho seguro para tus proyectos
+                    </p>
+                </div>
 
-const backgrounds = ['/Slide 1.jpg', '/4.jpeg', '/5.jpeg']
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 w-full">
+                    {shippingLocations.map((loc, i) => (
+                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col items-center justify-center">
+                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mb-2 md:mb-5 shadow-inner flex-shrink-0">
+                                <FaMapMarkerAlt className="text-forest-light text-lg md:text-2xl" />
+                            </div>
+                            <h3 className="font-display font-bold text-base md:text-2xl text-white drop-shadow-lg">
+                                {loc.title}
+                            </h3>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const slideComponents = [Slide1, Slide2, Slide3, Slide4]
+
+const backgrounds = ['/Slide 1.webp', '/slide-2.webp', '/slide-3.webp', '/Slide 4 .webp']
 
 /* All slides use the same dark overlay for uniform brightness */
 const overlayClass = 'bg-gradient-to-b from-black/50 via-black/40 to-black/60'
@@ -267,7 +308,7 @@ function Hero() {
                                     : 'opacity-0 translate-x-full'
                             }`}
                     >
-                        <div className="w-full h-full">
+                        <div className="w-full h-full overflow-y-auto pb-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             <SlideComponent />
                         </div>
                     </div>
