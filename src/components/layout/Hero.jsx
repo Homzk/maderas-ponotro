@@ -1,248 +1,23 @@
 import { useState, useEffect, useCallback } from 'react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { FiChevronDown } from 'react-icons/fi'
-import { FaChevronLeft, FaChevronRight, FaCogs, FaShieldAlt, FaIndustry, FaBullseye, FaEye, FaHeart, FaTrophy, FaCheckCircle, FaCertificate, FaMapMarkerAlt } from 'react-icons/fa'
-
-/* ───────────────────── DATA ───────────────────── */
-
-const whyUsCards = [
-    {
-        icon: FaCogs,
-        title: 'Fabricación a Medida',
-        description: 'Elaboramos piezas dimensionadas, molduras, polines y componentes estructurales hasta 7 metros de largo según requerimiento.',
-    },
-    {
-        icon: FaShieldAlt,
-        title: 'Protección de la Madera',
-        description: 'Disponemos de planta impregnadora certificada por la Universidad del Bío-Bío y opción de baño antimancha para proteger la madera.',
-    },
-    {
-        icon: FaIndustry,
-        title: 'Soluciones para Industria y Construcción',
-        description: 'Proveemos materiales para viviendas, cabañas, embalajes y fabricación de pallets.',
-    },
-]
-
-const stats = [
-    {
-        icon: FaTrophy,
-        number: '21 años',
-        label: 'de experiencia',
-        description: 'Más de dos décadas de presencia en el rubro maderero desarrollando soluciones para construcción, embalaje y sector industrial.',
-    },
-    {
-        icon: FaCheckCircle,
-        number: '100%',
-        label: 'cumplimiento operativo',
-        description: 'Planificación y coordinación eficiente en producción y despacho, asegurando cumplimiento según los requerimientos acordados.',
-    },
-    {
-        icon: FaCertificate,
-        number: '+10 años',
-        label: 'acreditados',
-        description: 'Planta impregnadora certificada por la Universidad del Bío-Bío, acreditada desde 2010 bajo estándares técnicos.',
-    },
-]
-
-const missionVisionValues = [
-    {
-        icon: FaBullseye,
-        title: 'Misión',
-        content: 'Proveer productos de madera de la más alta calidad, utilizando procesos de elaboración e impregnación que garanticen durabilidad y satisfacción total para nuestros clientes.',
-    },
-    {
-        icon: FaEye,
-        title: 'Visión',
-        content: 'Ser reconocidos como la empresa líder en elaboración e impregnación de maderas en el sur de Chile, destacando por nuestra excelencia en calidad e innovación.',
-    },
-    {
-        icon: FaHeart,
-        title: 'Valores',
-        content: 'Calidad sin compromisos, honestidad en cada trato, respeto por el medio ambiente, innovación constante y compromiso total con nuestros clientes.',
-    },
-]
-
-const shippingLocations = [
-    { title: 'Cañete' },
-    { title: 'Lebu' },
-    { title: 'Concepción' },
-    { title: 'Talcahuano' },
-]
-
-/* ────────────── SLIDE COMPONENTS ────────────── */
-
-function Slide1() {
-    const handleScroll = (id) => {
-        const el = document.getElementById(id)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-
-    return (
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl w-full flex flex-col items-center">
-                {/* Logo + slogan area */}
-                <div className="text-center mb-6 md:mb-12 animate-fade-in-up mt-4 md:mt-8">
-                    <img
-                        src="/logo.png"
-                        alt="Maderas Ponotro"
-                        className="h-20 sm:h-32 md:h-48 w-auto mx-auto mb-4 md:mb-6 drop-shadow-2xl"
-                    />
-                    <p className="text-base sm:text-2xl md:text-3xl text-white/90 font-display font-medium drop-shadow-lg max-w-3xl mx-auto px-2">
-                        Soluciones en madera para construcción, embalajes y proyectos industriales
-                    </p>
-                </div>
-
-                {/* Info Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full mb-8 md:mb-12">
-                    {whyUsCards.map((card, i) => (
-                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-5 shadow-inner">
-                                <card.icon className="text-forest-light text-lg md:text-2xl" />
-                            </div>
-                            <h3 className="font-display font-bold text-sm md:text-lg text-white mb-1 md:mb-3 drop-shadow-lg">
-                                {card.title}
-                            </h3>
-                            <p className="hidden md:block text-white/85 leading-relaxed text-sm drop-shadow-sm">
-                                {card.description}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-in-up">
-                    <button
-                        onClick={() => handleScroll('contacto')}
-                        className="btn-primary text-base px-10 py-4 rounded-xl shadow-2xl hover:scale-105 transition-transform"
-                    >
-                        Contacto
-                    </button>
-                    <button
-                        onClick={() => handleScroll('productos')}
-                        className="btn-outline bg-black/30 backdrop-blur-sm text-base px-10 py-4 rounded-xl hover:bg-white/10 transition-colors"
-                    >
-                        Ver Productos
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function Slide2() {
-    return (
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-            <div className="max-w-5xl w-full text-center">
-                <div className="mb-8 md:mb-12 mt-4 md:mt-8">
-                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
-                        Nuestra Trayectoria
-                    </h2>
-                    <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto drop-shadow-md">
-                        Más de dos décadas transformando madera con excelencia
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full">
-                    {stats.map((stat, i) => (
-                        <div key={i} className="bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-row items-center md:items-start text-left justify-start gap-4 md:gap-5 w-full">
-                            <div className="w-12 h-12 md:w-14 md:h-14 bg-forest-light/30 rounded-full flex items-center justify-center shadow-inner flex-shrink-0">
-                                <stat.icon className="text-forest-light text-xl md:text-2xl" />
-                            </div>
-                            <div className="flex-1">
-                                <span className="block font-display text-2xl md:text-5xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
-                                    {stat.number}
-                                </span>
-                                <span className="block text-xs md:text-sm font-semibold text-white uppercase tracking-wider md:mb-2 drop-shadow-md">
-                                    {stat.label}
-                                </span>
-                                <p className="hidden md:block text-white/85 text-sm leading-relaxed drop-shadow-sm mt-2">
-                                    {stat.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function Slide3() {
-    return (
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-            <div className="max-w-5xl w-full text-center">
-                <div className="mb-8 md:mb-12 mt-4 md:mt-8 w-full text-left">
-                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
-                        Lo Que Nos Define
-                    </h2>
-                    <p className="text-white/90 text-sm md:text-xl max-w-2xl drop-shadow-md">
-                        Principios que guían cada decisión
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 lg:gap-8 w-full">
-                    {missionVisionValues.map((card, i) => (
-                        <div key={i} className="bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col items-start text-left gap-3 md:gap-5 w-full">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center shadow-inner flex-shrink-0">
-                                <card.icon className="text-forest-light text-lg md:text-2xl" />
-                            </div>
-                            <div className="w-full">
-                                <h3 className="font-display font-bold text-base md:text-xl text-white mb-1 md:mb-3 drop-shadow-lg">
-                                    {card.title}
-                                </h3>
-                                <p className="text-white/85 leading-snug md:leading-relaxed text-xs md:text-sm drop-shadow-sm">
-                                    {card.content}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function Slide4() {
-    return (
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl w-full text-center">
-                <div className="mb-8 md:mb-12 mt-4 md:mt-8">
-                    <h2 className="font-display text-2xl md:text-5xl font-bold text-white mb-2 md:mb-6 drop-shadow-lg">
-                        Nuestros Envíos
-                    </h2>
-                    <p className="text-white/90 text-sm md:text-xl max-w-2xl mx-auto drop-shadow-md">
-                        Cobertura garantizada y despacho seguro para tus proyectos
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 w-full">
-                    {shippingLocations.map((loc, i) => (
-                        <div key={i} className="text-center bg-black/40 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col items-center justify-center">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-forest-light/30 rounded-xl flex items-center justify-center mb-2 md:mb-5 shadow-inner flex-shrink-0">
-                                <FaMapMarkerAlt className="text-forest-light text-lg md:text-2xl" />
-                            </div>
-                            <h3 className="font-display font-bold text-base md:text-2xl text-white drop-shadow-lg">
-                                {loc.title}
-                            </h3>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
-}
+import { heroBackgrounds } from '../../constants/heroData'
+import Slide1 from './Hero/Slides/Slide1'
+import Slide2 from './Hero/Slides/Slide2'
+import Slide3 from './Hero/Slides/Slide3'
+import Slide4 from './Hero/Slides/Slide4'
 
 const slideComponents = [Slide1, Slide2, Slide3, Slide4]
-
-const backgrounds = ['/Slide 1.webp', '/slide-2.webp', '/slide-3.webp', '/Slide 4 .webp']
 
 /* All slides use the same dark overlay for uniform brightness */
 const overlayClass = 'bg-gradient-to-b from-black/50 via-black/40 to-black/60'
 
-/* ────────────── HERO CAROUSEL ────────────── */
 
 function Hero() {
     const [current, setCurrent] = useState(0)
     const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+    const [touchStart, setTouchStart] = useState(null)
+    const [touchEnd, setTouchEnd] = useState(null)
 
     const next = useCallback(() => {
         setCurrent((prev) => (prev + 1) % slideComponents.length)
@@ -272,10 +47,40 @@ function Hero() {
         }
     }, [])
 
+    const minSwipeDistance = 50
+
+    const onTouchStart = (e) => {
+        setTouchEnd(null)
+        setTouchStart(e.targetTouches[0].clientX)
+    }
+
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX)
+    }
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        const isRightSwipe = distance < -minSwipeDistance
+
+        if (isLeftSwipe) {
+            handleManualNav(next)
+        } else if (isRightSwipe) {
+            handleManualNav(prev)
+        }
+    }
+
     return (
-        <section id="inicio" className="relative min-h-screen overflow-hidden">
+        <section 
+            id="inicio" 
+            className="relative min-h-screen overflow-hidden"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+        >
             {/* Background images — all preloaded, opacity transition */}
-            {backgrounds.map((bg, i) => (
+            {heroBackgrounds.map((bg, i) => (
                 <div
                     key={i}
                     className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'
@@ -284,6 +89,7 @@ function Hero() {
                     <img
                         src={bg}
                         alt=""
+                        loading={i === 0 ? "eager" : "lazy"}
                         className="w-full h-full object-cover"
                         aria-hidden="true"
                     />
@@ -301,14 +107,14 @@ function Hero() {
                 {slideComponents.map((SlideComponent, i) => (
                     <div
                         key={i}
-                        className={`absolute inset-0 flex items-center transition-all duration-700 pt-20 pb-24 ${i === current
+                        className={`absolute inset-0 flex transition-all duration-700 pt-20 pb-24 ${i === current
                                 ? 'opacity-100 translate-x-0'
                                 : i < current
                                     ? 'opacity-0 -translate-x-full'
                                     : 'opacity-0 translate-x-full'
                             }`}
                     >
-                        <div className="w-full h-full overflow-y-auto pb-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        <div className="w-full h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             <SlideComponent />
                         </div>
                     </div>
@@ -318,14 +124,14 @@ function Hero() {
             {/* Navigation Arrows */}
             <button
                 onClick={() => handleManualNav(prev)}
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 border border-white/20"
+                className="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-sm rounded-full items-center justify-center text-white transition-all duration-300 border border-white/20"
                 aria-label="Slide anterior"
             >
                 <FaChevronLeft size={16} />
             </button>
             <button
                 onClick={() => handleManualNav(next)}
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 border border-white/20"
+                className="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-sm rounded-full items-center justify-center text-white transition-all duration-300 border border-white/20"
                 aria-label="Slide siguiente"
             >
                 <FaChevronRight size={16} />
