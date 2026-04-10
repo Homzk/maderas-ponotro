@@ -79,7 +79,7 @@ function Navbar() {
                         <img
                             src="/logo.png"
                             alt="Maderas Ponotro"
-                            className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+                            className="h-16 sm:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
                         />
                         <span className="font-display font-bold text-white text-xl hidden sm:block">
                             Maderas Ponotro

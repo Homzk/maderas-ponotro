@@ -114,7 +114,7 @@ function Hero() {
                                     : 'opacity-0 translate-x-full'
                             }`}
                     >
-                        <div className="w-full h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        <div className="w-full h-full overflow-hidden">
                             <SlideComponent />
                         </div>
                     </div>

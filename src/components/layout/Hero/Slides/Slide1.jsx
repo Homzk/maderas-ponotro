@@ -22,7 +22,7 @@ export default function Slide1() {
                     <img
                         src="/logo.png"
                         alt="Maderas Ponotro"
-                        className="h-14 sm:h-32 md:h-48 w-auto mx-auto mb-2 md:mb-6 drop-shadow-2xl shrink-0"
+                        className="h-24 sm:h-32 md:h-48 w-auto mx-auto mb-2 md:mb-6 drop-shadow-2xl shrink-0"
                     />
                     <p className="text-sm sm:text-2xl md:text-3xl text-white/90 font-display font-medium drop-shadow-lg max-w-3xl mx-auto px-2">
                         Soluciones en madera para construcción, embalajes y proyectos industriales
