@@ -1,6 +1,28 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { products } from '../../data/products'
-import { useScrollReveal, useScrollRevealStagger } from '../../hooks/useScrollReveal'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
+
+/* ─── Responsive initial count: 2 rows per breakpoint ─── */
+function useInitialCount() {
+    const [count, setCount] = useState(3) // mobile default
+
+    useEffect(() => {
+        function calc() {
+            const w = window.innerWidth
+            if (w >= 1280) return 8      // xl: 4 cols × 2 rows
+            if (w >= 1024) return 6       // lg: 3 cols × 2 rows
+            if (w >= 640) return 4        // sm: 2 cols × 2 rows
+            return 3                      // mobile: 1 col × 3 rows
+        }
+        setCount(calc())
+        const handle = () => setCount(calc())
+        window.addEventListener('resize', handle, { passive: true })
+        return () => window.removeEventListener('resize', handle)
+    }, [])
+
+    return count
+}
 
 /* ─── Treatment labels (hoisted, stable reference) ─── */
 const TREATMENT_OPTIONS = [
@@ -101,6 +123,8 @@ function CatalogCard({ product, onSelect }) {
 function ProductGrid({ onSelectProduct }) {
     const [filterTreatment, setFilterTreatment] = useState('todas')
     const [filterSize, setFilterSize] = useState('todas')
+    const [showAll, setShowAll] = useState(false)
+    const initialCount = useInitialCount()
 
     /* Derive unique sizes once — no effect needed (rerender-derived-state-no-effect) */
     const uniqueSizes = useMemo(() => {
@@ -134,24 +158,45 @@ function ProductGrid({ onSelectProduct }) {
     const handleClearFilters = useCallback(() => {
         setFilterTreatment('todas')
         setFilterSize('todas')
+        setShowAll(false)
     }, [])
+
+    const handleToggleShowAll = useCallback(() => {
+        setShowAll((prev) => {
+            if (prev) {
+                // Return to top of catalog smoothly
+                setTimeout(() => {
+                    const el = document.getElementById('catalogo')
+                    if (el) {
+                        const navbarHeight = 80
+                        const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight
+                        window.scrollTo({ top, behavior: 'smooth' })
+                    }
+                }, 0)
+            }
+            return !prev
+        })
+    }, [])
+
+    const hasActiveFilter = filterTreatment !== 'todas' || filterSize !== 'todas'
+
+    /* Slice products for "show more" pattern */
+    const visibleProducts = showAll
+        ? filteredProducts
+        : filteredProducts.slice(0, initialCount)
+    const hasMore = filteredProducts.length > initialCount
 
     /* Scroll reveal animations */
     const headerReveal = useScrollReveal({ threshold: 0.2 })
     const filterReveal = useScrollReveal({ threshold: 0.15, delay: 100 })
-    const gridStagger = useScrollRevealStagger(filteredProducts.length, {
-        staggerDelay: 60,
-    })
-
-    const hasActiveFilter = filterTreatment !== 'todas' || filterSize !== 'todas'
 
     return (
-        <div className="py-20 bg-white">
+        <div id="catalogo" className="py-10 md:py-14 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* ── Header ── */}
                 <div
                     ref={headerReveal.ref}
-                    className={`text-center mb-10 reveal reveal-up ${
+                    className={`text-center mb-6 reveal reveal-up ${
                         headerReveal.isVisible ? 'visible' : ''
                     }`}
                 >
@@ -167,7 +212,7 @@ function ProductGrid({ onSelectProduct }) {
                 {/* ── Filter Bar ── */}
                 <div
                     ref={filterReveal.ref}
-                    className={`mb-12 reveal reveal-up ${
+                    className={`mb-8 reveal reveal-up ${
                         filterReveal.isVisible ? 'visible' : ''
                     }`}
                 >
@@ -259,24 +304,39 @@ function ProductGrid({ onSelectProduct }) {
 
                 {/* ── Products Grid ── */}
                 {filteredProducts.length > 0 ? (
-                    <div
-                        ref={gridStagger.containerRef}
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                    >
-                        {filteredProducts.map((product, index) => (
-                            <div
-                                key={product.id}
-                                className={`reveal reveal-up ${
-                                    gridStagger.isVisible(index) ? 'visible' : ''
-                                }`}
-                            >
-                                <CatalogCard
-                                    product={product}
-                                    onSelect={onSelectProduct}
-                                />
+                    <>
+                        <div
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                        >
+                            {visibleProducts.map((product, index) => (
+                                <div
+                                    key={product.id}
+                                    className="animate-fade-in-up"
+                                >
+                                    <CatalogCard
+                                        product={product}
+                                        onSelect={onSelectProduct}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Show more / less toggle */}
+                        {hasMore && (
+                            <div className="text-center mt-10">
+                                <button
+                                    onClick={handleToggleShowAll}
+                                    className="inline-flex items-center gap-2 bg-white text-forest
+                                               font-display font-bold px-8 py-3.5 rounded-xl
+                                               border-2 border-forest hover:bg-forest hover:text-white
+                                               transition-all duration-300 shadow-md hover:shadow-lg"
+                                >
+                                    <span>{showAll ? 'Ver menos' : 'Ver todo'}</span>
+                                    {showAll ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />}
+                                </button>
                             </div>
-                        ))}
-                    </div>
+                        )}
+                    </>
                 ) : (
                     /* ── Empty state ── */
                     <div className="text-center py-20">
