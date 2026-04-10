@@ -1,7 +1,8 @@
 import { useState, useMemo, useCallback, useEffect } from 'react'
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp, FaPlus, FaShoppingCart } from 'react-icons/fa'
 import { products } from '../../data/products'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { useQuotationCart } from '../../context/QuotationCartContext'
 
 /* ─── Responsive initial count: 2 rows per breakpoint ─── */
 function useInitialCount() {
@@ -59,6 +60,12 @@ const EmptyStateIcon = (
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function CatalogCard({ product, onSelect }) {
     const badgeClass = TREATMENT_BADGE[product.treatment] ?? 'bg-gray-500/80 text-white'
+    const { addItem } = useQuotationCart()
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation()
+        addItem(product)
+    }
 
     return (
         <div
@@ -102,15 +109,25 @@ function CatalogCard({ product, onSelect }) {
                     {product.name}
                 </h3>
 
-                <div className="mt-auto pt-4 flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 rounded-full bg-accent-gold" />
-                    <span className="text-sm text-charcoal-light font-sans capitalize">
-                        {product.treatment}
-                    </span>
-                    <span className="text-gray-300 mx-1">·</span>
-                    <span className="text-sm text-charcoal-light font-sans">
-                        {product.size}
-                    </span>
+                <div className="mt-auto pt-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-accent-gold" />
+                        <span className="text-sm text-charcoal-light font-sans capitalize">
+                            {product.treatment}
+                        </span>
+                        <span className="text-gray-300 mx-1">·</span>
+                        <span className="text-sm text-charcoal-light font-sans">
+                            {product.size}
+                        </span>
+                    </div>
+                    <button
+                        onClick={handleAddToCart}
+                        className="p-2.5 rounded-xl bg-forest/10 text-forest hover:bg-forest hover:text-white transition-all duration-300 shadow-sm md:opacity-0 md:group-hover:opacity-100 flex items-center justify-center"
+                        aria-label="Añadir a cotización"
+                        title="Añadir a cotización"
+                    >
+                        <FaShoppingCart size={16} />
+                    </button>
                 </div>
             </div>
         </div>
