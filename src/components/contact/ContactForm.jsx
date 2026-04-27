@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { validateForm } from '../../utils/validation'
 import { sendEmail } from '../../utils/emailService'
 import { FaPaperPlane, FaCheck, FaExclamationCircle } from 'react-icons/fa'
@@ -6,6 +6,7 @@ import { useQuotationCart } from '../../context/QuotationCartContext'
 
 function ContactForm() {
     const { items, getCartMessage, clearCart } = useQuotationCart()
+    const hasCartItems = items.length > 0
 
     const [formData, setFormData] = useState({
         name: '',
@@ -17,22 +18,6 @@ function ContactForm() {
     const [errors, setErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState(null)
-
-    // Listen for cart message injection via DOM events
-    useEffect(() => {
-        const textarea = document.getElementById('message')
-        if (!textarea) return
-
-        const handleInput = (e) => {
-            // Only handle programmatic input events (from cart)
-            if (!e.isTrusted) {
-                setFormData((prev) => ({ ...prev, message: textarea.value }))
-            }
-        }
-
-        textarea.addEventListener('input', handleInput)
-        return () => textarea.removeEventListener('input', handleInput)
-    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -46,7 +31,7 @@ function ContactForm() {
         e.preventDefault()
         setSubmitStatus(null)
 
-        const validation = validateForm(formData)
+        const validation = validateForm(formData, { hasCartItems })
         if (!validation.isValid) {
             setErrors(validation.errors)
             return
@@ -55,7 +40,10 @@ function ContactForm() {
         setIsSubmitting(true)
 
         try {
-            const result = await sendEmail(formData)
+            // Build the quotation details string from the cart context
+            const quotationDetails = getCartMessage()
+
+            const result = await sendEmail(formData, quotationDetails)
 
             if (result.success) {
                 setSubmitStatus('success')
@@ -67,7 +55,7 @@ function ContactForm() {
                     message: '',
                 })
                 // Clear cart after successful submission
-                if (items.length > 0) {
+                if (hasCartItems) {
                     clearCart()
                 }
             } else {
@@ -101,20 +89,6 @@ function ContactForm() {
                     <FaExclamationCircle className="flex-shrink-0" />
                     <p>Hubo un error al enviar el mensaje. Por favor intente nuevamente.</p>
                 </div>
-            )}
-
-            {/* Cart indicator */}
-            {items.length > 0 && !formData.message.includes('COTIZACIÓN') && (
-                <button
-                    type="button"
-                    onClick={() => setFormData(prev => ({ ...prev, message: getCartMessage() }))}
-                    className="w-full flex items-center gap-3 p-3 bg-accent-gold/10 border border-accent-gold/30 rounded-lg text-accent-gold-dark text-sm hover:bg-accent-gold/15 transition-colors"
-                >
-                    <span className="w-6 h-6 bg-accent-gold text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
-                        {items.length}
-                    </span>
-                    Incluir {items.length} producto{items.length > 1 ? 's' : ''} de la cotización en el mensaje
-                </button>
             )}
 
             {/* Name Field */}
@@ -200,17 +174,21 @@ function ContactForm() {
             {/* Message Field */}
             <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Mensaje * <span className="text-gray-400 text-xs">(máx. 500 caracteres)</span>
+                    Mensaje {hasCartItems ? '' : '*'}{' '}
+                    <span className="text-gray-400 text-xs">(máx. 500 caracteres)</span>
                 </label>
                 <textarea
                     id="message"
                     name="message"
-                    rows={6}
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-400 bg-red-50' : 'border-gray-300'
                         } focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent transition-all resize-none`}
-                    placeholder="Cuéntenos sobre su proyecto o consulta..."
+                    placeholder={hasCartItems
+                        ? 'Opcional: añade consultas adicionales sobre tu cotización...'
+                        : 'Cuéntenos sobre su proyecto o consulta...'
+                    }
                 />
                 <div className="flex justify-between mt-1">
                     {errors.message && (
@@ -252,10 +230,16 @@ function ContactForm() {
                 ) : (
                     <>
                         <FaPaperPlane />
-                        Enviar Mensaje
+                        {hasCartItems ? 'Enviar Cotización' : 'Enviar Mensaje'}
                     </>
                 )}
             </button>
+
+            {hasCartItems && (
+                <p className="text-xs text-center text-charcoal-light font-sans mt-2">
+                    Los productos de tu cotización se adjuntarán automáticamente al enviar.
+                </p>
+            )}
         </form>
     )
 }

@@ -1,9 +1,18 @@
+import { useState } from 'react'
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import ContactForm from './ContactForm'
 import ContactButtons from './ContactButtons'
+import QuotationSummary from './QuotationSummary'
 import { CONTACT_INFO } from '../../utils/emailService'
+import { useQuotationCart } from '../../context/QuotationCartContext'
 
 function ContactSection() {
+    const { items } = useQuotationCart()
+    const hasCartItems = items.length > 0
+    const [activeBranchId, setActiveBranchId] = useState(CONTACT_INFO.branches[0].id)
+    
+    const activeBranch = CONTACT_INFO.branches.find(b => b.id === activeBranchId)
+
     return (
         <div className="pt-0">
             {/* Header Section */}
@@ -13,8 +22,10 @@ function ContactSection() {
                         Contáctanos
                     </h2>
                     <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
-                        Estamos aquí para ayudarte. Envíanos un mensaje o contacta directamente
-                        a través de nuestros canales de atención.
+                        {hasCartItems
+                            ? 'Revisa tu cotización y envíanos tus datos para recibir una respuesta personalizada.'
+                            : 'Estamos aquí para ayudarte. Envíanos un mensaje o contacta directamente a través de nuestros canales de atención.'
+                        }
                     </p>
                 </div>
             </section>
@@ -22,14 +33,25 @@ function ContactSection() {
             {/* Contact Content */}
             <section className="py-16 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {/* Left Column - Form */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                    <div className={`grid grid-cols-1 gap-8 ${
+                        hasCartItems
+                            ? 'lg:grid-cols-3'
+                            : 'lg:grid-cols-2 gap-12'
+                    }`}>
+                        {/* Quotation Summary — Only shows when cart has items */}
+                        {hasCartItems && (
+                            <div className="lg:col-span-1">
+                                <QuotationSummary />
+                            </div>
+                        )}
+
+                        {/* Form */}
+                        <div className={`${hasCartItems ? 'lg:col-span-1' : ''} bg-white rounded-2xl shadow-lg p-8`}>
                             <ContactForm />
                         </div>
 
                         {/* Right Column - Contact Info & Buttons */}
-                        <div className="space-y-8">
+                        <div className={`${hasCartItems ? 'lg:col-span-1' : ''} space-y-8`}>
                             {/* Contact Buttons */}
                             <div className="bg-white rounded-2xl shadow-lg p-8">
                                 <ContactButtons />
@@ -47,7 +69,7 @@ function ContactSection() {
                                         </div>
                                         <div>
                                             <span className="font-medium text-gray-800 block">Ubicación</span>
-                                            <span className="text-gray-600">{CONTACT_INFO.address}</span>
+                                            <span className="text-gray-600">{activeBranch.name} - {activeBranch.address}</span>
                                         </div>
                                     </div>
                                     <div className="flex items-start space-x-4">
@@ -56,26 +78,46 @@ function ContactSection() {
                                         </div>
                                         <div>
                                             <span className="font-medium text-gray-800 block">Horario de Atención</span>
-                                            <span className="text-gray-600 text-sm">
-                                                Lunes a Viernes: 08:00 - 18:00<br />
-                                                Sábado: 09:00 - 13:00
+                                            <span className="text-gray-600 text-sm whitespace-pre-line">
+                                                {CONTACT_INFO.hours.replace(' | ', '\n')}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Map */}
-                            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            {/* Map & Branch Selector */}
+                            <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                                {/* Branch Tabs */}
+                                <div className="flex border-b border-gray-100 bg-gray-50/50">
+                                    {CONTACT_INFO.branches.map(branch => (
+                                        <button
+                                            key={branch.id}
+                                            onClick={() => setActiveBranchId(branch.id)}
+                                            className={`flex-1 py-4 px-2 text-sm font-semibold transition-colors relative ${
+                                                activeBranchId === branch.id
+                                                    ? 'text-forest-dark bg-white'
+                                                    : 'text-gray-500 hover:text-forest hover:bg-gray-50'
+                                            }`}
+                                        >
+                                            {branch.name}
+                                            {activeBranchId === branch.id && (
+                                                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-forest" />
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                                {/* Map iframe */}
                                 <iframe
-                                    src="https://maps.google.com/maps?q=-37.8370857,-73.4258194&hl=es&z=15&output=embed"
+                                    src={activeBranch.mapUrl}
                                     width="100%"
-                                    height="400"
+                                    height="300"
                                     style={{ border: 0 }}
                                     allowFullScreen=""
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    title="Ubicación Maderas Ponotro"
+                                    title={`Ubicación ${activeBranch.name}`}
+                                    className="transition-opacity duration-300"
                                 />
                             </div>
                         </div>

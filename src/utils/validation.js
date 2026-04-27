@@ -48,9 +48,10 @@ export const validateCity = (city) => {
     return { isValid: true, error: null }
 }
 
-// Message validation (10-500 characters)
-export const validateMessage = (message) => {
+// Message validation (10-500 characters, optional when cart has items)
+export const validateMessage = (message, { skipRequired = false } = {}) => {
     if (!message || message.trim() === '') {
+        if (skipRequired) return { isValid: true, error: null }
         return { isValid: false, error: 'El mensaje es obligatorio' }
     }
     if (message.trim().length < 10) {
@@ -63,7 +64,8 @@ export const validateMessage = (message) => {
 }
 
 // Validate all form fields
-export const validateForm = (formData) => {
+// hasCartItems: when true, the message field becomes optional
+export const validateForm = (formData, { hasCartItems = false } = {}) => {
     const errors = {}
 
     const nameValidation = validateName(formData.name)
@@ -78,7 +80,7 @@ export const validateForm = (formData) => {
     const cityValidation = validateCity(formData.city)
     if (!cityValidation.isValid) errors.city = cityValidation.error
 
-    const messageValidation = validateMessage(formData.message)
+    const messageValidation = validateMessage(formData.message, { skipRequired: hasCartItems })
     if (!messageValidation.isValid) errors.message = messageValidation.error
 
     return {

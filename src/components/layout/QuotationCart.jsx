@@ -1,8 +1,8 @@
-import { FaTimes, FaTrash, FaArrowRight } from 'react-icons/fa'
+import { FaTimes, FaTrash, FaArrowRight, FaPlus, FaMinus } from 'react-icons/fa'
 import { useQuotationCart } from '../../context/QuotationCartContext'
 
 function QuotationCart() {
-    const { items, isOpen, closeCart, removeItem, clearCart, scrollToContactWithMessage } = useQuotationCart()
+    const { items, isOpen, closeCart, removeItem, clearCart, updateQuantity, scrollToContact } = useQuotationCart()
 
     return (
         <>
@@ -60,41 +60,99 @@ function QuotationCart() {
                         </div>
                     ) : (
                         <ul className="space-y-4">
-                            {items.map((item, index) => (
-                                <li
-                                    key={item.id}
-                                    className="bg-gray-50 rounded-xl p-4 flex gap-4 items-start group hover:bg-gray-100 transition-colors"
-                                    style={{ animationDelay: `${index * 50}ms` }}
-                                >
-                                    {/* Icon */}
-                                    <div className="w-12 h-12 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        {item.icon ? (
-                                            <item.icon className="text-forest text-xl" />
-                                        ) : (
-                                            <span className="text-forest font-bold text-sm">{index + 1}</span>
-                                        )}
-                                    </div>
-                                    {/* Info */}
-                                    <div className="flex-1 min-w-0">
-                                        <h4 className="font-display font-semibold text-sm text-charcoal leading-tight">
-                                            {item.name}
-                                        </h4>
-                                        {item.category && (
-                                            <span className="inline-block text-xs text-forest bg-forest/10 px-2 py-0.5 rounded-full mt-1">
-                                                {item.category}
-                                            </span>
-                                        )}
-                                    </div>
-                                    {/* Remove */}
-                                    <button
-                                        onClick={() => removeItem(item.id)}
-                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                        aria-label={`Eliminar ${item.name}`}
+                            {items.map((item, index) => {
+                                const itemKey = item.cartItemId || item.id
+                                return (
+                                    <li
+                                        key={itemKey}
+                                        className="bg-gray-50 rounded-xl p-4 flex gap-4 items-start group hover:bg-gray-100 transition-colors"
+                                        style={{ animationDelay: `${index * 50}ms` }}
                                     >
-                                        <FaTrash size={12} />
-                                    </button>
-                                </li>
-                            ))}
+                                        {/* Icon */}
+                                        <div className="w-12 h-12 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            {item.icon ? (
+                                                <item.icon className="text-forest text-xl" />
+                                            ) : (
+                                                <span className="text-forest font-bold text-sm">{index + 1}</span>
+                                            )}
+                                        </div>
+                                        {/* Info */}
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-display font-semibold text-sm text-charcoal leading-tight">
+                                                {item.name}
+                                            </h4>
+                                            <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+                                                {item.category && (
+                                                    <span className="text-[10px] text-forest bg-forest/10 px-2 py-0.5 rounded-full">
+                                                        {item.category}
+                                                    </span>
+                                                )}
+                                                {item.selectedLength && (
+                                                    <span className="text-[10px] text-charcoal-light bg-gray-200 px-2 py-0.5 rounded-full">
+                                                        {item.selectedLength}m
+                                                    </span>
+                                                )}
+                                                {item.options?.cepillada && (
+                                                    <span className="text-[10px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">
+                                                        Cepillada
+                                                    </span>
+                                                )}
+                                                {item.options?.impregnada && (
+                                                    <span className="text-[10px] text-green-800 bg-green-100 px-2 py-0.5 rounded-full">
+                                                        Impregnada
+                                                    </span>
+                                                )}
+                                                {item.isSpecialOrder && (
+                                                    <span className="text-[10px] text-accent-gold-dark bg-accent-gold/20 px-2 py-0.5 rounded-full font-bold">
+                                                        Pedido Especial
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Actions (Qty + Remove) */}
+                                        <div className="flex flex-col items-end justify-between h-full py-1">
+                                            {/* Remove */}
+                                            <button
+                                                onClick={() => removeItem(itemKey)}
+                                                className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                                                aria-label={`Eliminar ${item.name}`}
+                                            >
+                                                <FaTrash size={12} />
+                                            </button>
+
+                                            {/* Quantity Control */}
+                                            <div className="flex items-center bg-gray-50 border border-gray-200 rounded-lg overflow-hidden mt-2" onClick={(e) => e.stopPropagation()}>
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => updateQuantity(itemKey, Math.max(1, (item.quantity || 1) - 1))}
+                                                    className="w-6 h-6 flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-100 transition-colors"
+                                                >
+                                                    <FaMinus size={8} />
+                                                </button>
+                                                <input 
+                                                    type="number"
+                                                    min="1"
+                                                    value={item.quantity || 1}
+                                                    onChange={(e) => {
+                                                        const val = parseInt(e.target.value)
+                                                        if (!isNaN(val) && val > 0) updateQuantity(itemKey, val)
+                                                    }}
+                                                    className="w-8 h-6 text-center text-xs font-sans font-bold text-charcoal bg-transparent border-none focus:ring-0 p-0 appearance-none m-0"
+                                                    style={{ MozAppearance: 'textfield' }}
+                                                />
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => updateQuantity(itemKey, (item.quantity || 1) + 1)}
+                                                    className="w-6 h-6 flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-100 transition-colors"
+                                                >
+                                                    <FaPlus size={8} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     )}
                 </div>
@@ -103,7 +161,7 @@ function QuotationCart() {
                 {items.length > 0 && (
                     <div className="border-t border-gray-200 p-6 flex-shrink-0 space-y-3">
                         <button
-                            onClick={scrollToContactWithMessage}
+                            onClick={scrollToContact}
                             className="w-full btn-primary flex items-center justify-center gap-3 text-lg py-4"
                         >
                             Cotizar ahora

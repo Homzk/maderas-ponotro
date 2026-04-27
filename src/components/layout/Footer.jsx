@@ -94,20 +94,20 @@ function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="tel:+56955316212"
+                                    href="tel:+56940323645"
                                     className="flex items-start space-x-3 text-white/80 hover:text-forest-light transition-colors text-sm"
                                 >
                                     <FaPhone className="text-forest-light flex-shrink-0 mt-0.5" />
-                                    <span>+56 9 5531 6212<br /><span className="text-white/60 text-xs">Claudia</span></span>
+                                    <span>+56 9 4032 3645<br /><span className="text-white/60 text-xs">Claudia Zapata</span></span>
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="mailto:Maderas_ponotro@hotmail.com"
-                                    className="flex items-center space-x-3 text-white/80 hover:text-forest-light transition-colors text-sm"
+                                    href="mailto:maderas_ponotros@hotmail.com"
+                                    className="flex items-center space-x-3 text-white/80 hover:text-forest-light transition-colors text-sm break-all"
                                 >
                                     <FaEnvelope className="text-forest-light flex-shrink-0" />
-                                    <span>Maderas_ponotro@hotmail.com</span>
+                                    <span>maderas_ponotros@hotmail.com</span>
                                 </a>
                             </li>
                         </ul>
@@ -128,7 +128,7 @@ function Footer() {
                                 <FaClock className="text-forest-light flex-shrink-0" />
                                 <div>
                                     <p className="font-semibold text-white/90">Sábado</p>
-                                    <p>8:00 – 12:30</p>
+                                    <p>8:00 – 12:00</p>
                                 </div>
                             </li>
                         </ul>

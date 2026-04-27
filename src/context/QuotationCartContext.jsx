@@ -5,18 +5,47 @@ const QuotationCartContext = createContext(null)
 const cartReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_ITEM': {
-            const exists = state.items.find(item => item.id === action.payload.id)
-            if (exists) return state
+            // Use cartItemId for uniqueness when available (configured products)
+            const identifier = action.payload.cartItemId || action.payload.id
+            const exists = state.items.find(item => (item.cartItemId || item.id) === identifier)
+            
+            const itemQuantity = action.payload.quantity || 1
+
+            if (exists) {
+                return {
+                    ...state,
+                    items: state.items.map(item => 
+                        (item.cartItemId || item.id) === identifier
+                            ? { ...item, quantity: (item.quantity || 1) + itemQuantity }
+                            : item
+                    ),
+                    isOpen: false
+                }
+            }
             return {
                 ...state,
-                items: [...state.items, action.payload],
+                items: [...state.items, { ...action.payload, quantity: itemQuantity }],
                 isOpen: false
             }
         }
         case 'REMOVE_ITEM':
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.payload)
+                items: state.items.filter(item => {
+                    const identifier = item.cartItemId || item.id
+                    return identifier !== action.payload
+                })
+            }
+        case 'UPDATE_QUANTITY':
+            return {
+                ...state,
+                items: state.items.map(item => {
+                    const identifier = item.cartItemId || item.id
+                    if (identifier === action.payload.id) {
+                        return { ...item, quantity: Math.max(1, action.payload.quantity) }
+                    }
+                    return item
+                })
             }
         case 'CLEAR_CART':
             return { ...state, items: [], isOpen: false }
@@ -45,6 +74,10 @@ export function QuotationCartProvider({ children }) {
         dispatch({ type: 'REMOVE_ITEM', payload: productId })
     }, [])
 
+    const updateQuantity = useCallback((productId, quantity) => {
+        dispatch({ type: 'UPDATE_QUANTITY', payload: { id: productId, quantity } })
+    }, [])
+
     const clearCart = useCallback(() => {
         dispatch({ type: 'CLEAR_CART' })
     }, [])
@@ -57,52 +90,71 @@ export function QuotationCartProvider({ children }) {
         dispatch({ type: 'CLOSE_CART' })
     }, [])
 
+    /**
+     * Generates a formatted text summary of the cart for email payloads.
+     * Includes all configuration options (largo, cepillado, impregnado, pedido especial).
+     */
     const getCartMessage = useCallback(() => {
         if (state.items.length === 0) return ''
-        const header = '--- PRODUCTOS PARA COTIZACIÓN ---\n\n'
-        const productLines = state.items.map((item, i) =>
-            `${i + 1}. ${item.name}${item.description ? `\n   ${item.description}` : ''}`
-        ).join('\n\n')
-        const footer = '\n\n--- FIN DE LA LISTA ---\n\nPor favor, envíenme una cotización de los productos listados.'
+
+        const header = '═══ PRODUCTOS PARA COTIZACIÓN ═══\n\n'
+
+        const productLines = state.items.map((item, i) => {
+            const qty = item.quantity || 1
+            const lines = [`${i + 1}. (x${qty}) ${item.name}`]
+
+            if (item.size) lines.push(`   Medida: ${item.size}`)
+            if (item.selectedLength) lines.push(`   Largo: ${item.selectedLength} m`)
+
+            // Treatment options
+            const treatments = []
+            if (item.options?.cepillada) treatments.push('Cepillada')
+            if (item.options?.impregnada) treatments.push('Impregnada')
+            if (treatments.length > 0) {
+                lines.push(`   Tratamiento: ${treatments.join(', ')}`)
+            }
+
+            if (item.category) lines.push(`   Categoría: ${item.category}`)
+
+            // Special order details
+            if (item.isSpecialOrder && item.description) {
+                lines.push(`   ⚡ PEDIDO ESPECIAL`)
+                lines.push(`   Detalle: ${item.description}`)
+            }
+
+            return lines.join('\n')
+        }).join('\n\n')
+
+        const footer = '\n\n═══ FIN DE LA LISTA ═══'
         return header + productLines + footer
     }, [state.items])
 
-    const scrollToContactWithMessage = useCallback(() => {
+    /**
+     * Scrolls to the contact section. No longer manipulates the textarea DOM.
+     */
+    const scrollToContact = useCallback(() => {
         dispatch({ type: 'CLOSE_CART' })
 
-        // Small delay to allow cart to close before scrolling
         requestAnimationFrame(() => {
             const contactSection = document.getElementById('contacto')
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth' })
             }
-
-            // Pre-fill the textarea after scroll settles
-            setTimeout(() => {
-                const textarea = document.getElementById('message')
-                if (textarea) {
-                    const nativeSetter = Object.getOwnPropertyDescriptor(
-                        window.HTMLTextAreaElement.prototype, 'value'
-                    ).set
-                    nativeSetter.call(textarea, getCartMessage())
-                    textarea.dispatchEvent(new Event('input', { bubbles: true }))
-                    textarea.dispatchEvent(new Event('change', { bubbles: true }))
-                }
-            }, 800)
         })
-    }, [getCartMessage])
+    }, [])
 
     const value = {
         items: state.items,
         isOpen: state.isOpen,
-        itemCount: state.items.length,
+        itemCount: state.items.reduce((acc, item) => acc + (item.quantity || 1), 0),
         addItem,
         removeItem,
+        updateQuantity,
         clearCart,
         toggleCart,
         closeCart,
         getCartMessage,
-        scrollToContactWithMessage
+        scrollToContact
     }
 
     return (
