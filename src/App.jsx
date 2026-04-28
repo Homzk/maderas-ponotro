@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import QuotationCart from './components/layout/QuotationCart'
 import Hero from './components/layout/Hero'
-import ProductGrid from './components/products/ProductGrid'
-import ProcessGallery from './components/history/ProcessGallery'
-import FounderProfile from './components/history/FounderProfile'
-import CallToAction from './components/home/CallToAction'
-import ContactSection from './components/contact/ContactSection'
-import ProductDetailModal from './components/products/ProductDetailModal'
+
+// Lazy-loaded components — below-the-fold / interaction-triggered (bundle-dynamic-imports)
+const QuotationCart = lazy(() => import('./components/layout/QuotationCart'))
+const ProductGrid = lazy(() => import('./components/products/ProductGrid'))
+const ProcessGallery = lazy(() => import('./components/history/ProcessGallery'))
+const FounderProfile = lazy(() => import('./components/history/FounderProfile'))
+const CallToAction = lazy(() => import('./components/home/CallToAction'))
+const ContactSection = lazy(() => import('./components/contact/ContactSection'))
+const ProductDetailModal = lazy(() => import('./components/products/ProductDetailModal'))
+
+/**
+ * Lightweight spinner placeholder — matches section min-height
+ * to prevent CLS while chunks load.
+ */
+function SectionFallback({ className = '' }) {
+    return (
+        <div className={`flex items-center justify-center py-20 ${className}`}>
+            <div className="w-8 h-8 border-[3px] border-forest/30 border-t-forest rounded-full animate-spin" />
+        </div>
+    )
+}
 
 function App() {
     const [selectedProduct, setSelectedProduct] = useState(null)
@@ -16,42 +30,56 @@ function App() {
     return (
         <div className="min-h-screen">
             <Navbar />
-            <QuotationCart />
+            <Suspense fallback={null}>
+                <QuotationCart />
+            </Suspense>
 
             <main>
-                {/* 1. Hero — full-screen carousel */}
+                {/* 1. Hero — critical above-the-fold, loaded eagerly */}
                 <Hero />
 
                 {/* 2. Productos */}
                 <section id="productos">
-                    <ProductGrid onSelectProduct={setSelectedProduct} />
+                    <Suspense fallback={<SectionFallback />}>
+                        <ProductGrid onSelectProduct={setSelectedProduct} />
+                    </Suspense>
                 </section>
 
-                {/* 3. Proceso */}
+                {/* 3. Proceso (has video — heavy) */}
                 <section id="proceso">
-                    <ProcessGallery />
+                    <Suspense fallback={<SectionFallback className="bg-charcoal" />}>
+                        <ProcessGallery />
+                    </Suspense>
                 </section>
 
                 {/* 4. Historia */}
                 <section id="historia">
-                    <FounderProfile />
+                    <Suspense fallback={<SectionFallback />}>
+                        <FounderProfile />
+                    </Suspense>
                 </section>
 
                 {/* 5. CTA + Contacto */}
-                <CallToAction />
+                <Suspense fallback={<SectionFallback className="bg-gray-50" />}>
+                    <CallToAction />
+                </Suspense>
 
                 <section id="contacto">
-                    <ContactSection />
+                    <Suspense fallback={<SectionFallback className="bg-gray-50" />}>
+                        <ContactSection />
+                    </Suspense>
                 </section>
             </main>
 
             <Footer />
 
             {selectedProduct && (
-                <ProductDetailModal 
-                    product={selectedProduct} 
-                    onClose={() => setSelectedProduct(null)} 
-                />
+                <Suspense fallback={null}>
+                    <ProductDetailModal 
+                        product={selectedProduct} 
+                        onClose={() => setSelectedProduct(null)} 
+                    />
+                </Suspense>
             )}
         </div>
     )

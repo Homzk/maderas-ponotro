@@ -74,7 +74,7 @@ function Hero() {
     return (
         <section 
             id="inicio" 
-            className="relative min-h-[100dvh] flex flex-col overflow-hidden"
+            className="relative h-[100dvh] flex flex-col overflow-hidden"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -90,6 +90,10 @@ function Hero() {
                         src={bg}
                         alt=""
                         loading={i === 0 ? "eager" : "lazy"}
+                        decoding={i === 0 ? "sync" : "async"}
+                        fetchPriority={i === 0 ? "high" : "low"}
+                        width={1920}
+                        height={1080}
                         className="w-full h-full object-cover"
                         aria-hidden="true"
                     />
@@ -103,11 +107,11 @@ function Hero() {
             <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]" />
 
             {/* Slide content */}
-            <div className="relative z-10 flex-1 flex flex-col w-full h-full pb-24 md:pb-32">
+            <div className="relative z-10 flex-1 flex flex-col w-full h-full">
                 {slideComponents.map((SlideComponent, i) => (
                     <div
                         key={i}
-                        className={`absolute inset-0 flex flex-col justify-center transition-all duration-700 pt-20 pb-24 md:pb-32 ${i === current
+                        className={`absolute inset-0 flex flex-col justify-center transition-all duration-700 pt-20 pb-20 md:pb-28 ${i === current
                                 ? 'opacity-100 translate-x-0 z-20'
                                 : i < current
                                     ? 'opacity-0 -translate-x-full z-0'
@@ -138,7 +142,7 @@ function Hero() {
             </button>
 
             {/* Dots Indicator */}
-            <div className="absolute bottom-16 md:bottom-20 inset-x-0 flex justify-center gap-2.5 z-30">
+            <div className="absolute bottom-12 short:bottom-9 md:bottom-16 inset-x-0 flex justify-center gap-2.5 z-30">
                 {slideComponents.map((_, i) => (
                     <button
                         key={i}
@@ -155,10 +159,10 @@ function Hero() {
             {/* Scroll indicator */}
             <button
                 onClick={handleScrollDown}
-                className="absolute bottom-4 md:bottom-6 inset-x-0 flex justify-center z-30 animate-bounce cursor-pointer"
+                className="absolute bottom-3 short:bottom-1.5 md:bottom-5 inset-x-0 flex justify-center z-30 animate-bounce cursor-pointer"
                 aria-label="Ver productos"
             >
-                <FiChevronDown className="w-8 h-8 md:w-10 md:h-10 text-white/70" />
+                <FiChevronDown className="w-7 h-7 short:w-5 short:h-5 md:w-9 md:h-9 text-white/70" />
             </button>
         </section>
     )
