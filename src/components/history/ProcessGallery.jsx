@@ -75,6 +75,9 @@ function VideoStep({ step }) {
                     loop
                     playsInline
                     preload="metadata"
+                    width={640}
+                    height={360}
+                    aria-label={step.title}
                     onCanPlay={(e) => e.currentTarget.playbackRate = 1.25}
                 />
 

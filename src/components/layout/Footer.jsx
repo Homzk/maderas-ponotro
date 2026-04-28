@@ -28,7 +28,7 @@ function Footer() {
                     {/* Company Info */}
                     <div className="space-y-4 md:col-span-1">
                         <div className="flex items-center space-x-3">
-                            <img src="/logo.png" alt="Maderas Ponotro" className="h-12 w-auto" />
+                            <img src="/logo.webp" alt="Maderas Ponotro" width={96} height={48} loading="lazy" decoding="async" className="h-12 w-auto" />
                             <span className="font-display font-bold text-xl">Maderas Ponotro</span>
                         </div>
                         <p className="text-white/80 text-sm leading-relaxed">

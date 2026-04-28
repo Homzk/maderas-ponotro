@@ -92,6 +92,10 @@ function ProductDetailModal({ product, onClose }) {
                         <img 
                             src={product.image} 
                             alt={product.name} 
+                            width={600}
+                            height={500}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover object-center"
                         />
                     ) : (

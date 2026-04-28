@@ -110,14 +110,14 @@ function ContactSection() {
                                 {/* Map iframe */}
                                 <iframe
                                     src={activeBranch.mapUrl}
-                                    width="100%"
-                                    height="300"
+                                    width={600}
+                                    height={300}
                                     style={{ border: 0 }}
                                     allowFullScreen=""
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    title={`Ubicación ${activeBranch.name}`}
-                                    className="transition-opacity duration-300"
+                                    title={`Mapa de ubicación de ${activeBranch.name}`}
+                                    className="w-full transition-opacity duration-300"
                                 />
                             </div>
                         </div>

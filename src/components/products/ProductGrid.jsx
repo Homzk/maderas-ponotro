@@ -113,11 +113,14 @@ function CatalogCard({ product, onSelect }) {
             onClick={() => onSelect?.(product)}
         >
             {/* Image */}
-            <div className="relative h-48 bg-gradient-to-br from-forest-dark/80 to-forest/60 overflow-hidden">
+            <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-forest-dark/80 to-forest/60 overflow-hidden">
                 <img
                     src={product.image}
                     alt={product.name}
                     loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
 

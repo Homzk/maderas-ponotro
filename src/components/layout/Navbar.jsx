@@ -77,8 +77,10 @@ function Navbar() {
                         className="flex items-center space-x-3 group"
                     >
                         <img
-                            src="/logo.png"
+                            src="/logo.webp"
                             alt="Maderas Ponotro"
+                            width={128}
+                            height={64}
                             className="h-16 sm:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
                         />
                         <span className="font-display font-bold text-white text-xl hidden sm:block">
