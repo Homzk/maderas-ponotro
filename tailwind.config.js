@@ -6,6 +6,10 @@ export default {
     ],
     theme: {
         extend: {
+            screens: {
+                'short': { 'raw': '(max-height: 750px)' },
+                'medium-h': { 'raw': '(min-height: 751px) and (max-height: 900px)' },
+            },
             colors: {
                 // Esmeralda - Color principal elegante
                 'forest-dark': '#064E3B',
