@@ -1,19 +1,44 @@
 /**
  * Email service configuration for Maderas Ponotro
  * Using EmailJS for form submission
- * 
- * To configure EmailJS:
- * 1. Create account at https://www.emailjs.com/
- * 2. Create an email service
- * 3. Create an email template with variables: {{name}}, {{phone}}, {{email}}, {{city}}, {{message}}
- * 4. Replace the placeholder values below with your actual credentials
+ *
+ * ┌─────────────────────────────────────────────────────────────────────┐
+ * │  IMPORTANTE — FASE DE PRUEBAS                                      │
+ * │  El correo de destino se configura EXCLUSIVAMENTE desde el panel   │
+ * │  de EmailJS (Dashboard → Email Templates → To Email).              │
+ * │  NO se debe hardcodear el correo destino en el frontend.           │
+ * └─────────────────────────────────────────────────────────────────────┘
+ *
+ * Environment variables (Vite):
+ *   VITE_EMAILJS_SERVICE_ID   — EmailJS service ID
+ *   VITE_EMAILJS_TEMPLATE_ID  — EmailJS template ID
+ *   VITE_EMAILJS_PUBLIC_KEY   — EmailJS public key
  */
 
-// EmailJS configuration - Replace with actual credentials
-export const EMAIL_CONFIG = {
-    serviceId: 'YOUR_EMAILJS_SERVICE_ID',
-    templateId: 'YOUR_EMAILJS_TEMPLATE_ID',
-    publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
+// ---------------------------------------------------------------------------
+// EmailJS credentials — sourced from Vite env vars, NEVER hardcoded.
+// ---------------------------------------------------------------------------
+const EMAIL_CONFIG = {
+    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+}
+
+/**
+ * Runtime guard: fail fast if any EmailJS credential is missing.
+ * This avoids silent failures during development.
+ */
+function assertEmailConfig() {
+    const missing = Object.entries(EMAIL_CONFIG)
+        .filter(([, v]) => !v)
+        .map(([k]) => k)
+
+    if (missing.length > 0) {
+        throw new Error(
+            `[emailService] Missing EmailJS env vars: ${missing.join(', ')}. ` +
+            'Check your .env file for VITE_EMAILJS_* variables.'
+        )
+    }
 }
 
 // Company contact information
@@ -49,37 +74,45 @@ export const CONTACT_INFO = {
 }
 
 /**
- * Send email using EmailJS
- * @param {Object} formData - Form data with name, phone, email, city, message
- * @param {string} quotationDetails - Formatted string of cart products (optional)
- * @returns {Promise} - EmailJS send result
+ * Send email using EmailJS.
+ *
+ * Template variable mapping (must match EmailJS template):
+ *   user_name       → Nombre completo del cliente
+ *   user_email      → Correo del cliente
+ *   user_phone      → Teléfono del cliente
+ *   user_city       → Ciudad del cliente
+ *   user_message    → Mensaje libre
+ *   quotation_items → Lista formateada de productos cotizados
+ *
+ * @param {Object} formData - { name, phone, email, city, message }
+ * @param {string} quotationDetails - Formatted cart products string
+ * @returns {Promise<{success: boolean, result?: object, error?: object}>}
  */
 export const sendEmail = async (formData, quotationDetails = '') => {
-    // Dynamic import of emailjs-com
+    // Validate env config before attempting to send
+    assertEmailConfig()
+
+    // Dynamic import keeps emailjs out of the initial bundle (bundle-conditional)
     const emailjs = await import('emailjs-com')
 
+    // Template params — keys MUST match the EmailJS template variables exactly
     const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        message: formData.message || 'Sin mensaje adicional.',
-        quotation_details: quotationDetails || 'Sin productos cotizados.',
-        to_email: CONTACT_INFO.email,
+        user_name: formData.name,
+        user_email: formData.email,
+        user_phone: formData.phone,
+        user_city: formData.city,
+        user_message: formData.message || 'Sin mensaje adicional.',
+        quotation_items: quotationDetails || 'Sin productos cotizados.',
     }
 
-    try {
-        const result = await emailjs.send(
-            EMAIL_CONFIG.serviceId,
-            EMAIL_CONFIG.templateId,
-            templateParams,
-            EMAIL_CONFIG.publicKey
-        )
-        return { success: true, result }
-    } catch (error) {
-        console.error('Error sending email:', error)
-        return { success: false, error }
-    }
+    const result = await emailjs.send(
+        EMAIL_CONFIG.serviceId,
+        EMAIL_CONFIG.templateId,
+        templateParams,
+        EMAIL_CONFIG.publicKey
+    )
+
+    return { success: result.status === 200, result }
 }
 
 /**
