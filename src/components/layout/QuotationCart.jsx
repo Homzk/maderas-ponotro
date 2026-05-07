@@ -14,9 +14,9 @@ function QuotationCart() {
                 onClick={closeCart}
             />
 
-            {/* Slide-over panel */}
+            {/* Slide-over panel — starts below the navbar (top-20 = 80 px) */}
             <div
-                className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl transition-transform duration-500 ease-out flex flex-col ${
+                className={`fixed top-20 right-0 h-[calc(100%-5rem)] w-full max-w-md bg-white z-[70] shadow-2xl transition-transform duration-500 ease-out flex flex-col ${
                     isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
@@ -123,9 +123,13 @@ function QuotationCart() {
 
                                             {/* Quantity Control */}
                                             <div className="flex items-center bg-gray-50 border border-gray-200 rounded-lg overflow-hidden mt-2" onClick={(e) => e.stopPropagation()}>
-                                                <button 
+                                                <button
                                                     type="button"
-                                                    onClick={() => updateQuantity(itemKey, Math.max(1, (item.quantity || 1) - 1))}
+                                                    onClick={() => {
+                                                        const next = (item.quantity || 1) - 1
+                                                        if (next === 0) removeItem(itemKey)
+                                                        else updateQuantity(itemKey, next)
+                                                    }}
                                                     className="w-6 h-6 flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-100 transition-colors"
                                                 >
                                                     <FaMinus size={8} />

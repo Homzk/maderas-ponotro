@@ -20,10 +20,11 @@ function CallToAction() {
                     ref={ctaReveal.ref}
                     className={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-forest-dark via-forest to-forest-medium p-12 md:p-16 text-center reveal reveal-scale-up ease-elastic ${ctaReveal.isVisible ? 'visible' : ''}`}
                 >
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
-                    <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3" />
-                    <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-white/5 rounded-full -translate-y-1/2" />
+                    {/* Decorative elements — floating orbs */}
+                    <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2 animate-float-slow" />
+                    <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3 animate-float" />
+                    <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-white/8 rounded-full -translate-y-1/2 animate-float-slow [animation-delay:2s]" />
+                    <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-accent-gold/10 rounded-full animate-float [animation-delay:1s]" />
 
                     <div className="relative z-10">
                         <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">

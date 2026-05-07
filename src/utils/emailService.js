@@ -89,8 +89,21 @@ export const CONTACT_INFO = {
  * @returns {Promise<{success: boolean, result?: object, error?: object}>}
  */
 export const sendEmail = async (formData, quotationDetails = '') => {
-    // Validate env config before attempting to send
-    assertEmailConfig()
+    const missing = Object.entries(EMAIL_CONFIG)
+        .filter(([, v]) => !v)
+        .map(([k]) => k)
+
+    if (missing.length > 0) {
+        if (import.meta.env.DEV) {
+            console.warn(`[emailService] Dev mode — simulating email send (missing: ${missing.join(', ')})`)
+            await new Promise(r => setTimeout(r, 800))
+            return { success: true, result: { status: 200 } }
+        }
+        throw new Error(
+            `[emailService] Missing EmailJS env vars: ${missing.join(', ')}. ` +
+            'Check your .env file for VITE_EMAILJS_* variables.'
+        )
+    }
 
     // Dynamic import keeps emailjs out of the initial bundle (bundle-conditional)
     const emailjs = await import('emailjs-com')

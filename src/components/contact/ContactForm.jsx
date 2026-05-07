@@ -90,28 +90,6 @@ function ContactForm() {
                 Envíanos un Mensaje
             </h3>
 
-            {/* ── Success Toast ────────────────────────────────────── */}
-            {submitStatus === 'success' && (
-                <div
-                    role="alert"
-                    className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 animate-fade-in"
-                >
-                    <FaCheck className="flex-shrink-0" aria-hidden="true" />
-                    <p>¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.</p>
-                </div>
-            )}
-
-            {/* ── Error Toast ──────────────────────────────────────── */}
-            {submitStatus === 'error' && (
-                <div
-                    role="alert"
-                    className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 animate-fade-in"
-                >
-                    <FaExclamationCircle className="flex-shrink-0" aria-hidden="true" />
-                    <p>Hubo un error al enviar el mensaje. Por favor intente nuevamente.</p>
-                </div>
-            )}
-
             {/* ── Name ─────────────────────────────────────────────── */}
             <div>
                 <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -277,6 +255,28 @@ function ContactForm() {
                 <p className="text-xs text-center text-charcoal-light font-sans mt-2">
                     Los productos de tu cotización se adjuntarán automáticamente al enviar.
                 </p>
+            )}
+
+            {/* ── Success Toast ────────────────────────────────────── */}
+            {submitStatus === 'success' && (
+                <div
+                    role="alert"
+                    className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 animate-fade-in"
+                >
+                    <FaCheck className="flex-shrink-0" aria-hidden="true" />
+                    <p>Gracias por contactarnos, tu mensaje fue enviado correctamente. Nos pondremos en contacto pronto.</p>
+                </div>
+            )}
+
+            {/* ── Error Toast ──────────────────────────────────────── */}
+            {submitStatus === 'error' && (
+                <div
+                    role="alert"
+                    className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 animate-fade-in"
+                >
+                    <FaExclamationCircle className="flex-shrink-0" aria-hidden="true" />
+                    <p>Hubo un error al enviar el mensaje. Por favor intente nuevamente.</p>
+                </div>
             )}
         </form>
     )

@@ -107,9 +107,10 @@ function CatalogCard({ product, onSelect }) {
 
     return (
         <div
-            className="group bg-white rounded-2xl shadow-lg overflow-hidden
-                        hover:shadow-xl transition-all duration-300 flex flex-col h-full
-                        border border-gray-100 hover:border-forest/30 cursor-pointer"
+            className="group bg-white rounded-2xl shadow-md overflow-hidden
+                        hover:shadow-2xl hover:-translate-y-1.5
+                        transition-all duration-300 ease-out flex flex-col h-full
+                        border border-gray-100 hover:border-forest/20 cursor-pointer"
             onClick={() => onSelect?.(product)}
         >
             {/* Image */}
@@ -121,7 +122,7 @@ function CatalogCard({ product, onSelect }) {
                     decoding="async"
                     width={400}
                     height={300}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
 
                 {/* Category badge */}

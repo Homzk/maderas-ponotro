@@ -79,12 +79,11 @@ function Hero() {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
         >
-            {/* Background images — all preloaded, opacity transition */}
+            {/* Background images — slide 0 pans horizontally (avoids moiré on grid patterns), others zoom gently */}
             {heroBackgrounds.map((bg, i) => (
                 <div
                     key={i}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'
-                        }`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'}`}
                 >
                     <img
                         src={bg}
@@ -94,7 +93,11 @@ function Hero() {
                         fetchpriority={i === 0 ? "high" : "low"}
                         width={1920}
                         height={1080}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${
+                            i === 0
+                                ? (i === current ? 'animate-pan-slow' : 'scale-[1.03]')
+                                : `transition-transform duration-[14000ms] ease-linear ${i === current ? 'scale-[1.04]' : 'scale-100'}`
+                        }`}
                         aria-hidden="true"
                     />
                 </div>
@@ -111,12 +114,14 @@ function Hero() {
                 {slideComponents.map((SlideComponent, i) => (
                     <div
                         key={i}
-                        className={`absolute inset-0 flex flex-col justify-center transition-all duration-700 pt-20 pb-20 md:pb-28 ${i === current
+                        className={`absolute inset-0 flex flex-col justify-center pt-20 pb-20 md:pb-28
+                            transition-[opacity,transform] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                            i === current
                                 ? 'opacity-100 translate-x-0 z-20'
                                 : i < current
-                                    ? 'opacity-0 -translate-x-full z-0'
-                                    : 'opacity-0 translate-x-full z-0'
-                            }`}
+                                    ? 'opacity-0 -translate-x-12 z-0'
+                                    : 'opacity-0 translate-x-12 z-0'
+                        }`}
                     >
                         <div className="w-full max-h-full overflow-hidden flex flex-col justify-center">
                             <SlideComponent />

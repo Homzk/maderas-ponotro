@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useCallback } from 'react'
+import { createContext, useContext, useReducer, useCallback, useEffect } from 'react'
 
 const QuotationCartContext = createContext(null)
 
@@ -8,24 +8,22 @@ const cartReducer = (state, action) => {
             // Use cartItemId for uniqueness when available (configured products)
             const identifier = action.payload.cartItemId || action.payload.id
             const exists = state.items.find(item => (item.cartItemId || item.id) === identifier)
-            
+
             const itemQuantity = action.payload.quantity || 1
 
             if (exists) {
                 return {
                     ...state,
-                    items: state.items.map(item => 
+                    items: state.items.map(item =>
                         (item.cartItemId || item.id) === identifier
                             ? { ...item, quantity: (item.quantity || 1) + itemQuantity }
                             : item
-                    ),
-                    isOpen: false
+                    )
                 }
             }
             return {
                 ...state,
-                items: [...state.items, { ...action.payload, quantity: itemQuantity }],
-                isOpen: false
+                items: [...state.items, { ...action.payload, quantity: itemQuantity }]
             }
         }
         case 'REMOVE_ITEM':
@@ -50,7 +48,7 @@ const cartReducer = (state, action) => {
         case 'CLEAR_CART':
             return { ...state, items: [], isOpen: false }
         case 'TOGGLE_CART':
-            return { ...state, isOpen: !state.isOpen }
+            return { ...state, isOpen: true }
         case 'CLOSE_CART':
             return { ...state, isOpen: false }
         default:
@@ -63,8 +61,29 @@ const initialState = {
     isOpen: false
 }
 
+const STORAGE_KEY = 'maderas-quotation-cart'
+
+function loadFromStorage() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY)
+        if (!saved) return initialState
+        const parsed = JSON.parse(saved)
+        return { ...initialState, items: parsed.items ?? [] }
+    } catch {
+        return initialState
+    }
+}
+
 export function QuotationCartProvider({ children }) {
-    const [state, dispatch] = useReducer(cartReducer, initialState)
+    const [state, dispatch] = useReducer(cartReducer, undefined, loadFromStorage)
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: state.items }))
+        } catch {
+            // storage quota exceeded or private mode — silently ignore
+        }
+    }, [state.items])
 
     const addItem = useCallback((product) => {
         dispatch({ type: 'ADD_ITEM', payload: product })

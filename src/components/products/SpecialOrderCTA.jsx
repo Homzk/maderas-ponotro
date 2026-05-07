@@ -44,7 +44,7 @@ export default function SpecialOrderCTA() {
         const specialOrderPayload = {
             id: specialProductId,
             cartItemId: specialProductId,
-            name: `Pedido Especial: ${category}`,
+            name: `Pedido especial: ${category}`,
             category: category,
             size: `${finalDimension} x ${finalLength}`,
             length: finalLength,
@@ -112,7 +112,7 @@ export default function SpecialOrderCTA() {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-lg border border-white">
+                <form onSubmit={handleSubmit} noValidate className="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-lg border border-white">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         {/* Categoría */}
                         <div>
@@ -252,7 +252,6 @@ export default function SpecialOrderCTA() {
                             placeholder="Cuéntanos más detalles sobre tu pedido, cantidades estimadas o usos específicos..."
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            required
                             className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors resize-none"
                         ></textarea>
                     </div>

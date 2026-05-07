@@ -191,7 +191,10 @@ function ProcessGallery() {
                     {processSteps.map((step, index) => (
                         <div
                             key={index}
-                            className={`reveal reveal-up ${stepsStagger.isVisible(index) ? 'visible' : ''} ${
+                            className={`reveal ${
+                                index % 3 === 0 ? 'reveal-left' :
+                                index % 3 === 2 ? 'reveal-right' : 'reveal-up'
+                            } ${stepsStagger.isVisible(index) ? 'visible' : ''} ${
                                 index >= 3 ? 'lg:col-span-1' : ''
                             }`}
                         >

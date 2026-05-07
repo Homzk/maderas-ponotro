@@ -26,8 +26,8 @@ function FounderProfile() {
                     {/* Left: Photo */}
                     <div className="lg:col-span-2 flex justify-center lg:justify-end">
                         <div className="relative">
-                            {/* Decorative background */}
-                            <div className="absolute -inset-3 bg-gradient-to-br from-forest/20 to-accent-gold/20 rounded-3xl rotate-3" />
+                            {/* Decorative background — gentle float */}
+                            <div className="absolute -inset-3 bg-gradient-to-br from-forest/20 to-accent-gold/20 rounded-3xl rotate-3 animate-float-slow" />
 
                             <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                                 {/* Placeholder SVG portrait */}

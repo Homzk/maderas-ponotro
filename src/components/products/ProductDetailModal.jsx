@@ -70,12 +70,12 @@ function ProductDetailModal({ product, onClose }) {
     }
 
     return (
-        <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 sm:p-6 md:p-12 overflow-y-auto"
+        <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 sm:p-6 md:p-12 overflow-y-auto animate-fade-in"
             onClick={onClose}
         >
-            <div 
-                className="bg-white rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden relative flex flex-col md:flex-row my-auto animate-fade-in-up"
+            <div
+                className="bg-white rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden relative flex flex-col md:flex-row my-auto animate-scale-in"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close Button */}

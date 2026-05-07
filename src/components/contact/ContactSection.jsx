@@ -38,20 +38,20 @@ function ContactSection() {
                             ? 'lg:grid-cols-3'
                             : 'lg:grid-cols-2 gap-12'
                     }`}>
-                        {/* Quotation Summary — Only shows when cart has items */}
+                        {/* Form — always first in DOM; visually second (center) on desktop when cart has items */}
+                        <div className={`${hasCartItems ? 'lg:col-span-1 lg:order-2' : ''} bg-white rounded-2xl shadow-lg p-8`}>
+                            <ContactForm />
+                        </div>
+
+                        {/* Quotation Summary — only when cart has items; visually first (left) on desktop */}
                         {hasCartItems && (
-                            <div className="lg:col-span-1">
+                            <div className="lg:col-span-1 lg:order-1">
                                 <QuotationSummary />
                             </div>
                         )}
 
-                        {/* Form */}
-                        <div className={`${hasCartItems ? 'lg:col-span-1' : ''} bg-white rounded-2xl shadow-lg p-8`}>
-                            <ContactForm />
-                        </div>
-
                         {/* Right Column - Contact Info & Buttons */}
-                        <div className={`${hasCartItems ? 'lg:col-span-1' : ''} space-y-8`}>
+                        <div className={`${hasCartItems ? 'lg:col-span-1 lg:order-3' : ''} space-y-8`}>
                             {/* Contact Buttons */}
                             <div className="bg-white rounded-2xl shadow-lg p-8">
                                 <ContactButtons />

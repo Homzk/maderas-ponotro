@@ -63,7 +63,7 @@ function Navbar() {
     const isActive = (href) => activeSection === href
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-500 ${
+        <nav className={`fixed w-full z-[80] transition-all duration-500 animate-slide-down ${
             isScrolled
                 ? 'bg-forest-dark/95 backdrop-blur-md shadow-2xl'
                 : 'bg-transparent'
