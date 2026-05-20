@@ -43,7 +43,7 @@ function assertEmailConfig() {
 
 // Company contact information
 export const CONTACT_INFO = {
-    email: 'maderas_ponotros@hotmail.com',
+    email: 'Contacto.maderasponotro@gmail.com',
     executives: [
         {
             name: 'Orosimbo Cisterna',

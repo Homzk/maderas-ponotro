@@ -103,11 +103,11 @@ function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="mailto:maderas_ponotros@hotmail.com"
+                                    href="mailto:Contacto.maderasponotro@gmail.com"
                                     className="flex items-center space-x-3 text-white/80 hover:text-forest-light transition-colors text-sm break-all"
                                 >
                                     <FaEnvelope className="text-forest-light flex-shrink-0" />
-                                    <span>maderas_ponotros@hotmail.com</span>
+                                    <span>Contacto.maderasponotro@gmail.com</span>
                                 </a>
                             </li>
                         </ul>
