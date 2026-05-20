@@ -56,7 +56,7 @@ export const missionVisionValues = [
         id: 'vision',
         icon: FaEye,
         title: 'Visión',
-        content: 'Ser reconocidos como la empresa líder en elaboración e impregnación de maderas en el sur de Chile, destacando por nuestra excelencia en calidad e innovación.',
+        content: 'Ser una empresa confiable en la fabricación e impregnación de madera en el sur de Chile, enfocada a llegar tanto a empresas como a clientes particulares, ofreciendo productos de calidad que se adaptan a distintos proyectos y necesidades.',
     },
     {
         id: 'valores',

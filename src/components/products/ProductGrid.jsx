@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect } from 'react'
-import { FaChevronDown, FaChevronUp, FaPlus, FaMinus, FaShoppingCart, FaCheck } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp, FaPlus, FaMinus, FaShoppingCart, FaCheck, FaTools } from 'react-icons/fa'
 import { products } from '../../data/products'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { useQuotationCart } from '../../context/QuotationCartContext'
@@ -266,6 +266,8 @@ function ProductGrid({ onSelectProduct }) {
     const initialCount = useInitialCount()
 
     const CATEGORIES = ['Construcción', 'Terminaciones', 'Polines', 'Tablas']
+    const WIP_CATEGORIES = ['Terminaciones', 'Polines', 'Tablas']
+    const isWipCategory = WIP_CATEGORIES.includes(activeCategory)
 
     /* Derive unique sizes dynamically for the active category (rerender-derived-state-no-effect) */
     const uniqueSizes = useMemo(() => {
@@ -387,9 +389,9 @@ function ProductGrid({ onSelectProduct }) {
                     </div>
 
                     <div
-                        className="flex flex-col sm:flex-row items-center justify-between
+                        className={`${isWipCategory ? 'hidden' : 'flex'} flex-col sm:flex-row items-center justify-between
                                     gap-4 bg-white/80 backdrop-blur-sm rounded-2xl
-                                    px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-gray-100"
+                                    px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-gray-100`}
                     >
                         <div className="flex items-center gap-6">
                             {/* Size selector */}
@@ -451,7 +453,19 @@ function ProductGrid({ onSelectProduct }) {
                 </div>
 
                 {/* ── Products Grid ── */}
-                {filteredProducts.length > 0 ? (
+                {isWipCategory ? (
+                    <div className="text-center py-20 px-6 bg-gradient-to-br from-forest-dark/5 to-accent-gold/10 rounded-3xl border border-forest/10">
+                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md mb-6">
+                            <FaTools className="text-accent-gold" size={32} />
+                        </div>
+                        <h3 className="font-display font-bold text-2xl md:text-3xl text-forest-dark mb-3">
+                            Trabajando en esta sección...
+                        </h3>
+                        <p className="text-charcoal-light font-sans text-base md:text-lg max-w-md mx-auto">
+                            Estamos puliendo los últimos detalles.
+                        </p>
+                    </div>
+                ) : filteredProducts.length > 0 ? (
                     <>
                         <div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"

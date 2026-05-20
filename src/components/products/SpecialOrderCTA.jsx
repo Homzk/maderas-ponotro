@@ -3,14 +3,6 @@ import { useQuotationCart } from '../../context/QuotationCartContext'
 import { FaShoppingCart, FaTools, FaPlus, FaMinus } from 'react-icons/fa'
 
 const CATEGORIES = ['Construcción', 'Terminaciones', 'Polines', 'Tablas', 'Otro']
-const STANDARD_DIMENSIONS = [
-    '1x2"', '1x3"', '1x4"', '1x5"', 
-    '2x2"', '2x3"', '2x4"', '2x5"', '2x6"', '2x8"',
-    '3x3"', '3x4"', 
-    '4x4"', '5x5"', '6x6"', 
-    '3-4"', '4-5"', 
-    'Otro'
-]
 const STANDARD_LENGTHS = ['2.40m', '3.20m', '4m', '5m', '6m', '7m', 'Otro']
 
 export default function SpecialOrderCTA() {
@@ -18,9 +10,8 @@ export default function SpecialOrderCTA() {
     const [category, setCategory] = useState(CATEGORIES[0])
     
     // Dimensiones
-    const [dimension, setDimension] = useState(STANDARD_DIMENSIONS[0])
-    const [customDimension, setCustomDimension] = useState('')
-    
+    const [dimension, setDimension] = useState('')
+
     // Largos
     const [length, setLength] = useState(STANDARD_LENGTHS[0])
     const [customLength, setCustomLength] = useState('')
@@ -34,7 +25,7 @@ export default function SpecialOrderCTA() {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        const finalDimension = dimension === 'Otro' ? customDimension : dimension
+        const finalDimension = dimension
         const finalLength = length === 'Otro' ? customLength : length
         
         if (!finalDimension.trim() || !finalLength.trim()) return
@@ -67,8 +58,7 @@ export default function SpecialOrderCTA() {
         
         // Reset form
         setCategory(CATEGORIES[0])
-        setDimension(STANDARD_DIMENSIONS[0])
-        setCustomDimension('')
+        setDimension('')
         setLength(STANDARD_LENGTHS[0])
         setCustomLength('')
         setIsCepillada(false)
@@ -131,27 +121,14 @@ export default function SpecialOrderCTA() {
                         {/* Dimensión */}
                         <div>
                             <label className="block text-sm font-semibold text-forest-dark mb-2">Dimensión</label>
-                            <div className="flex flex-col xl:flex-row gap-2">
-                                <select
-                                    value={dimension}
-                                    onChange={(e) => setDimension(e.target.value)}
-                                    className={`${dimension === 'Otro' ? 'xl:w-1/2' : 'w-full'} bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors cursor-pointer`}
-                                >
-                                    {STANDARD_DIMENSIONS.map(d => (
-                                        <option key={d} value={d}>{d}</option>
-                                    ))}
-                                </select>
-                                {dimension === 'Otro' && (
-                                    <input
-                                        type="text"
-                                        placeholder="Ej: 8x8"
-                                        value={customDimension}
-                                        onChange={(e) => setCustomDimension(e.target.value)}
-                                        required
-                                        className="w-full xl:w-1/2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors"
-                                    />
-                                )}
-                            </div>
+                            <input
+                                type="text"
+                                placeholder='Ej: 2x4" o 8x8'
+                                value={dimension}
+                                onChange={(e) => setDimension(e.target.value)}
+                                required
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors"
+                            />
                         </div>
 
                         {/* Largo */}
