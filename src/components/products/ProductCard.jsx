@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FaPlus, FaCheck } from 'react-icons/fa'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 function ProductCard({ product, onSelect }) {
     const { addItem, items } = useQuotationCart()

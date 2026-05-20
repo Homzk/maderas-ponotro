@@ -1,5 +1,5 @@
 import { FaTimes, FaTrash, FaArrowRight, FaPlus, FaMinus } from 'react-icons/fa'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 function QuotationCart() {
     const { items, isOpen, closeCart, removeItem, clearCart, updateQuantity, scrollToContact } = useQuotationCart()

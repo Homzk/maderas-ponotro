@@ -1,6 +1,5 @@
-import { createContext, useContext, useReducer, useCallback, useEffect } from 'react'
-
-const QuotationCartContext = createContext(null)
+import { useReducer, useCallback, useEffect } from 'react'
+import { QuotationCartContext } from './quotationCart'
 
 const cartReducer = (state, action) => {
     switch (action.type) {
@@ -182,13 +181,3 @@ export function QuotationCartProvider({ children }) {
         </QuotationCartContext.Provider>
     )
 }
-
-export function useQuotationCart() {
-    const context = useContext(QuotationCartContext)
-    if (!context) {
-        throw new Error('useQuotationCart must be used within a QuotationCartProvider')
-    }
-    return context
-}
-
-export default QuotationCartContext

@@ -24,23 +24,6 @@ const EMAIL_CONFIG = {
     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
 }
 
-/**
- * Runtime guard: fail fast if any EmailJS credential is missing.
- * This avoids silent failures during development.
- */
-function assertEmailConfig() {
-    const missing = Object.entries(EMAIL_CONFIG)
-        .filter(([, v]) => !v)
-        .map(([k]) => k)
-
-    if (missing.length > 0) {
-        throw new Error(
-            `[emailService] Missing EmailJS env vars: ${missing.join(', ')}. ` +
-            'Check your .env file for VITE_EMAILJS_* variables.'
-        )
-    }
-}
-
 // Company contact information
 export const CONTACT_INFO = {
     email: 'Contacto.maderasponotro@gmail.com',

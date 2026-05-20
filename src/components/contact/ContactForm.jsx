@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { validateForm } from '../../utils/validation'
 import { sendEmail } from '../../utils/emailService'
 import { FaPaperPlane, FaCheck, FaExclamationCircle } from 'react-icons/fa'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 /**
  * ┌─────────────────────────────────────────────────────────────────────┐

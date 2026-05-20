@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaTimes, FaPlus, FaMinus, FaCheck, FaRulerCombined, FaTools, FaShoppingCart } from 'react-icons/fa'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 function ProductDetailModal({ product, onClose }) {
     const { addItem, items } = useQuotationCart()

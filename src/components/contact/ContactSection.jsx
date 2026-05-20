@@ -4,7 +4,7 @@ import ContactForm from './ContactForm'
 import ContactButtons from './ContactButtons'
 import QuotationSummary from './QuotationSummary'
 import { CONTACT_INFO } from '../../utils/emailService'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 function ContactSection() {
     const { items } = useQuotationCart()

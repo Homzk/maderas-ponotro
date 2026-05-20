@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { FaShoppingCart } from 'react-icons/fa'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 const navLinks = [
     { name: 'Inicio', href: '#inicio' },

@@ -1,4 +1,4 @@
-import { FaCogs, FaShieldAlt, FaIndustry, FaBullseye, FaEye, FaHeart, FaTrophy, FaCheckCircle, FaCertificate, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaCogs, FaShieldAlt, FaIndustry, FaBullseye, FaEye, FaHeart, FaTrophy, FaCheckCircle, FaCertificate } from 'react-icons/fa'
 
 export const whyUsCards = [
     {

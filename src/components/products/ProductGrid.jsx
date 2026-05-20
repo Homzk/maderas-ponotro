@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback, useEffect } from 'react'
 import { FaChevronDown, FaChevronUp, FaPlus, FaMinus, FaShoppingCart, FaCheck, FaTools } from 'react-icons/fa'
 import { products } from '../../data/products'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 import SpecialOrderCTA from './SpecialOrderCTA'
 /* ─── Responsive initial count: 2 rows per breakpoint ─── */
 function useInitialCount() {
@@ -99,7 +99,7 @@ function CatalogCard({ product, onSelect }) {
         }
     }
 
-    const handleQuantityBlur = (e) => {
+    const handleQuantityBlur = (_e) => {
         if (quantity === '' || quantity < 1) {
             setQuantity(1)
         }
@@ -470,7 +470,7 @@ function ProductGrid({ onSelectProduct }) {
                         <div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                         >
-                            {visibleProducts.map((product, index) => (
+                            {visibleProducts.map((product, _index) => (
                                 <div
                                     key={product.id}
                                     className="animate-fade-in-up"

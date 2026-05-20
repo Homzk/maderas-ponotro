@@ -104,8 +104,8 @@ function FounderProfile() {
 
                             {/* Founder quote */}
                             <blockquote className="border-l-4 border-accent-gold pl-5 py-2 italic text-gray-500">
-                                "La madera bien tratada no solo construye estructuras, construye confianza. Ese ha sido nuestro
-                                norte desde el primer día."
+                                &quot;La madera bien tratada no solo construye estructuras, construye confianza. Ese ha sido nuestro
+                                norte desde el primer día.&quot;
                             </blockquote>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 import { FaShoppingCart, FaTools, FaPlus, FaMinus } from 'react-icons/fa'
 
 const CATEGORIES = ['Construcción', 'Terminaciones', 'Polines', 'Tablas', 'Otro']

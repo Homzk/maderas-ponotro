@@ -90,7 +90,7 @@ function Hero() {
                         alt=""
                         loading={i === 0 ? "eager" : "lazy"}
                         decoding={i === 0 ? "sync" : "async"}
-                        fetchpriority={i === 0 ? "high" : "low"}
+                        fetchPriority={i === 0 ? "high" : "low"}
                         width={1920}
                         height={1080}
                         className={`w-full h-full object-cover ${

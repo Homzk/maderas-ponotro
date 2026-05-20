@@ -1,4 +1,4 @@
-import { useQuotationCart } from '../../context/QuotationCartContext'
+import { useQuotationCart } from '../../hooks/useQuotationCart'
 import { FaTrash, FaShoppingCart, FaArrowRight } from 'react-icons/fa'
 
 function QuotationSummary() {
@@ -90,7 +90,7 @@ function QuotationSummary() {
                                     {/* Special order description */}
                                     {item.isSpecialOrder && item.description && (
                                         <p className="text-xs text-charcoal-light mt-2 italic line-clamp-2 font-sans">
-                                            "{item.description}"
+                                            &quot;{item.description}&quot;
                                         </p>
                                     )}
                                 </div>
