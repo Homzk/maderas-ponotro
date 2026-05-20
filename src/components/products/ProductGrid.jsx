@@ -362,7 +362,7 @@ function ProductGrid({ onSelectProduct }) {
                 >
                     {/* Category Tabs */}
                     <div className="mb-6 relative -mx-2 px-2 pt-2">
-                        <div className="flex overflow-x-auto gap-3 pb-4 snap-x snap-mandatory 
+                        <div className="flex overflow-x-auto gap-3 pt-2 pb-4 snap-x snap-mandatory
                                       [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             {CATEGORIES.map((category) => {
                                 const isActive = activeCategory === category
