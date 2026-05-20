@@ -342,7 +342,7 @@ maderas-ponotroV2.0/
 
 | Campo | Valor |
 | :---- | :---- |
-| **Email corporativo** | maderas_ponotros@hotmail.com |
+| **Email corporativo** | Contacto.maderasponotro@gmail.com |
 | **Ejecutivo 1** | Orosimbo Cisterna — +56 9 8744 6911 |
 | **Ejecutivo 2** | Claudia Zapata — +56 9 4032 3645 |
 | **Horario** | Lun–Vie 08:00–17:30 / Sáb 08:00–12:00 |
