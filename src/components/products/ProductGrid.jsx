@@ -362,19 +362,18 @@ function ProductGrid({ onSelectProduct }) {
                 >
                     {/* Category Tabs */}
                     <div className="mb-6 relative -mx-2 px-2 pt-2">
-                        <div className="flex overflow-x-auto gap-3 pt-2 pb-4 snap-x snap-mandatory
-                                      [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        <div className="grid grid-cols-2 gap-3 pt-2 pb-4 sm:flex sm:flex-wrap">
                             {CATEGORIES.map((category) => {
                                 const isActive = activeCategory === category
                                 return (
                                     <button
                                         key={category}
                                         onClick={() => handleCategoryChange(category)}
-                                        className={`snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-display font-medium
+                                        className={`w-full sm:w-auto whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-display font-medium
                                                     transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest
                                                     ${
                                                         isActive
-                                                            ? 'bg-forest text-white shadow-md transform scale-105 ml-1'
+                                                            ? 'bg-forest text-white shadow-md transform scale-105'
                                                             : 'bg-gray-50 text-charcoal-light hover:bg-gray-100 hover:text-forest border border-gray-100'
                                                     }`}
                                         aria-current={isActive ? 'page' : undefined}
@@ -384,8 +383,6 @@ function ProductGrid({ onSelectProduct }) {
                                 )
                             })}
                         </div>
-                        {/* Gradient to indicate scrollability on mobile */}
-                        <div className="absolute top-0 right-0 bottom-4 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none sm:hidden" />
                     </div>
 
                     <div
