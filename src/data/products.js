@@ -12,4 +12,12 @@ export const products = [
   { id: 16, category: "Construcción", name: "Madera Dimensionada 4x4", treatment: "natural", size: "4x4", image: "/products/construccion/dimensionada-4x4-natural-cepillada.webp", photoVariant: "cepillada" },
   { id: 18, category: "Construcción", name: "Madera Dimensionada 5x5", treatment: "natural", size: "5x5", image: "/products/construccion/dimensionada-5x5-natural.webp" },
   { id: 20, category: "Construcción", name: "Madera Dimensionada 6x6", treatment: "natural", size: "6x6", image: "/products/construccion/dimensionada-6x6-natural.webp" },
+
+  // TABLAS
+  { id: 22, category: "Tablas", name: "Tabla 1/2 × 4", treatment: "natural", size: "1/2x4", image: "/products/tablas/tabla-medio-x4-natural.webp" },
+  { id: 24, category: "Tablas", name: "Tabla 1 × 4", treatment: "natural", size: "1x4", image: "/products/tablas/tabla-1x4-natural.webp" },
+  { id: 26, category: "Tablas", name: "Tabla 1 × 5", treatment: "natural", size: "1x5", image: "/products/tablas/tabla-1x5-natural.webp" },
+  { id: 28, category: "Tablas", name: "Tabla 1 × 6", treatment: "natural", size: "1x6", image: "/products/tablas/tabla-1x6-natural.webp" },
+  { id: 30, category: "Tablas", name: "Tabla 1 × 8", treatment: "natural", size: "1x8", image: "/products/tablas/tabla-1x8-natural.webp" },
+  { id: 32, category: "Tablas", name: "Tabla 1 × 10", treatment: "natural", size: "1x10", image: "/products/tablas/tabla-1x10-natural.webp" },
 ];

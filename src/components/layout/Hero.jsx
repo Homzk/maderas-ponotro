@@ -90,6 +90,7 @@ function Hero() {
                         alt=""
                         loading={i === 0 ? "eager" : "lazy"}
                         decoding={i === 0 ? "sync" : "async"}
+                        // eslint-disable-next-line react/no-unknown-property -- React 18 emits a runtime DOM warning for camelCase `fetchPriority`; use lowercase HTML attribute
                         fetchpriority={i === 0 ? "high" : "low"}
                         width={1920}
                         height={1080}
