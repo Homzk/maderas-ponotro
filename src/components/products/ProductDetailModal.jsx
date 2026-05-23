@@ -12,9 +12,17 @@ function ProductDetailModal({ product, onClose }) {
     const [isImpregnada, setIsImpregnada] = useState(false)
     const [quantity, setQuantity] = useState(1)
 
+    const isSimple = product?.simpleConfigurator === true
+
     // Generar el ID específico para esta configuración para verificar si ya está en el carrito
-    const cartItemId = product ? `${product?.id}-${length}-${isCepillada ? 'cep' : 'nat'}-${isImpregnada ? 'imp' : 'nat'}` : null
-    const isInCart = items.some(item => item.cartItemId === cartItemId)
+    const cartItemId = product
+        ? (isSimple
+            ? `${product.id}`
+            : `${product.id}-${length}-${isCepillada ? 'cep' : 'nat'}-${isImpregnada ? 'imp' : 'nat'}`)
+        : null
+    const isInCart = isSimple
+        ? items.some(item => !item.cartItemId && item.id === product?.id)
+        : items.some(item => item.cartItemId === cartItemId)
 
     useEffect(() => {
         // Prevent background scrolling when modal is open
@@ -36,16 +44,20 @@ function ProductDetailModal({ product, onClose }) {
     if (!product) return null
 
     const handleAdd = () => {
-        addItem({
-            ...product,
-            cartItemId,
-            selectedLength: length,
-            quantity: quantity,
-            options: {
-                cepillada: isCepillada,
-                impregnada: isImpregnada
-            }
-        })
+        addItem(
+            isSimple
+                ? { ...product, quantity }
+                : {
+                    ...product,
+                    cartItemId,
+                    selectedLength: length,
+                    quantity: quantity,
+                    options: {
+                        cepillada: isCepillada,
+                        impregnada: isImpregnada
+                    }
+                }
+        )
         setJustAdded(true)
         setQuantity(1)
         setTimeout(() => setJustAdded(false), 1500)
@@ -126,7 +138,8 @@ function ProductDetailModal({ product, onClose }) {
                             {product.description}
                         </p>
 
-                        {/* Configurator Section */}
+                        {/* Configurator Section — hidden for simple products that don't take largo/tratamiento */}
+                        {!isSimple && (
                         <div className="mb-8 bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm">
                             <h3 className="font-display font-bold text-forest mb-6 flex items-center gap-2 text-lg">
                                 <FaTools className="text-accent-gold" />
@@ -189,6 +202,7 @@ function ProductDetailModal({ product, onClose }) {
                                 </div>
                             </div>
                         </div>
+                        )}
 
                         {/* Features / Measures */}
                         {product.features && product.features.length > 0 && (
@@ -261,9 +275,11 @@ function ProductDetailModal({ product, onClose }) {
                                 </>
                             )}
                         </button>
-                        <p className="text-center text-[11px] text-gray-400 mt-4 font-sans uppercase tracking-widest font-medium">
-                            Puedes añadir el mismo producto con diferentes medidas
-                        </p>
+                        {!isSimple && (
+                            <p className="text-center text-[11px] text-gray-400 mt-4 font-sans uppercase tracking-widest font-medium">
+                                Puedes añadir el mismo producto con diferentes medidas
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

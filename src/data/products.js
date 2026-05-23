@@ -20,4 +20,7 @@ export const products = [
   { id: 28, category: "Tablas", name: "Tabla 1 × 6", treatment: "natural", size: "1x6", image: "/products/tablas/tabla-1x6-natural.webp" },
   { id: 30, category: "Tablas", name: "Tabla 1 × 8", treatment: "natural", size: "1x8", image: "/products/tablas/tabla-1x8-natural.webp" },
   { id: 32, category: "Tablas", name: "Tabla 1 × 10", treatment: "natural", size: "1x10", image: "/products/tablas/tabla-1x10-natural.webp" },
+
+  // SUBPRODUCTOS — usan tarjeta simplificada (solo cantidad), sin largo ni cepillada/impregnada
+  { id: 50, category: "Subproductos", name: "Enrejado de Madera", treatment: "natural", image: "/products/subproductos/enrejado-de-madera.webp", simpleConfigurator: true },
 ];

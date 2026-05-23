@@ -56,24 +56,31 @@ function CatalogCard({ product, onSelect }) {
     const [justAdded, setJustAdded] = useState(false)
 
     const { items, addItem } = useQuotationCart()
-    const cartItemId = `${product.id}-${length}-${isCepillada ? 'cep' : 'nat'}-${isImpregnada ? 'imp' : 'nat'}`
-    const cartItem = items.find(item => item.cartItemId === cartItemId)
+    const isSimple = product.simpleConfigurator === true
+    const cartItemId = isSimple
+        ? `${product.id}`
+        : `${product.id}-${length}-${isCepillada ? 'cep' : 'nat'}-${isImpregnada ? 'imp' : 'nat'}`
+    const cartItem = isSimple
+        ? items.find(item => !item.cartItemId && item.id === product.id)
+        : items.find(item => item.cartItemId === cartItemId)
     const isInCart = !!cartItem
 
     const handleAddToCart = (e) => {
         e.stopPropagation()
 
-        const configuredProduct = {
-            ...product,
-            cartItemId,
-            selectedLength: length,
-            quantity: quantity,
-            options: {
-                cepillada: isCepillada,
-                impregnada: isImpregnada
+        const payload = isSimple
+            ? { ...product, quantity }
+            : {
+                ...product,
+                cartItemId,
+                selectedLength: length,
+                quantity: quantity,
+                options: {
+                    cepillada: isCepillada,
+                    impregnada: isImpregnada
+                }
             }
-        }
-        addItem(configuredProduct)
+        addItem(payload)
         setJustAdded(true)
         setQuantity(1)
         setTimeout(() => setJustAdded(false), 2000)
@@ -133,13 +140,15 @@ function CatalogCard({ product, onSelect }) {
                     {product.category}
                 </span>
 
-                {/* Size badge */}
-                <span
-                    className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-forest-dark
-                               text-xs font-bold px-2.5 py-1 rounded-full shadow-md font-display"
-                >
-                    {product.size}
-                </span>
+                {/* Size badge — hidden for products without a measurable size (e.g. enrejados) */}
+                {product.size && (
+                    <span
+                        className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-forest-dark
+                                   text-xs font-bold px-2.5 py-1 rounded-full shadow-md font-display"
+                    >
+                        {product.size}
+                    </span>
+                )}
 
                 {/* Photo variant disclaimer — shown when the photo doesn't match the default natural untreated state */}
                 {product.photoVariant && (
@@ -162,52 +171,54 @@ function CatalogCard({ product, onSelect }) {
                     {product.name}
                 </h3>
 
-                {/* Configuration Options */}
-                <div className="flex flex-col gap-3 mb-5 flex-1">
-                    {/* Largo */}
-                    <div className="flex items-center justify-between">
-                        <label className="text-sm text-charcoal-light font-medium">Largo</label>
-                        <select 
-                            value={length}
-                            onChange={(e) => { e.stopPropagation(); setLength(e.target.value); }}
-                            onClick={(e) => e.stopPropagation()}
-                            className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-sans font-semibold text-charcoal
-                                       focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest cursor-pointer transition-colors"
-                        >
-                            {['2.40', '3.20', '4', '5', '6', '7'].map(l => (
-                                <option key={l} value={l}>{l} m</option>
-                            ))}
-                        </select>
-                    </div>
+                {/* Configuration Options — hidden for simple products that don't take largo/tratamiento */}
+                {!isSimple && (
+                    <div className="flex flex-col gap-3 mb-5 flex-1">
+                        {/* Largo */}
+                        <div className="flex items-center justify-between">
+                            <label className="text-sm text-charcoal-light font-medium">Largo</label>
+                            <select
+                                value={length}
+                                onChange={(e) => { e.stopPropagation(); setLength(e.target.value); }}
+                                onClick={(e) => e.stopPropagation()}
+                                className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-sans font-semibold text-charcoal
+                                           focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest cursor-pointer transition-colors"
+                            >
+                                {['2.40', '3.20', '4', '5', '6', '7'].map(l => (
+                                    <option key={l} value={l}>{l} m</option>
+                                ))}
+                            </select>
+                        </div>
 
-                    {/* Cepillada Switch */}
-                    <div className="flex items-center justify-between">
-                        <span className="text-sm text-charcoal-light font-medium">Cepillada</span>
-                        <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); setIsCepillada(!isCepillada); }}
-                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 ${isCepillada ? 'bg-amber-600' : 'bg-gray-200'}`}
-                            role="switch"
-                            aria-checked={isCepillada}
-                        >
-                            <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isCepillada ? 'translate-x-6' : 'translate-x-1'}`} />
-                        </button>
-                    </div>
+                        {/* Cepillada Switch */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-charcoal-light font-medium">Cepillada</span>
+                            <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); setIsCepillada(!isCepillada); }}
+                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 ${isCepillada ? 'bg-amber-600' : 'bg-gray-200'}`}
+                                role="switch"
+                                aria-checked={isCepillada}
+                            >
+                                <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isCepillada ? 'translate-x-6' : 'translate-x-1'}`} />
+                            </button>
+                        </div>
 
-                    {/* Impregnada Switch */}
-                    <div className="flex items-center justify-between">
-                        <span className="text-sm text-charcoal-light font-medium">Impregnada</span>
-                        <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); setIsImpregnada(!isImpregnada); }}
-                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 ${isImpregnada ? 'bg-forest' : 'bg-gray-200'}`}
-                            role="switch"
-                            aria-checked={isImpregnada}
-                        >
-                            <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isImpregnada ? 'translate-x-6' : 'translate-x-1'}`} />
-                        </button>
+                        {/* Impregnada Switch */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-charcoal-light font-medium">Impregnada</span>
+                            <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); setIsImpregnada(!isImpregnada); }}
+                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 ${isImpregnada ? 'bg-forest' : 'bg-gray-200'}`}
+                                role="switch"
+                                aria-checked={isImpregnada}
+                            >
+                                <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isImpregnada ? 'translate-x-6' : 'translate-x-1'}`} />
+                            </button>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 {/* Footer Action */}
                 <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
@@ -286,13 +297,16 @@ function ProductGrid({ onSelectProduct }) {
     /* Derive unique sizes dynamically for the active category (rerender-derived-state-no-effect) */
     const uniqueSizes = useMemo(() => {
         const categoryProducts = products.filter(p => p.category === activeCategory)
-        const sizeSet = new Set(categoryProducts.map((p) => p.size))
+        const sizeSet = new Set(categoryProducts.map((p) => p.size).filter(Boolean))
         return Array.from(sizeSet).sort((a, b) => {
             const [a1, a2] = a.split('x').map(Number)
             const [b1, b2] = b.split('x').map(Number)
             return (a1 || 0) - (b1 || 0) || (a2 || 0) - (b2 || 0)
         })
     }, [activeCategory])
+
+    /* Hide the size-filter bar entirely when the active category has no measurable sizes (e.g. Subproductos) */
+    const hasSizes = uniqueSizes.length > 0
 
     /* Derive filtered products from state — no effect (rerender-derived-state-no-effect) */
     const filteredProducts = useMemo(() => {
@@ -400,7 +414,7 @@ function ProductGrid({ onSelectProduct }) {
                     </div>
 
                     <div
-                        className={`${isWipCategory ? 'hidden' : 'flex'} flex-col sm:flex-row items-center justify-between
+                        className={`${isWipCategory || !hasSizes ? 'hidden' : 'flex'} flex-col sm:flex-row items-center justify-between
                                     gap-4 bg-white/80 backdrop-blur-sm rounded-2xl
                                     px-4 py-3 sm:px-6 sm:py-4 shadow-md border border-gray-100`}
                     >
