@@ -140,6 +140,17 @@ function CatalogCard({ product, onSelect }) {
                 >
                     {product.size}
                 </span>
+
+                {/* Photo variant disclaimer — shown when the photo doesn't match the default natural untreated state */}
+                {product.photoVariant && (
+                    <span
+                        className="absolute bottom-3 left-3 right-3 bg-amber-50/95 backdrop-blur-sm
+                                   text-amber-900 text-[11px] font-semibold px-2.5 py-1 rounded-md
+                                   shadow-md border border-amber-200 text-center font-sans"
+                    >
+                        Imagen referencial · {product.photoVariant}
+                    </span>
+                )}
             </div>
 
             {/* Content */}
@@ -265,9 +276,12 @@ function ProductGrid({ onSelectProduct }) {
     const [showAll, setShowAll] = useState(false)
     const initialCount = useInitialCount()
 
-    const CATEGORIES = ['Construcción', 'Terminaciones', 'Polines', 'Tablas']
-    const WIP_CATEGORIES = ['Terminaciones', 'Polines', 'Tablas']
-    const isWipCategory = WIP_CATEGORIES.includes(activeCategory)
+    const CATEGORIES = ['Construcción', 'Terminaciones', 'Polines', 'Tablas', 'Subproductos']
+    /* A category is WIP automatically when it has no products in data — no manual list to maintain */
+    const isWipCategory = useMemo(
+        () => !products.some((p) => p.category === activeCategory),
+        [activeCategory]
+    )
 
     /* Derive unique sizes dynamically for the active category (rerender-derived-state-no-effect) */
     const uniqueSizes = useMemo(() => {
@@ -495,6 +509,10 @@ function ProductGrid({ onSelectProduct }) {
                                 </button>
                             </div>
                         )}
+
+                        <p className="mt-8 text-center text-xs sm:text-sm text-charcoal-light/80 font-sans italic max-w-2xl mx-auto px-4">
+                            Las imágenes son referenciales; el acabado final depende de las opciones (cepillada / impregnada) seleccionadas en cada producto.
+                        </p>
                     </>
                 ) : (
                     /* ── Empty state ── */

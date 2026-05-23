@@ -106,6 +106,11 @@ function ProductDetailModal({ product, onClose }) {
                             {product.category}
                         </div>
                     )}
+                    {product.photoVariant && (
+                        <div className="absolute bottom-6 left-6 right-6 bg-amber-50/95 backdrop-blur-sm text-amber-900 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg shadow-lg border border-amber-200 text-center font-sans">
+                            Imagen referencial · acabado {product.photoVariant}
+                        </div>
+                    )}
                 </div>
 
                 {/* Right side: Information */}
