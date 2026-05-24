@@ -13,6 +13,27 @@ export const products = [
   { id: 18, category: "Construcción", name: "Madera Dimensionada 5x5", treatment: "natural", size: "5x5", image: "/products/construccion/dimensionada-5x5-natural.webp" },
   { id: 20, category: "Construcción", name: "Madera Dimensionada 6x6", treatment: "natural", size: "6x6", image: "/products/construccion/dimensionada-6x6-natural.webp" },
 
+  // TERMINACIONES
+  { id: 60, category: "Terminaciones", name: "Bota Agua 1 × 6",                  treatment: "natural",      size: "1x6",     image: "/products/terminaciones/bota-agua-1x6-natural.webp" },
+  { id: 62, category: "Terminaciones", name: "Bota Agua 1 × 7",                  treatment: "natural",      size: "1x7",     image: "/products/terminaciones/bota-agua-1x7-natural.webp" },
+  { id: 64, category: "Terminaciones", name: "California 1 × 5",                 treatment: "natural",      size: "1x5",     image: "/products/terminaciones/california-1x5-natural.webp" },
+  { id: 66, category: "Terminaciones", name: "California 1 × 8",                 treatment: "natural",      size: "1x8",     image: "/products/terminaciones/california-1x8-natural.webp" },
+  { id: 68, category: "Terminaciones", name: "Esquinero Finger-Joint",           treatment: "finger-joint",                  image: "/products/terminaciones/esquinero-finger-joint.webp" },
+  { id: 70, category: "Terminaciones", name: "Esquinero Finger-Joint Cepillado", treatment: "finger-joint",                  image: "/products/terminaciones/esquinero-finger-joint-cepillado.webp", photoVariant: "cepillada" },
+  { id: 72, category: "Terminaciones", name: "Forro 1/2 × 4",                    treatment: "natural",      size: "1/2x4",   image: "/products/terminaciones/forro-medio-x4-natural.webp" },
+  { id: 74, category: "Terminaciones", name: "Guarda Polvo 1/2 × 3",             treatment: "natural",      size: "1/2x3",   image: "/products/terminaciones/guarda-polvo-medio-x3-natural.webp" },
+  { id: 76, category: "Terminaciones", name: "Guarda Polvo Finger-Joint",        treatment: "finger-joint",                  image: "/products/terminaciones/guarda-polvo-finger-joint.webp" },
+  { id: 78, category: "Terminaciones", name: "Marco Puerta 1.5 × 7",             treatment: "natural",      size: "1.5x7",   image: "/products/terminaciones/marco-puerta-1.5x7-natural.webp" },
+  { id: 80, category: "Terminaciones", name: "Marco Rebajado Ventana 1.5 × 4",   treatment: "natural",      size: "1.5x4",   image: "/products/terminaciones/marco-rebajado-1.5x4-natural.webp" },
+  { id: 82, category: "Terminaciones", name: "Marco Rebajado Ventana 1.5 × 5",   treatment: "natural",      size: "1.5x5",   image: "/products/terminaciones/marco-rebajado-1.5x5-natural.webp" },
+  { id: 84, category: "Terminaciones", name: "Marco Ventana 1.5 × 6",            treatment: "natural",      size: "1.5x6",   image: "/products/terminaciones/marco-ventana-1.5x6-natural.webp" },
+  { id: 86, category: "Terminaciones", name: "Media Luna 1 × 5",                 treatment: "natural",      size: "1x5",     image: "/products/terminaciones/media-luna-1x5-natural.webp" },
+  { id: 88, category: "Terminaciones", name: "Moldura Finger-Joint",             treatment: "finger-joint",                  image: "/products/terminaciones/moldura-finger-joint.webp" },
+  { id: 90, category: "Terminaciones", name: "Piso Terraza Desbastado 1.5 × 4",  treatment: "natural",      size: "1.5x4",   image: "/products/terminaciones/piso-terraza-1.5x4-natural.webp" },
+  { id: 92, category: "Terminaciones", name: "Rodones Finger-Joint Cepillado",   treatment: "finger-joint",                  image: "/products/terminaciones/rodones-finger-joint-cepillado.webp", photoVariant: "cepillada" },
+  { id: 94, category: "Terminaciones", name: "Sobre Marcos 1 × 3",               treatment: "natural",      size: "1x3",     image: "/products/terminaciones/sobre-marcos-1x3-natural.webp", photoVariant: "cepillada" },
+  { id: 96, category: "Terminaciones", name: "Sobre Marcos 1 × 4",               treatment: "natural",      size: "1x4",     image: "/products/terminaciones/sobre-marcos-1x4-natural.webp" },
+
   // TABLAS
   { id: 22, category: "Tablas", name: "Tabla 1/2 × 4", treatment: "natural", size: "1/2x4", image: "/products/tablas/tabla-medio-x4-natural.webp" },
   { id: 24, category: "Tablas", name: "Tabla 1 × 4", treatment: "natural", size: "1x4", image: "/products/tablas/tabla-1x4-natural.webp" },
