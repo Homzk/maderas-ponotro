@@ -21,6 +21,13 @@ export const products = [
   { id: 30, category: "Tablas", name: "Tabla 1 × 8", treatment: "natural", size: "1x8", image: "/products/tablas/tabla-1x8-natural.webp" },
   { id: 32, category: "Tablas", name: "Tabla 1 × 10", treatment: "natural", size: "1x10", image: "/products/tablas/tabla-1x10-natural.webp" },
 
+  // POLINES — largo y diámetro fijos por producto; usan tarjeta simplificada (solo cantidad)
+  { id: 40, category: "Polines", name: "Polín 3.5\" × 2.5 m", treatment: "natural", image: "/products/polines/polin-3.5-pulgadas-2.5m.webp", simpleConfigurator: true },
+  { id: 42, category: "Polines", name: "Polín 4\" × 2.5 m", treatment: "natural", image: "/products/polines/polin-4-pulgadas-2.5m.webp", simpleConfigurator: true },
+  { id: 44, category: "Polines", name: "Polín 5\" × 2.5 m", treatment: "natural", image: "/products/polines/polin-5-pulgadas-2.5m.webp", simpleConfigurator: true },
+  { id: 46, category: "Polines", name: "Polín 6\" × 2.5 m", treatment: "natural", image: "/products/polines/polin-6-pulgadas-2.5m.webp", simpleConfigurator: true },
+  { id: 48, category: "Polines", name: "Poste 6\" × 6.6 m Impregnado", treatment: "impregnada", image: "/products/polines/poste-6-pulgadas-6.6m-impregnado.webp", simpleConfigurator: true },
+
   // SUBPRODUCTOS — usan tarjeta simplificada (solo cantidad), sin largo ni cepillada/impregnada
   { id: 50, category: "Subproductos", name: "Enrejado de Madera", treatment: "natural", image: "/products/subproductos/enrejado-de-madera.webp", simpleConfigurator: true },
 ];
