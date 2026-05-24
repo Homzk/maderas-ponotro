@@ -41,17 +41,25 @@ export const CONTACT_INFO = {
     ],
     branches: [
         {
-            id: 'ubicacion1',
-            name: 'Ubicación 1',
-            address: 'Región del Biobío, Chile',
-            mapUrl: 'https://maps.google.com/maps?q=-37.8370857,-73.4258194&hl=es&z=15&output=embed'
+            id: 'canete-urbano',
+            name: 'Cañete Urbano',
+            address: 'Cañete, Región del Biobío',
+            coordinates: { lat: -37.8370857, lng: -73.4258194 },
+            phone: '+56 9 8744 6911',
+            mapUrl: 'https://maps.google.com/maps?q=-37.8370857,-73.4258194&hl=es&z=15&output=embed',
+            mapLink: 'https://maps.app.goo.gl/D8GtbowJ5WfKbZy38',
+            hours: 'Lunes a Viernes: 08:00 - 17:30 | Sábado: 08:00 - 12:00',
         },
         {
-            id: 'ubicacion2',
-            name: 'Ubicación 2',
-            address: 'Región del Biobío, Chile',
-            mapUrl: 'https://www.google.com/maps?q=-37.80126190185547,-73.396484375&z=17&hl=es&output=embed'
-        }
+            id: 'sector-ponotro',
+            name: 'Sector Ponotro',
+            address: 'Sector Ponotro, Cañete, Región del Biobío',
+            coordinates: { lat: -37.8012619, lng: -73.3964844 },
+            phone: '+56 9 4032 3645',
+            mapUrl: 'https://www.google.com/maps?q=-37.8012619,-73.3964844&z=17&hl=es&output=embed',
+            mapLink: 'https://maps.app.goo.gl/hPCnjR4HuDehZWN9A',
+            hours: 'Lunes a Viernes: 08:00 - 17:30 | Sábado: 08:00 - 12:00',
+        },
     ],
     hours: 'Lunes a Viernes: 08:00 - 17:30 | Sábado: 08:00 - 12:00',
 }

@@ -13,6 +13,120 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!--
+      JSON-LD: Organization paraguas + 2 LocalBusiness en `location[]`.
+      PENDIENTE del cliente: streetAddress exacto (calle + número) para "Cañete Urbano".
+      Cuando llegue, agregar el campo `streetAddress` dentro del PostalAddress correspondiente.
+      No agregar `sameAs`: el negocio no mantiene redes sociales corporativas.
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Maderas Ponotro",
+      "description": "Elaboración e impregnación de maderas. Servicios de corte, cepillado e impregnación con cobertura en la Región del Biobío.",
+      "url": "https://maderasponotro.cl",
+      "email": "Contacto.maderasponotro@gmail.com",
+      "image": "https://maderasponotro.cl/og-image.jpg",
+      "logo": "https://maderasponotro.cl/logo.png",
+      "areaServed": [
+        { "@type": "City", "name": "Cañete" },
+        { "@type": "City", "name": "Lebu" },
+        { "@type": "City", "name": "Concepción" },
+        { "@type": "City", "name": "Talcahuano" }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+56987446911",
+          "contactType": "sales",
+          "name": "Orosimbo Cisterna",
+          "availableLanguage": "Spanish"
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+56940323645",
+          "contactType": "sales",
+          "name": "Claudia Zapata",
+          "availableLanguage": "Spanish"
+        }
+      ],
+      "location": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://maderasponotro.cl/#canete-urbano",
+          "name": "Maderas Ponotro - Cañete Urbano",
+          "image": "https://maderasponotro.cl/og-image.jpg",
+          "priceRange": "$$",
+          "telephone": "+56987446911",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cañete",
+            "addressRegion": "Región del Biobío",
+            "postalCode": "4390000",
+            "addressCountry": "CL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -37.8370857,
+            "longitude": -73.4258194
+          },
+          "hasMap": "https://maps.app.goo.gl/D8GtbowJ5WfKbZy38",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "08:00",
+              "closes": "17:30"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "12:00"
+            }
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://maderasponotro.cl/#ponotro",
+          "name": "Maderas Ponotro - Sector Ponotro",
+          "image": "https://maderasponotro.cl/og-image.jpg",
+          "priceRange": "$$",
+          "telephone": "+56940323645",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sector Ponotro",
+            "addressLocality": "Cañete",
+            "addressRegion": "Región del Biobío",
+            "postalCode": "4390000",
+            "addressCountry": "CL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -37.8012619,
+            "longitude": -73.3964844
+          },
+          "hasMap": "https://maps.app.goo.gl/hPCnjR4HuDehZWN9A",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "08:00",
+              "closes": "17:30"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "12:00"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
