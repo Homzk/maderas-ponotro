@@ -2,12 +2,12 @@
 
 > Sitio web corporativo y plataforma de cotizaciones para **Maderas Ponotro**, empresa chilena de elaboración e impregnación de maderas con más de 21 años de trayectoria en la Región del Bío-Bío.
 
-[![Netlify Status](https://img.shields.io/badge/Netlify-deployed-00C7B7?logo=netlify&logoColor=white)](https://maderas-ponotro.netlify.app)
+[![Netlify Status](https://img.shields.io/badge/Netlify-deployed-00C7B7?logo=netlify&logoColor=white)](https://maderasponotro.cl)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-### [Ver sitio en vivo → maderas-ponotro.netlify.app](https://maderas-ponotro.netlify.app)
+### [Ver sitio en vivo → maderasponotro.cl](https://maderasponotro.cl)
 
 Proyecto desarrollado de forma independiente (freelance) — desde el levantamiento de requerimientos junto al cliente, el diseño y desarrollo, hasta el despliegue en producción y la entrega final.
 
@@ -181,7 +181,7 @@ El proyecto incluye reportes generados con **[Unlighthouse](https://unlighthouse
 - **SEO** (meta tags, semántica HTML, mobile-friendly)
 - **Best Practices**
 
-Las auditorías se ejecutan contra el deploy en vivo (`maderas-ponotro.netlify.app`) y permiten validar que las optimizaciones (compresión Brotli, WebP, code splitting, preload de LCP) tienen impacto real en producción y no solo en métricas locales.
+Las auditorías se ejecutan contra el deploy en vivo (`maderasponotro.cl`) y permiten validar que las optimizaciones (compresión Brotli, WebP, code splitting, preload de LCP) tienen impacto real en producción y no solo en métricas locales.
 
 ---
 

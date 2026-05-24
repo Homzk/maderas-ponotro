@@ -1,4 +1,5 @@
 import { useState, lazy, Suspense } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Hero from './components/layout/Hero'
@@ -28,6 +29,7 @@ function App() {
     const [selectedProduct, setSelectedProduct] = useState(null)
 
     return (
+        <HelmetProvider>
         <div className="min-h-screen">
             <Navbar />
             <Suspense fallback={null}>
@@ -75,13 +77,14 @@ function App() {
 
             {selectedProduct && (
                 <Suspense fallback={null}>
-                    <ProductDetailModal 
-                        product={selectedProduct} 
-                        onClose={() => setSelectedProduct(null)} 
+                    <ProductDetailModal
+                        product={selectedProduct}
+                        onClose={() => setSelectedProduct(null)}
                     />
                 </Suspense>
             )}
         </div>
+        </HelmetProvider>
     )
 }
 
