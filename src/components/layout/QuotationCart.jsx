@@ -1,8 +1,20 @@
+import { useState, useEffect } from 'react'
 import { FaTimes, FaTrash, FaArrowRight, FaPlus, FaMinus } from 'react-icons/fa'
 import { useQuotationCart } from '../../hooks/useQuotationCart'
 
 function QuotationCart() {
     const { items, isOpen, closeCart, removeItem, clearCart, updateQuantity, scrollToContact } = useQuotationCart()
+
+    /* Keep the drawer mounted but apply `visibility: hidden` once the slide-out animation
+       finishes — otherwise the fixed off-canvas panel extends the document width and creates
+       horizontal overflow on every section (the root cause of the body-level scrollbar). */
+    const [renderHidden, setRenderHidden] = useState(!isOpen)
+    useEffect(() => {
+        if (isOpen) setRenderHidden(false)
+    }, [isOpen])
+    const handleTransitionEnd = (e) => {
+        if (!isOpen && e.propertyName === 'transform') setRenderHidden(true)
+    }
 
     return (
         <>
@@ -18,7 +30,10 @@ function QuotationCart() {
             <div
                 className={`fixed top-20 right-0 h-[calc(100%-5rem)] w-full max-w-md bg-white z-[70] shadow-2xl transition-transform duration-500 ease-out flex flex-col ${
                     isOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
+                } ${renderHidden ? 'invisible' : 'visible'}`}
+                aria-hidden={!isOpen}
+                inert={!isOpen ? '' : undefined}
+                onTransitionEnd={handleTransitionEnd}
             >
                 {/* Header */}
                 <div className="bg-gradient-to-r from-forest-dark to-forest p-6 flex items-center justify-between flex-shrink-0">
