@@ -11,8 +11,6 @@
 
 html, body {
   overflow-x: hidden;
-  /* Disable rubber-band overscroll on mobile for a steadier scroll feel */
-  overscroll-behavior-y: none;
 }
 
 #root {
@@ -21,10 +19,6 @@ html, body {
 
 html {
   scroll-behavior: smooth;
-  /* Disable Chrome scroll anchoring — fights with the URL-bar toggle and
-     causes scroll jumps on Android Chrome. Revert ONLY this line if lazy
-     content loading makes the page jump on load. */
-  overflow-anchor: none;
 }
 
 body {
