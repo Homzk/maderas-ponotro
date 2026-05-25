@@ -123,6 +123,9 @@ dist
 # Bundle analysis output
 stats.html
 
+# Claude Code local config
+.claude/
+
 # macOS
 .DS_Store
 
