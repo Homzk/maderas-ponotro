@@ -74,7 +74,7 @@ function Hero() {
     return (
         <section 
             id="inicio" 
-            className="relative h-[100dvh] flex flex-col overflow-hidden"
+            className="relative h-[100svh] flex flex-col overflow-hidden"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
