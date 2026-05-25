@@ -18,7 +18,7 @@ export default function Slide1() {
                         alt="Maderas Ponotro"
                         width={224}
                         height={112}
-                        className="w-full h-auto object-contain mx-auto mb-2 md:mb-4 drop-shadow-2xl aspect-[2/1] max-w-[160px] sm:max-w-[220px] md:max-w-[250px] lg:max-w-[400px] max-h-[12vh] sm:max-h-[15vh] md:max-h-[18vh] lg:max-h-[25vh]"
+                        className="w-full h-auto object-contain mx-auto mb-2 md:mb-4 drop-shadow-2xl aspect-[2/1] max-w-[160px] sm:max-w-[220px] md:max-w-[250px] lg:max-w-[400px] max-h-[12svh] sm:max-h-[15svh] md:max-h-[18svh] lg:max-h-[25svh]"
                     />
                     {/* 3. PÁRRAFO: Se aumentó el tamaño de fuente (text-sm, md:text-3xl, lg:text-4xl) y max-w-5xl */}
                     <p className="text-center text-sm sm:text-lg md:text-3xl lg:text-4xl short:text-xs medium-h:text-base text-white/90 font-display font-medium drop-shadow-lg max-w-5xl mx-auto px-2">

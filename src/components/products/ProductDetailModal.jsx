@@ -126,7 +126,7 @@ function ProductDetailModal({ product, onClose }) {
                 </div>
 
                 {/* Right side: Information */}
-                <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col max-h-[80vh] overflow-y-auto">
+                <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col max-h-[80svh] overflow-y-auto">
                     <div className="flex-1">
                         <h2 className="text-3xl sm:text-4xl font-display font-bold text-forest-dark mb-4 leading-tight">
                             {product.name}

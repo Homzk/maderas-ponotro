@@ -30,7 +30,7 @@ function App() {
 
     return (
         <HelmetProvider>
-        <div className="min-h-screen">
+        <div className="min-h-[100svh]">
             <Navbar />
             <Suspense fallback={null}>
                 <QuotationCart />
