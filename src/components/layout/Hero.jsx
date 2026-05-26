@@ -87,7 +87,7 @@ function Hero() {
                 >
                     <img
                         src={bg}
-                        alt=""
+                        alt={i === 0 ? "Bodega de Maderas Ponotro con maderas apiladas en Cañete, Región del Biobío" : ""}
                         loading={i === 0 ? "eager" : "lazy"}
                         decoding={i === 0 ? "sync" : "async"}
                         // eslint-disable-next-line react/no-unknown-property -- React 18 emits a runtime DOM warning for camelCase `fetchPriority`; use lowercase HTML attribute
@@ -99,7 +99,7 @@ function Hero() {
                                 ? (i === current ? 'animate-pan-slow' : 'scale-[1.03]')
                                 : `transition-transform duration-[14000ms] ease-linear ${i === current ? 'scale-[1.04]' : 'scale-100'}`
                         }`}
-                        aria-hidden="true"
+                        aria-hidden={i === 0 ? undefined : "true"}
                     />
                 </div>
             ))}
