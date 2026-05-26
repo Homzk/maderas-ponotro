@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:og": "node scripts/generate-og-image.js"
+    "generate:og": "node scripts/generate-og-image.js",
+    "generate:logo-seo": "node scripts/generate-logo-seo.js"
   },
   "dependencies": {
     "emailjs-com": "^3.2.0",
