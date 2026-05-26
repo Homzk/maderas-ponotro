@@ -11,14 +11,14 @@ function ContactButtons() {
             {/* Gmail Button */}
             <a
                 href={getMailtoLink()}
-                className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group border border-gray-100 hover:border-red-200"
+                className="flex flex-col items-center text-center gap-2 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group border border-gray-100 hover:border-red-200"
             >
                 <div className="w-12 h-12 flex-shrink-0 bg-red-100 rounded-full flex items-center justify-center group-hover:bg-red-200 transition-colors">
                     <FaGoogle className="text-red-600 text-xl" />
                 </div>
-                <div>
+                <div className="text-center">
                     <span className="font-display font-semibold text-gray-800 block">Email Oficial</span>
-                    <span className="text-gray-500 text-xs sm:text-sm">{CONTACT_INFO.email}</span>
+                    <span className="text-gray-500 text-xs sm:text-sm break-all">{CONTACT_INFO.email}</span>
                 </div>
             </a>
 
@@ -30,10 +30,10 @@ function ContactButtons() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {CONTACT_INFO.executives.map((exec, index) => (
                         <div key={index} className="flex flex-col space-y-2 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                            <span className="font-display font-bold text-gray-800 text-sm">
+                            <span className="font-display font-bold text-gray-800 text-sm block min-h-[2.5rem]">
                                 {exec.name}
                             </span>
-                            
+
                             <div className="flex flex-col space-y-2 mt-2">
                                 {/* WhatsApp */}
                                 <a
