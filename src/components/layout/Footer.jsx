@@ -46,7 +46,7 @@ function Footer() {
                                 <FaWhatsapp size={24} />
                             </a>
                             <a
-                                href="https://www.tiktok.com/@maderas_ponotro"
+                                href="https://www.tiktok.com/@maderas.ponotro"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-white/70 hover:text-forest-light transition-colors"
