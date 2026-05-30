@@ -182,7 +182,7 @@ function ContactForm() {
             <div>
                 <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">
                     Mensaje {hasCartItems ? '' : '*'}{' '}
-                    <span className="text-gray-400 text-xs">(máx. 500 caracteres)</span>
+                    <span className="text-gray-500 text-xs">(máx. 500 caracteres)</span>
                 </label>
                 <textarea
                     id="contact-message"
@@ -205,7 +205,7 @@ function ContactForm() {
                     ) : (
                         <span />
                     )}
-                    <span className={`text-xs ml-auto ${formData.message.length > 500 ? 'text-red-600' : 'text-gray-400'}`}>
+                    <span className={`text-xs ml-auto ${formData.message.length > 500 ? 'text-red-600' : 'text-gray-500'}`}>
                         {formData.message.length}/500
                     </span>
                 </div>

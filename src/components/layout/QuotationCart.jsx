@@ -140,6 +140,7 @@ function QuotationCart() {
                                             <div className="flex items-center bg-gray-50 border border-gray-200 rounded-lg overflow-hidden mt-2" onClick={(e) => e.stopPropagation()}>
                                                 <button
                                                     type="button"
+                                                    aria-label="Disminuir cantidad"
                                                     onClick={() => {
                                                         const next = (item.quantity || 1) - 1
                                                         if (next === 0) removeItem(itemKey)
@@ -149,10 +150,11 @@ function QuotationCart() {
                                                 >
                                                     <FaMinus size={8} />
                                                 </button>
-                                                <input 
+                                                <input
                                                     type="number"
                                                     min="1"
                                                     value={item.quantity || 1}
+                                                    aria-label="Cantidad"
                                                     onChange={(e) => {
                                                         const val = parseInt(e.target.value)
                                                         if (!isNaN(val) && val > 0) updateQuantity(itemKey, val)
@@ -160,8 +162,9 @@ function QuotationCart() {
                                                     className="w-8 h-6 text-center text-xs font-sans font-bold text-charcoal bg-transparent border-none focus:ring-0 p-0 appearance-none m-0"
                                                     style={{ MozAppearance: 'textfield' }}
                                                 />
-                                                <button 
+                                                <button
                                                     type="button"
+                                                    aria-label="Aumentar cantidad"
                                                     onClick={() => updateQuantity(itemKey, (item.quantity || 1) + 1)}
                                                     className="w-6 h-6 flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-100 transition-colors"
                                                 >

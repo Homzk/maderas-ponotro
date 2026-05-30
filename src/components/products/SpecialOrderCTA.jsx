@@ -110,6 +110,7 @@ export default function SpecialOrderCTA() {
                             <select
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
+                                aria-label="Categoría sugerida"
                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors cursor-pointer"
                             >
                                 {CATEGORIES.map(cat => (
@@ -138,6 +139,7 @@ export default function SpecialOrderCTA() {
                                 <select
                                     value={length}
                                     onChange={(e) => setLength(e.target.value)}
+                                    aria-label="Largo"
                                     className={`${length === 'Otro' ? 'xl:w-1/2' : 'w-full'} bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-sans text-charcoal focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest transition-colors cursor-pointer`}
                                 >
                                     {STANDARD_LENGTHS.map(l => (
@@ -161,25 +163,28 @@ export default function SpecialOrderCTA() {
                         <div>
                             <label className="block text-sm font-semibold text-forest-dark mb-2">Cantidad</label>
                             <div className="flex items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden h-[46px]">
-                                <button 
+                                <button
                                     type="button"
                                     onClick={decrementQuantity}
+                                    aria-label="Disminuir cantidad"
                                     className="w-10 h-full flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-200 transition-colors"
                                 >
                                     <FaMinus size={10} />
                                 </button>
-                                <input 
+                                <input
                                     type="number"
                                     min="1"
                                     value={quantity}
                                     onChange={handleQuantityChange}
                                     onBlur={handleQuantityBlur}
+                                    aria-label="Cantidad"
                                     className="flex-1 h-full w-full text-center text-sm font-sans font-bold text-charcoal bg-transparent border-none focus:ring-0 p-0 appearance-none m-0"
                                     style={{ MozAppearance: 'textfield' }}
                                 />
-                                <button 
+                                <button
                                     type="button"
                                     onClick={incrementQuantity}
+                                    aria-label="Aumentar cantidad"
                                     className="w-10 h-full flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-200 transition-colors"
                                 >
                                     <FaPlus size={10} />
@@ -200,6 +205,7 @@ export default function SpecialOrderCTA() {
                                     onClick={() => setIsCepillada(!isCepillada)}
                                     className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 ${isCepillada ? 'bg-amber-600' : 'bg-gray-200'}`}
                                     role="switch"
+                                    aria-label="Cepillada"
                                     aria-checked={isCepillada}
                                 >
                                     <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isCepillada ? 'translate-x-6' : 'translate-x-1'}`} />
@@ -214,6 +220,7 @@ export default function SpecialOrderCTA() {
                                     onClick={() => setIsImpregnada(!isImpregnada)}
                                     className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 ${isImpregnada ? 'bg-forest' : 'bg-gray-200'}`}
                                     role="switch"
+                                    aria-label="Impregnada"
                                     aria-checked={isImpregnada}
                                 >
                                     <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isImpregnada ? 'translate-x-6' : 'translate-x-1'}`} />

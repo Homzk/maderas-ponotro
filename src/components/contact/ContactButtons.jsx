@@ -40,7 +40,7 @@ function ContactButtons() {
                                     href={getWhatsAppLink(exec.whatsapp)}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center space-x-2 py-2 px-3 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] rounded-lg transition-colors border border-[#25D366]/20"
+                                    className="flex items-center justify-center space-x-2 py-2 px-3 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#0B6E3B] rounded-lg transition-colors border border-[#25D366]/20"
                                     title={`WhatsApp ${exec.name}`}
                                 >
                                     <FaWhatsapp size={16} />

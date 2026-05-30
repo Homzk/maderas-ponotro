@@ -181,6 +181,7 @@ function CatalogCard({ product, onSelect }) {
                                 value={length}
                                 onChange={(e) => { e.stopPropagation(); setLength(e.target.value); }}
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label="Largo en metros"
                                 className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-sans font-semibold text-charcoal
                                            focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest cursor-pointer transition-colors"
                             >
@@ -198,6 +199,7 @@ function CatalogCard({ product, onSelect }) {
                                 onClick={(e) => { e.stopPropagation(); setIsCepillada(!isCepillada); }}
                                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 ${isCepillada ? 'bg-amber-600' : 'bg-gray-200'}`}
                                 role="switch"
+                                aria-label="Cepillada"
                                 aria-checked={isCepillada}
                             >
                                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isCepillada ? 'translate-x-6' : 'translate-x-1'}`} />
@@ -212,6 +214,7 @@ function CatalogCard({ product, onSelect }) {
                                 onClick={(e) => { e.stopPropagation(); setIsImpregnada(!isImpregnada); }}
                                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 ${isImpregnada ? 'bg-forest' : 'bg-gray-200'}`}
                                 role="switch"
+                                aria-label="Impregnada"
                                 aria-checked={isImpregnada}
                             >
                                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isImpregnada ? 'translate-x-6' : 'translate-x-1'}`} />
@@ -232,12 +235,13 @@ function CatalogCard({ product, onSelect }) {
                         >
                             <FaMinus size={10} />
                         </button>
-                        <input 
+                        <input
                             type="number"
                             min="1"
                             value={quantity}
                             onChange={handleQuantityChange}
                             onBlur={handleQuantityBlur}
+                            aria-label="Cantidad"
                             className="w-10 h-full text-center text-sm font-sans font-bold text-charcoal bg-transparent border-none focus:ring-0 p-0 appearance-none m-0"
                             style={{ MozAppearance: 'textfield' }}
                         />
@@ -432,6 +436,7 @@ function ProductGrid({ onSelectProduct }) {
                                         id="filter-size"
                                         value={filterSize}
                                         onChange={handleSizeChange}
+                                        aria-label="Filtrar por medida"
                                         className="appearance-none bg-gray-50 border border-gray-200
                                                    rounded-full px-4 py-2 pr-10 text-sm font-sans text-charcoal
                                                    focus:outline-none focus:ring-2 focus:ring-forest/40

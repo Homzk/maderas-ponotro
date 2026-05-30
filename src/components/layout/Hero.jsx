@@ -86,14 +86,16 @@ function Hero() {
                     className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'}`}
                 >
                     <img
-                        src={bg}
+                        src={bg.src}
+                        srcSet={bg.srcSet}
+                        sizes="100vw"
                         alt={i === 0 ? "Bodega de Maderas Ponotro con maderas apiladas en Cañete, Región del Biobío" : ""}
                         loading={i === 0 ? "eager" : "lazy"}
                         decoding={i === 0 ? "sync" : "async"}
                         // eslint-disable-next-line react/no-unknown-property -- React 18 emits a runtime DOM warning for camelCase `fetchPriority`; use lowercase HTML attribute
                         fetchpriority={i === 0 ? "high" : "low"}
                         width={1920}
-                        height={1080}
+                        height={1440}
                         className={`w-full h-full object-cover ${
                             i === 0
                                 ? (i === current ? 'animate-pan-slow' : 'scale-[1.03]')
@@ -153,12 +155,14 @@ function Hero() {
                     <button
                         key={i}
                         onClick={() => handleManualNav(() => setCurrent(i))}
-                        className={`h-2.5 rounded-full transition-all duration-500 ${i === current
-                                ? 'w-10 bg-forest-light'
-                                : 'w-2.5 bg-white/40 hover:bg-white/60'
-                            }`}
+                        className="group relative flex items-center justify-center h-6 min-w-[24px]"
                         aria-label={`Ir a slide ${i + 1}`}
-                    />
+                    >
+                        <span className={`block h-2.5 rounded-full transition-all duration-500 ${i === current
+                                ? 'w-10 bg-forest-light'
+                                : 'w-2.5 bg-white/40 group-hover:bg-white/60'
+                            }`} />
+                    </button>
                 ))}
             </div>
 

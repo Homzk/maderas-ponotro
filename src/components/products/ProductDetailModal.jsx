@@ -153,9 +153,10 @@ function ProductDetailModal({ product, onClose }) {
                                         <label className="text-base font-display font-bold text-charcoal">Largo de la pieza</label>
                                         <span className="text-xs text-charcoal-light font-sans">Selecciona el largo estándar en metros</span>
                                     </div>
-                                    <select 
+                                    <select
                                         value={length}
                                         onChange={(e) => setLength(e.target.value)}
+                                        aria-label="Largo en metros"
                                         className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-base font-sans font-bold text-forest-dark
                                                    focus:outline-none focus:ring-2 focus:ring-forest focus:border-forest cursor-pointer transition-all shadow-sm"
                                     >
@@ -177,6 +178,7 @@ function ProductDetailModal({ product, onClose }) {
                                             onClick={() => setIsCepillada(!isCepillada)}
                                             className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 ${isCepillada ? 'bg-amber-600' : 'bg-gray-200'}`}
                                             role="switch"
+                                            aria-label="Cepillada"
                                             aria-checked={isCepillada}
                                         >
                                             <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isCepillada ? 'translate-x-6' : 'translate-x-1'}`} />
@@ -194,6 +196,7 @@ function ProductDetailModal({ product, onClose }) {
                                             onClick={() => setIsImpregnada(!isImpregnada)}
                                             className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 ${isImpregnada ? 'bg-forest' : 'bg-gray-200'}`}
                                             role="switch"
+                                            aria-label="Impregnada"
                                             aria-checked={isImpregnada}
                                         >
                                             <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-300 ease-in-out ${isImpregnada ? 'translate-x-6' : 'translate-x-1'}`} />
@@ -229,25 +232,28 @@ function ProductDetailModal({ product, onClose }) {
                         <div className="flex items-center justify-between p-2 bg-gray-50 border border-gray-200 rounded-2xl">
                             <span className="text-sm font-display font-bold text-charcoal px-3">Cantidad</span>
                             <div className="flex items-center bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-12">
-                                <button 
+                                <button
                                     type="button"
                                     onClick={decrementQuantity}
+                                    aria-label="Disminuir cantidad"
                                     className="w-12 h-full flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-50 transition-colors"
                                 >
                                     <FaMinus size={12} />
                                 </button>
-                                <input 
+                                <input
                                     type="number"
                                     min="1"
                                     value={quantity}
                                     onChange={handleQuantityChange}
                                     onBlur={handleQuantityBlur}
+                                    aria-label="Cantidad"
                                     className="w-16 h-full text-center text-lg font-sans font-bold text-charcoal bg-transparent border-none focus:ring-0 p-0 appearance-none m-0"
                                     style={{ MozAppearance: 'textfield' }}
                                 />
-                                <button 
+                                <button
                                     type="button"
                                     onClick={incrementQuantity}
+                                    aria-label="Aumentar cantidad"
                                     className="w-12 h-full flex items-center justify-center text-charcoal-light hover:text-forest hover:bg-gray-50 transition-colors"
                                 >
                                     <FaPlus size={12} />

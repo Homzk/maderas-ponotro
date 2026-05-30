@@ -30,12 +30,18 @@
     <meta name="twitter:description" content="Elaboración, dimensionado e impregnación de maderas en la Región del Biobío. Despacho a Cañete, Lebu, Concepción y Talcahuano." />
     <meta name="twitter:image" content="https://maderasponotro.cl/og-image.jpg" />
 
-    <!-- Preload LCP image — first hero carousel slide -->
-    <link rel="preload" href="/Slide 1.webp" as="image" type="image/webp" fetchpriority="high">
+    <!-- Preload LCP image — first hero carousel slide (responsive: browser preloads the width it will use) -->
+    <link rel="preload" href="/hero/hero-1-1920.webp" as="image" type="image/webp" fetchpriority="high"
+      imagesrcset="/hero/hero-1-640.webp 640w, /hero/hero-1-1024.webp 1024w, /hero/hero-1-1536.webp 1536w, /hero/hero-1-1920.webp 1920w"
+      imagesizes="100vw">
     <!-- Preconnect to font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load font CSS without blocking render: fetch as print, then promote to all once loaded -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap">
+    </noscript>
 
     <!--
       JSON-LD: Organization paraguas + 2 LocalBusiness en `location[]`.
